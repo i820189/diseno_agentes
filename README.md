@@ -1,4 +1,4 @@
-# Diseño e Implementación de Agentes IA — Entregables (UTEC · Módulo 4)
+# Diseño e Implementación de Agentes IA — Entregables
 
 Repositorio de entregables del programa de posgrado.
 **Proyecto elegido:** Agente de Ventas **“Tus Eventos”** — empresa ficticia que ofrece
