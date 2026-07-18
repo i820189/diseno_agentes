@@ -345,7 +345,7 @@ El agente puede:
 
 El agente no puede:
 
-* realizar pagos;
+* realizar y confirmar pagos;
 * aprobar descuentos;
 * negociar condiciones especiales;
 * confirmar excepciones;
