@@ -1,8 +1,8 @@
 # Agentic Profile Card  
-## Agente de Preferencias de Compra en Retail
+## Agente de Preferencias de Compra en Retail.
 
 **Versión:** 1.0  
-**Tipo de agente:** Utility-Based Agent con memoria basada en modelo  
+**Tipo de agente:** Utility-Based Agent con memoria basada en modelo.
 **Nivel de autonomía:** Semi autónomo y constreñido  
 **Nivel de criticidad:** Medio – controlado  
 
