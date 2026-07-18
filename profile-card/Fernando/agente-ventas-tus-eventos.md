@@ -1,115 +1,515 @@
 Agentic Profile Card
 
-Agente de ocasiones de consumo y eventos
+Agente de recomendaciones y atención para ocasiones de consumo
 
-Versión 1.0 · Tipo: Utility-Based Agent con memoria basada en modelo · Arquitectura monoagente
-
-⸻
-
-Communication Layer
-
-Conversacional + no conversacional
-
-El agente interactúa principalmente mediante WhatsApp, donde atiende consultas, identifica necesidades, recomienda alternativas y acompaña al consumidor hasta una cotización o derivación comercial.
-
-También puede actuar de manera no conversacional mediante recordatorios autorizados. Estos recordatorios pueden activarse por fechas personales, como cumpleaños, o por momentos estacionales de consumo, como Navidad, Año Nuevo o celebraciones nacionales.
+Versión: 1.0
+Arquitectura: Monoagente
+Tipo de agente: Goal-Based Agent con memoria basada en modelo
+Nivel de autonomía: Semiautónomo y constreñido
+Nivel de criticidad: Medio – controlado
 
 ⸻
 
-Context Definition
+1. Descripción general
 
-Domain Definition
+El agente está pensado para atender consumidores que buscan productos o servicios para reuniones, celebraciones y eventos.
 
-El agente opera dentro de una empresa que comercializa productos y servicios para reuniones, celebraciones y eventos.
+Su función principal es comprender la necesidad del usuario, identificar la ocasión de consumo, recomendar una alternativa adecuada y ayudarlo a avanzar hacia una cotización.
 
-Su dominio no se limita a responder preguntas sobre un catálogo. También debe comprender la ocasión que está organizando el consumidor y relacionarla con una alternativa adecuada.
+También puede conservar preferencias confirmadas y fechas importantes, como cumpleaños o aniversarios, para enviar recordatorios o recomendaciones futuras, siempre que exista consentimiento.
 
-Por ejemplo, una reunión pequeña, una celebración familiar o un evento corporativo pueden necesitar recomendaciones diferentes. Para hacerlo, el agente considera información como el tipo de ocasión, la cantidad de asistentes, la fecha, el lugar y las preferencias del consumidor.
-
-Objectives Definition
-
-El objetivo principal es ayudar al consumidor a elegir una alternativa adecuada para su ocasión y facilitar su avance hacia una cotización o atención comercial.
-
-Durante la conversación, el agente busca comprender la intención, recopilar solamente los datos que faltan y recomendar una categoría de producto o servicio. Cuando las reglas del caso están definidas, puede calcular una cotización simple. Cuando existe una excepción, negociación o condición especial, deriva la conversación a un asesor humano.
-
-Además, puede mantener la relación con el consumidor mediante preferencias y fechas importantes que hayan sido autorizadas.
+En este documento no se incluyen nombres del negocio, marcas, precios ni detalles específicos de productos.
 
 ⸻
 
-Environment Definition
+2. Tipo de agente
 
-Knowledge
+El agente se clasifica principalmente como un:
 
-El conocimiento del agente se encuentra en fuentes actualizadas y separadas de su memoria.
+Goal-Based Agent con memoria basada en modelo
 
-La base de conocimiento contiene información general sobre las categorías de productos y servicios, sus características, las ocasiones para las que pueden ser recomendados, preguntas frecuentes, cobertura y condiciones de atención.
+Se considera un Goal-Based Agent porque sus decisiones están orientadas a alcanzar objetivos definidos:
 
-El catálogo y las fuentes estructuradas contienen información que puede cambiar con mayor frecuencia, como precios, disponibilidad, formatos y reglas de cotización.
+* identificar la necesidad del consumidor;
+* recomendar una alternativa;
+* completar los datos necesarios;
+* generar una cotización;
+* derivar una oportunidad calificada a un asesor.
 
-El agente también consulta un calendario comercial para reconocer temporadas o fechas relevantes. De esta manera, no depende solamente de lo que el modelo recuerde, sino de información vigente proporcionada por el negocio.
+También incorpora características de un Model-Based Reflex Agent, porque mantiene un estado interno de la conversación y del consumidor. Este estado le permite recordar qué información ya fue entregada, qué datos faltan y en qué parte del proceso se encuentra.
 
-Tools
+En una versión futura podría incorporar una función de utilidad más desarrollada para comparar alternativas según precio, preferencia, cantidad de asistentes y disponibilidad. Sin embargo, para el alcance inicial se considera principalmente un agente basado en objetivos.
 
-El agente utiliza herramientas para realizar acciones que no deberían depender únicamente del modelo de lenguaje.
-
-Puede consultar el catálogo, validar cobertura y disponibilidad, aplicar reglas de factibilidad y calcular cotizaciones. También puede registrar una oportunidad comercial, consultar o actualizar preferencias autorizadas y transferir una conversación a un asesor.
-
-Para los recordatorios, utiliza una herramienta que consulta fechas y consentimientos. La herramienta detecta que se aproxima una fecha, mientras que el agente decide cómo formular una comunicación relevante.
-
-Short-Term Memory
-
-La memoria de corto plazo conserva el estado de la conversación actual.
-
-Incluye la intención del consumidor, la ocasión de consumo, la fecha, el lugar, la cantidad de asistentes, las preferencias mencionadas y las alternativas que ya fueron evaluadas.
-
-También registra qué información falta y en qué etapa se encuentra la conversación. Esto permite que el agente no repita preguntas y que pueda continuar una cotización aunque la información haya sido entregada en diferentes mensajes.
-
-Por ejemplo, si el consumidor ya mencionó que organiza un cumpleaños para veinte personas, el agente conserva esos datos y pregunta únicamente por la fecha, el lugar o las preferencias que todavía necesita.
-
-Long-Term Memory
-
-La memoria de largo plazo conserva información útil entre diferentes conversaciones.
-
-Puede incluir preferencias confirmadas, categorías de interés, cotizaciones anteriores, ocasiones frecuentes y fechas importantes. También debe registrar si el consumidor autorizó recibir comunicaciones y cuándo fue enviado el último recordatorio.
-
-Esta memoria permite que el agente reconozca a un consumidor recurrente y ofrezca una experiencia más personalizada. Sin embargo, las preferencias no deben inferirse automáticamente. Antes de guardarlas, el agente debe confirmarlas con el consumidor.
-
-Los precios, la disponibilidad y las condiciones comerciales no se guardan en esta memoria, porque deben consultarse nuevamente desde las fuentes vigentes.
+No se plantea como un Learning Agent autónomo, ya que no modifica sus reglas por sí solo.
 
 ⸻
 
-Autonomy Dimension Definition
+3. Communication Layer
 
-Semiautónomo y restringido
+Conversacional
 
-El agente tiene autonomía para comprender solicitudes, responder consultas, recomendar alternativas, recopilar datos y realizar cotizaciones simples.
+El usuario interactúa con el agente mediante lenguaje natural, principalmente a través de WhatsApp.
 
-También puede guardar preferencias confirmadas y enviar recordatorios cuando existe consentimiento y se cumplen las reglas de frecuencia y horario.
+Puede realizar consultas como:
 
-Su autonomía termina cuando el caso requiere negociación o una decisión humana. No puede procesar pagos, aprobar descuentos, confirmar excepciones operativas ni resolver reclamos complejos.
+Estoy organizando un cumpleaños y necesito una opción para unas veinte personas.
 
-La derivación no debe ser una transferencia sin contexto. El agente prepara un resumen con la necesidad del consumidor, los datos recopilados, la recomendación realizada, la cotización disponible y el motivo por el que se necesita intervención humana.
+Quiero conocer qué alternativas tienen para una reunión.
+
+Necesito una cotización para una fecha determinada.
+
+El agente debe comprender la solicitud, extraer los datos disponibles y preguntar únicamente por la información faltante.
+
+No conversacional
+
+El agente también puede participar en procesos automáticos como:
+
+* consultar fechas importantes;
+* detectar momentos estacionales;
+* preparar recordatorios;
+* revisar el estado de una cotización;
+* registrar preferencias confirmadas;
+* activar un seguimiento autorizado.
 
 ⸻
 
-Criticality Dimension Definition
+4. Context Definition
 
-Nivel medio y controlado
+4.1 Domain Definition
 
-El agente participa en decisiones comerciales y utiliza información personal, por lo que existen riesgos que deben ser controlados.
+Dominio: productos y servicios para ocasiones de consumo, reuniones y eventos.
 
-Uno de los principales riesgos es realizar una recomendación poco relevante por interpretar incorrectamente la ocasión o las preferencias del consumidor. También podría entregar una cotización incorrecta si utiliza información desactualizada.
+El agente actúa como un asistente comercial que ayuda al consumidor a encontrar una alternativa según su necesidad.
 
-En el uso de memoria de largo plazo, existe el riesgo de guardar datos que el consumidor no confirmó o de enviar recordatorios con demasiada frecuencia.
+Debe comprender conceptos como:
 
-Para reducir estos riesgos, el agente debe consultar las fuentes vigentes antes de cotizar, confirmar las preferencias antes de almacenarlas y solicitar consentimiento para cualquier comunicación futura.
+* tipo de ocasión;
+* cantidad de asistentes;
+* fecha;
+* ubicación;
+* preferencias;
+* categorías de productos o servicios;
+* condiciones de atención;
+* restricciones operativas;
+* cotización;
+* seguimiento comercial.
 
-El consumidor debe poder corregir o eliminar sus datos y desactivar los recordatorios. Cuando el agente encuentre información incompleta, contradictoria o fuera de las reglas establecidas, debe derivar el caso en lugar de inventar una respuesta.
+El rol del system prompt será definir cómo debe comportarse el agente, qué información puede utilizar, qué decisiones puede tomar y cuándo debe derivar el caso a una persona.
 
-⸻
+4.2 Objectives Definition
 
 Objetivo general
 
-Ayudar al consumidor a encontrar una alternativa adecuada para su ocasión, facilitar la cotización y mantener una relación relevante mediante preferencias y recordatorios autorizados.
+Ayudar al consumidor a elegir una alternativa adecuada para su ocasión y facilitar su avance hacia una cotización o atención humana.
 
-Esta Profile Card corresponde a un sistema monoagente. El mismo agente mantiene la conversación y decide qué herramienta utilizar según la intención del consumidor. Aunque realiza diferentes funciones, todas comparten el mismo objetivo, contexto y memoria.
+Objetivos específicos
+
+1. Comprender la intención del consumidor.
+2. Identificar la ocasión de consumo.
+3. Extraer los datos entregados durante la conversación.
+4. Solicitar solamente la información faltante.
+5. Recomendar una categoría de producto o servicio.
+6. Consultar información actualizada.
+7. Elaborar cotizaciones simples cuando sea posible.
+8. Derivar casos complejos con un resumen.
+9. Guardar preferencias únicamente con confirmación.
+10. Enviar recordatorios cuando exista consentimiento.
+
+⸻
+
+5. Environment Definition
+
+5.1 Knowledge
+
+El conocimiento general del agente puede estar almacenado en una base de conocimiento consultada mediante RAG.
+
+Esta base incluiría:
+
+* descripción de las categorías ofrecidas;
+* características de cada alternativa;
+* ocasiones para las que pueden ser recomendadas;
+* preguntas frecuentes;
+* condiciones de atención;
+* cobertura;
+* restricciones operativas;
+* políticas generales;
+* mensajes comerciales aprobados.
+
+Ground Truth
+
+La información variable debe provenir de fuentes estructuradas y actualizadas, como:
+
+* catálogo;
+* tarifario;
+* sistema de disponibilidad;
+* lista de cobertura;
+* reglas comerciales;
+* calendario de fechas relevantes.
+
+El agente no debe inventar precios, disponibilidad, características ni condiciones.
+
+⸻
+
+5.2 Tools
+
+El agente puede utilizar las siguientes herramientas:
+
+consultar_catalogo
+
+Busca las categorías de productos o servicios disponibles.
+
+consultar_alternativa
+
+Obtiene información detallada de una opción.
+
+validar_cobertura
+
+Verifica si la ubicación se encuentra dentro de la zona de atención.
+
+validar_factibilidad
+
+Evalúa condiciones como fecha, anticipación y restricciones operativas.
+
+calcular_cotizacion
+
+Calcula una cotización cuando las reglas y datos están completos.
+
+consultar_preferencias
+
+Recupera preferencias autorizadas del consumidor.
+
+guardar_preferencia
+
+Registra una preferencia después de confirmarla.
+
+consultar_fechas_importantes
+
+Recupera fechas autorizadas, como cumpleaños o aniversarios.
+
+programar_recordatorio
+
+Registra un recordatorio para una fecha futura.
+
+derivar_a_asesor
+
+Transfiere el caso con los datos y el resumen de la conversación.
+
+⸻
+
+6. Memoria
+
+6.1 Short-Term Memory
+
+La memoria de corto plazo conserva el contexto de la conversación actual.
+
+Puede incluir:
+
+* intención;
+* ocasión de consumo;
+* fecha;
+* ubicación;
+* cantidad de asistentes;
+* preferencias actuales;
+* categoría recomendada;
+* alternativas descartadas;
+* datos faltantes;
+* cotización en proceso;
+* etapa de la conversación.
+
+Ejemplo:
+
+{
+  "session_id": "SESION-001",
+  "intencion": "solicitar_recomendacion",
+  "ocasion": "cumpleaños",
+  "asistentes": 20,
+  "fecha": "pendiente",
+  "preferencia_actual": "alternativa_practica",
+  "estado": "recopilando_datos"
+}
+
+Esta memoria evita que el agente repita preguntas y permite mantener continuidad.
+
+Por ejemplo, si el consumidor ya indicó que se trata de un cumpleaños para veinte personas, el agente no debería volver a solicitar esos datos.
+
+⸻
+
+6.2 Long-Term Memory
+
+La memoria de largo plazo conserva información útil entre diferentes conversaciones.
+
+Puede incluir:
+
+* preferencias confirmadas;
+* categorías de interés;
+* tipos de eventos frecuentes;
+* cotizaciones anteriores;
+* compras anteriores autorizadas;
+* cumpleaños o aniversarios;
+* recordatorios enviados;
+* consentimiento para comunicaciones;
+* solicitudes de actualización o eliminación.
+
+Ejemplo:
+
+{
+  "usuario_id": "USUARIO-001",
+  "preferencias": {
+    "tipo_de_ocasion": "reuniones_familiares",
+    "alternativa_preferida": "solucion_practica"
+  },
+  "fecha_importante": {
+    "tipo": "cumpleaños",
+    "mes": "noviembre"
+  },
+  "consentimiento_recordatorios": true
+}
+
+La memoria de largo plazo no debe utilizarse como fuente de precios, stock o reglas, porque esa información puede cambiar.
+
+⸻
+
+7. Política de memoria
+
+El agente debe distinguir entre información temporal y permanente.
+
+Información temporal
+
+Ejemplo:
+
+Para este evento prefiero una opción sencilla.
+
+Esta preferencia se utiliza únicamente en la conversación actual.
+
+Información permanente
+
+Ejemplo:
+
+En mis reuniones siempre prefiero opciones sencillas.
+
+Antes de guardarla, el agente debe consultar:
+
+¿Deseas que recuerde esta preferencia para futuras recomendaciones?
+
+Fechas importantes
+
+Si el consumidor comparte su cumpleaños o aniversario, el agente debe explicar para qué desea almacenarlo.
+
+Ejemplo:
+
+¿Deseas que recuerde esta fecha para enviarte un recordatorio antes de tu próxima celebración?
+
+El consumidor debe poder consultar, modificar o eliminar esta información.
+
+⸻
+
+8. Mecanismo de recomendación
+
+El agente primero debe descartar las opciones que no cumplen condiciones obligatorias.
+
+Luego puede evaluar alternativas considerando:
+
+Criterio	Importancia inicial
+Compatibilidad con la ocasión	Alta
+Cantidad de asistentes	Alta
+Preferencias del consumidor	Media
+Presupuesto aproximado	Media
+Disponibilidad	Alta
+Facilidad operativa	Media
+
+En esta primera versión no se propone una fórmula matemática compleja. El agente aplica reglas y criterios definidos por el negocio para recomendar una alternativa y explicar el motivo.
+
+Ejemplo:
+
+Esta opción podría ser adecuada porque se trata de una reunión pequeña, buscas algo práctico y no necesitas una solución con muchos equipos adicionales.
+
+⸻
+
+9. Autonomy Dimension Definition
+
+Nivel de autonomía
+
+Semiautónomo y constreñido
+
+El agente puede:
+
+* comprender la solicitud;
+* recopilar información;
+* consultar fuentes;
+* recomendar alternativas;
+* validar reglas simples;
+* calcular cotizaciones básicas;
+* guardar preferencias confirmadas;
+* preparar recordatorios;
+* derivar casos a un asesor.
+
+El agente no puede:
+
+* realizar pagos;
+* aprobar descuentos;
+* negociar condiciones especiales;
+* confirmar excepciones;
+* modificar reglas comerciales;
+* resolver reclamos complejos;
+* almacenar preferencias sin autorización;
+* enviar comunicaciones sin consentimiento.
+
+Human-in-the-loop
+
+El asesor humano participa cuando:
+
+* el consumidor quiere cerrar la compra;
+* existe negociación;
+* se solicita una excepción;
+* falta información operativa;
+* existe un reclamo;
+* el usuario solicita hablar con una persona;
+* el agente no puede resolver el caso con seguridad.
+
+⸻
+
+10. Criticality Dimension Definition
+
+Nivel de criticidad
+
+Medio – controlado
+
+El agente puede influir en una decisión de compra y utiliza información personal para personalizar la atención, pero no ejecuta pagos ni toma decisiones de alto impacto.
+
+Riesgos principales
+
+* recomendación poco relevante;
+* interpretación incorrecta de la ocasión;
+* cotización equivocada;
+* uso de información desactualizada;
+* preferencia guardada incorrectamente;
+* envío excesivo de recordatorios;
+* pérdida del contexto;
+* exposición de información personal;
+* derivación tardía al asesor.
+
+⸻
+
+11. Guardrails and Controls
+
+1. No inventar precios, productos o condiciones.
+2. Consultar las fuentes vigentes antes de cotizar.
+3. Solicitar confirmación antes de guardar preferencias.
+4. Solicitar consentimiento antes de enviar recordatorios.
+5. No guardar toda la conversación como memoria permanente.
+6. Permitir actualizar o eliminar información.
+7. Limitar la frecuencia de mensajes.
+8. Separar la información de cada consumidor.
+9. Derivar los casos ambiguos o fuera de las reglas.
+10. No procesar pagos ni almacenar información financiera sensible.
+
+⸻
+
+12. Evaluaciones
+
+El agente podría evaluarse mediante:
+
+Métrica	Descripción
+Precisión de intención	Identifica correctamente lo que busca el usuario
+Completitud del contexto	Conserva los datos entregados
+Relevancia	La recomendación coincide con la ocasión
+Exactitud factual	La información coincide con las fuentes
+Calidad de cotización	Aplica correctamente las reglas
+Corrección de memoria	Guarda solo información confirmada
+Tasa de preguntas repetidas	Mide pérdida de contexto
+Derivación útil	El asesor recibe información suficiente
+Latencia	Tiempo de respuesta
+Satisfacción	Evaluación del consumidor
+
+⸻
+
+13. LLM as a Judge
+
+Un modelo evaluador podría revisar:
+
+1. Si el agente comprendió la intención.
+2. Si utilizó correctamente el contexto.
+3. Si repitió preguntas ya respondidas.
+4. Si la recomendación fue coherente.
+5. Si inventó información.
+6. Si diferenció memoria temporal y permanente.
+7. Si solicitó consentimiento antes de guardar datos.
+8. Si derivó correctamente los casos complejos.
+9. Si la respuesta fue clara y breve.
+10. Si el usuario mantuvo el control final.
+
+⸻
+
+14. Flujo funcional
+
+Usuario inicia la conversación
+        ↓
+El agente identifica la intención y la ocasión
+        ↓
+Extrae la información disponible
+        ↓
+Actualiza la memoria de corto plazo
+        ↓
+Consulta preferencias autorizadas
+        ↓
+Identifica información faltante
+        ↓
+Realiza preguntas de aclaración
+        ↓
+Consulta catálogo, reglas y disponibilidad
+        ↓
+Recomienda una alternativa
+        ↓
+Calcula una cotización cuando es posible
+        ↓
+Deriva a un asesor o finaliza la consulta
+        ↓
+Solicita confirmación para guardar preferencias
+        ↓
+Actualiza memoria de largo plazo
+
+⸻
+
+15. Ejemplo de interacción
+
+Usuario:
+
+Estoy organizando un cumpleaños para unas veinte personas y necesito algo práctico.
+
+Agente:
+
+Para recomendarte una opción adecuada, ¿en qué fecha será y en qué zona se realizará?
+
+Usuario:
+
+Será el próximo mes. Normalmente prefiero opciones simples para mis reuniones.
+
+Agente:
+
+Tomaré en cuenta una alternativa práctica para esta ocasión. ¿Deseas que recuerde que normalmente prefieres opciones simples para futuras recomendaciones?
+
+Usuario:
+
+Sí.
+
+Agente:
+
+Listo. Guardaré esa preferencia. Ahora revisaré las alternativas disponibles para la fecha y zona indicadas.
+
+⸻
+
+16. Resumen ejecutivo
+
+Dimensión	Definición
+Communication Layer	Conversacional y no conversacional
+Domain	Ocasiones de consumo, reuniones y eventos
+Objetivo	Recomendar, cotizar y derivar oportunidades
+Tipo de agente	Goal-Based Agent con memoria basada en modelo
+Knowledge	Catálogo, reglas, cobertura y base de conocimiento
+Tools	Consultar, validar, cotizar, recordar y derivar
+Short-Term Memory	Contexto de la conversación actual
+Long-Term Memory	Preferencias y fechas autorizadas
+Autonomía	Semiautónomo y constreñido
+Criticidad	Media – controlada
+Control humano	Obligatorio para negociación, cierre y excepciones
+Resultado esperado	Recomendación relevante y cotización más ágil
