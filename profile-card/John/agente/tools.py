@@ -6,7 +6,10 @@ from langchain.tools import InjectedState, InjectedToolCallId, tool
 from langchain_core.messages import ToolMessage
 from langgraph.types import Command
 
-from .domain import CATALOGO, COBERTURA, REQUIRED_FIELDS, calcular_utilidad
+from recomendaciones import CATALOGO, COBERTURA, calcular_utilidad
+
+
+REQUIRED_FIELDS = ("occasion", "attendees", "event_date", "location")
 
 
 @tool
