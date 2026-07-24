@@ -179,32 +179,7 @@ failed
 
 Esto permitiría que el agente principal conozca el avance sin acceder al funcionamiento interno del agente externo.
 
-## 7. Diferencia con MCP
-
-Para este proyecto entiendo la diferencia de la siguiente manera:
-
-```text
-MCP: conecta un agente con herramientas o recursos.
-A2A: conecta un agente con otro agente independiente.
-```
-
-Por ejemplo:
-
-```text
-Agente de ventas
-      │
-      │ A2A
-      ▼
-Agente externo de logística
-      │
-      │ MCP
-      ▼
-Sistema de rutas y cobertura
-```
-
-El agente de logística podría utilizar MCP para consultar sus propias herramientas, mientras que nuestro agente se comunicaría con él mediante A2A.
-
-## 8. Ventajas para el proyecto
+## 7. Ventajas para el proyecto
 
 La principal ventaja sería poder integrar servicios externos sin tener que incorporar toda su lógica dentro del agente principal.
 
@@ -217,7 +192,7 @@ También permitiría:
 - cambiar de proveedor sin modificar todo el sistema;
 - mantener privada la memoria y las herramientas de cada agente.
 
-## 9. Limitaciones
+## 8. Limitaciones
 
 No considero que A2A deba implementarse solamente porque el proyecto utiliza agentes.
 
@@ -233,7 +208,7 @@ También habría algunos retos:
 
 Además, para una primera versión académica podría ser suficiente simular esta comunicación mediante mensajes JSON, sin implementar todavía un protocolo A2A completo.
 
-## 10. Propuesta de evolución
+## 9. Propuesta de evolución
 
 La implementación podría plantearse en dos etapas.
 
@@ -262,7 +237,7 @@ Agente de ventas
    └── A2A → Agente de pagos
 ```
 
-## 11. Conclusión
+## 10. Conclusión
 
 Considero que A2A no es necesario para resolver el funcionamiento interno del proyecto. La coordinación entre componentes o subagentes propios puede realizarse mediante el framework utilizado.
 
