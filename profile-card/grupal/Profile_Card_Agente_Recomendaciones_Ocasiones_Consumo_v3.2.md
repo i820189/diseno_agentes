@@ -30,13 +30,13 @@ El agente pertenece al dominio de **atención comercial para reuniones, celebrac
 
 Su función es acompañar a una persona que necesita encontrar una alternativa adecuada para una ocasión específica, considerando el tipo de evento, cantidad de asistentes, fecha, ubicación, presupuesto, preferencias, cobertura, disponibilidad y reglas del negocio.
 
-No reemplaza al asesor comercial. Su propósito es resolver la atención inicial y entregar una recomendación o cotización sustentada antes de una posible intervención humana.
+No reemplaza al asesor comercial. Su propósito es resolver la atención inicial y entregar una cotización sustentada antes de una posible intervención humana.
 
 ## 2.2 Objectives Definition
 
-El objetivo principal del agente es **guiar al usuario hasta un resultado comercial claro y válido**.
+El objetivo principal del agente es **Guiar al usuario durante el proceso de selección, recomendando la opción más adecuada según sus necesidades y recopilando la información necesaria para generar una cotización clara y personalizada, con el propósito de convertirla en una oportunidad de venta.
 
-Según la intención detectada, el agente debe finalizar en uno de estos resultados:
+Según la intención detectada, se consideran los siguientes pasos:
 
 - **Recomendación:** presentar la alternativa que mejor se ajusta a la ocasión y explicar los criterios utilizados.
 - **Cotización:** preparar una propuesta con precio, vigencia y condiciones obtenidas desde los sistemas oficiales.
@@ -52,18 +52,18 @@ Para lograrlo, el agente debe entender la intención del usuario, recopilar los 
 
 ### Fuente principal de negocio
 
-La fuente principal del agente es el **catálogo comercial de alternativas para reuniones, celebraciones y eventos**.
+La fuente principal del agente es el **catálogo comercial de productos y servicios de alternativas para reuniones, celebraciones y eventos**.
 
 Este catálogo debe describir claramente qué puede ofrecer el negocio. Cada alternativa debe indicar:
 
-- nombre y categoría;
-- ocasiones para las que resulta adecuada;
-- cantidad mínima y máxima de asistentes;
-- productos o servicios incluidos;
-- zonas donde puede atenderse;
-- restricciones operativas;
-- condiciones generales;
-- estado activo o inactivo.
+Catálogo comercial vigente de servicios para eventos, que incluya:
+
+- Catalogo disponible: paquetes, productos y servicios incluidos, precios, tipo de evento y capacidad de atención.
+- Condiciones de atención: zonas de cobertura
+- Disponibilidad real: estado activo de cada servicio y calendario actualizado de equipos y reservas.
+- restricciones operativas y condiciones generales aplicables: 
+pedidos con 72 horas de anticipación; en feriados se entrega el día hábil anterior y se recoge al día siguiente.
+
 
 El catálogo permite responder preguntas como:
 
@@ -72,32 +72,9 @@ El catálogo permite responder preguntas como:
 - qué alternativas pueden entregarse en una zona determinada;
 - qué opción debe descartarse por capacidad o restricciones.
 
-### Base documental
-
-El agente también consulta documentos aprobados por el negocio que contienen:
-
-- descripción de productos y servicios;
-- preguntas frecuentes;
-- políticas de atención;
-- restricciones;
-- condiciones comerciales generales;
-- procedimientos para derivar una solicitud;
-- mensajes autorizados para comunicarse con el usuario.
-
-### Información dinámica
-
-Los datos que pueden cambiar deben obtenerse siempre de los sistemas oficiales:
-
-- precios;
-- disponibilidad;
-- cobertura;
-- capacidad real;
-- calendario;
-- vigencia de cotizaciones;
-- condiciones comerciales actuales.
-
 El agente no debe usar el conocimiento general del modelo para completar estos datos.
 
+-- v Agosto/05/2026
 ## 3.2 Tools
 
 ### Conexión con el catálogo comercial
