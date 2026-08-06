@@ -1,0 +1,128 @@
+<mxfile host="app.diagrams.net" modified="2026-08-05T12:00:00.000Z" agent="Grupo5" version="24.0.0">
+  <diagram id="arq-tus-eventos" name="Arquitectura Tus Eventos">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="760" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="frame" value="PLATAFORMA TUS EVENTOS — Docker Compose (local) · 1 agente · tools deterministas" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;dashed=1;verticalAlign=top;fontStyle=1;fontSize=13;align=center;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="450" y="60" width="680" height="560" as="geometry" />
+        </mxCell>
+
+        <mxCell id="demo" value="Consola demo&lt;br&gt;Streamlit (interna)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="50" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cliente" value="CLIENTE&lt;br&gt;(WhatsApp)&lt;br&gt;~20 conversaciones/sem" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="150" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="waapi" value="WhatsApp Business&lt;br&gt;Cloud API (Meta)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="250" y="150" width="150" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="bff" value="BFF — FastAPI&lt;br&gt;webhook · sesiones · rate limit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="150" width="180" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="guardrails" value="GUARDRAILS E/S (software)&lt;br&gt;scope · anti-injection · filtro PII" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="490" y="280" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="checkpointer" value="Checkpointer SQLite&lt;br&gt;memoria corto plazo (thread_id)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="490" y="400" width="180" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="agente" value="AGENTE — create_agent&lt;br&gt;Goal-Based · ReAct&lt;br&gt;system prompt versionado" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="150" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tools" value="TOOLS (deterministas)&lt;br&gt;consulta_catalogo · validar_cobertura&lt;br&gt;validar_factibilidad (72h/feriados)&lt;br&gt;calcular_cotizacion (zona x temporada + S/50)&lt;br&gt;derivar_a_asesor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="740" y="280" width="190" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="chroma" value="Chroma (Agentic RAG)&lt;br&gt;FAQ · politicas · condiciones&lt;br&gt;(conocimiento/)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="960" y="280" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="stores" value="Catalogo (zona x temporada)&lt;br&gt;+ Calendario disponibilidad&lt;br&gt;(SQLite, sync desde Excel)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="740" y="440" width="190" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="dbcli" value="DB expedientes&lt;br&gt;(PII minima, por etapa)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="960" y="440" width="150" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="excel1" value="Excel del negocio:&lt;br&gt;catalogo de precios&lt;br&gt;(zonas x temporada)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="440" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="excel2" value="Excel del negocio:&lt;br&gt;calendario disponibilidad&lt;br&gt;y reservas" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="540" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="sync" value="Job de sincronizacion&lt;br&gt;(pandas, diario)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="260" y="480" width="150" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="llm" value="LLM: OpenAI gpt-4o-mini&lt;br&gt;(intercambiable via .env)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="1190" y="150" width="180" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="asesor" value="ASESOR HUMANO (HITL)&lt;br&gt;recibe expediente por WhatsApp&lt;br&gt;genera LINK DE PAGO&lt;br&gt;y confirma la reserva" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1190" y="280" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="langsmith" value="LangSmith&lt;br&gt;trazas · tokens · evals" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1190" y="440" width="180" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="nota" value="Sustento: agente UNICO (no workflow: el orden lo decide el LLM en runtime · no multiagente: un rol, un dominio, ~20 conv/sem).&lt;br&gt;Los pasos conocidos viven como gates deterministas (guardrails + tools), no en el prompt. Basado en Profile Card v3.1." style="text;html=1;align=left;verticalAlign=top;fontSize=11;fontStyle=2;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="450" y="640" width="680" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;" edge="1" parent="1" source="cliente" target="waapi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="webhook" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10;" edge="1" parent="1" source="waapi" target="bff">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="demo" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;dashed=1;fontSize=10;exitX=1;exitY=0.5;entryX=0;entryY=0.25;" edge="1" parent="1" source="demo" target="bff">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="invoke (thread_id)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10;" edge="1" parent="1" source="bff" target="agente">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;" edge="1" parent="1" source="agente" target="llm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="ReAct loop" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="agente" target="tools">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="retrieval como tool" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10;exitX=1;exitY=0.75;entryX=0.5;entryY=0;" edge="1" parent="1" source="agente" target="chroma">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#b85450;strokeWidth=2;dashed=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="bff" target="guardrails">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;dashed=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="guardrails" target="checkpointer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" value="solo lectura" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="tools" target="stores">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" value="expediente" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10;exitX=0.75;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="tools" target="dbcli">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;" edge="1" parent="1" source="excel1" target="sync">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;" edge="1" parent="1" source="excel2" target="sync">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" value="sync diario" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="sync" target="stores">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e15" value="derivacion / cierre (WhatsApp)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;dashed=1;fontSize=10;exitX=1;exitY=0.25;entryX=0;entryY=0.5;" edge="1" parent="1" source="tools" target="asesor">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e16" value="trazas / evals" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;dashed=1;fontSize=10;exitX=1;exitY=0.9;entryX=0;entryY=0.5;" edge="1" parent="1" source="agente" target="langsmith">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1160" y="225" />
+              <mxPoint x="1160" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

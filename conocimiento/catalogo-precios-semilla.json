@@ -1,0 +1,24 @@
+{
+  "_nota": "Catálogo SEMILLA sintético (estructura fiel al negocio: precio base por zona x temporada + adicionales). Los montos son de ejemplo — reemplazar con el Excel real de Fernando vía el job de sincronización.",
+  "vigencia": {"temporada": "regular-2026", "desde": "2026-07-01", "hasta": "2026-09-30"},
+  "zonas": {
+    "Z1": {"nombre": "Lima Moderna", "distritos": ["Miraflores", "San Isidro", "Surco", "San Borja", "La Molina", "Barranco", "Magdalena", "Jesus Maria", "Lince", "Pueblo Libre", "San Miguel", "Surquillo"]},
+    "Z2": {"nombre": "Lima Centro/Este", "distritos": ["Cercado", "Ate", "Santa Anita", "El Agustino", "San Luis", "La Victoria", "Rimac", "SJL"]},
+    "Z3": {"nombre": "Lima Norte/Sur", "distritos": ["Los Olivos", "SMP", "Comas", "Independencia", "SJM", "VES", "Chorrillos", "Callao"]}
+  },
+  "items": [
+    {"sku": "DISP-30L", "linea": "dispensador", "nombre": "Dispensador con barril 30L", "incluye": ["CO2", "vasos", "instalacion", "recojo"], "rinde": "~78 vasos de 380ml",
+     "precio_base_PEN": {"regular": {"Z1": 280, "Z2": 310, "Z3": 340}, "alta": {"Z1": 320, "Z2": 350, "Z3": 380}}},
+    {"sku": "DISP-50L", "linea": "dispensador", "nombre": "Dispensador con barril 50L", "incluye": ["CO2", "vasos", "instalacion", "recojo"], "rinde": "~130 vasos de 380ml",
+     "precio_base_PEN": {"regular": {"Z1": 390, "Z2": 420, "Z3": 450}, "alta": {"Z1": 440, "Z2": 470, "Z3": 500}}},
+    {"sku": "PACK-S", "linea": "paquete", "nombre": "Paquete S (hasta 20 personas)", "incluye": ["toldo 3x3", "4 mesas", "20 sillas"],
+     "precio_base_PEN": {"regular": {"Z1": 350, "Z2": 380, "Z3": 410}, "alta": {"Z1": 400, "Z2": 430, "Z3": 460}}},
+    {"sku": "PACK-M", "linea": "paquete", "nombre": "Paquete M (hasta 50 personas)", "incluye": ["toldo 6x3", "8 mesas", "50 sillas", "sonido basico"],
+     "precio_base_PEN": {"regular": {"Z1": 690, "Z2": 730, "Z3": 780}, "alta": {"Z1": 760, "Z2": 800, "Z3": 850}}}
+  ],
+  "adicionales": [
+    {"codigo": "SIN-ASCENSOR", "descripcion": "Entrega en piso elevado sin ascensor", "monto_PEN": 50, "aplica_por": "equipo"},
+    {"codigo": "FUERA-ZONA", "descripcion": "Distrito fuera de cobertura", "monto_PEN": null, "accion": "derivar_a_asesor"}
+  ],
+  "reglas_factibilidad": {"anticipacion_minima_horas": 72, "feriados": "entrega el dia habil anterior y recojo el dia habil siguiente, mismo lugar", "temporada_alta_recomendado_dias": 7}
+}
