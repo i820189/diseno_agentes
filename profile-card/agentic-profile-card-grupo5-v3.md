@@ -88,7 +88,7 @@ Conversacional, texto, español, tono amigable-profesional; se identifica como a
 `consulta_catalogo` · `consultar_alternativas` (sustitutos si no hay stock) · `validar_cobertura_distrito` · `validar_factibilidad` · `calcular_cotizacion` · `derivar_a_asesor` (con resumen de slots). *Todo dato duro sale de aquí; el LLM nunca los genera.*
 
 ### 4.3 Memoria de corto plazo
-El **estado de la cotización** (slot-filling) por sesión: `thread_id` + checkpointer; estrategia `trim_tokens` (el historial completo persiste en el checkpoint; al LLM viaja la ventana recortada + el estado de slots). El estado es **tipado y vive en código**, no en la labia del prompt.
+El **estado de la cotización** (slot-filling) por sesión: `thread_id` + checkpointer; estrategia `trim_tokens` (el historial completo persiste en el checkpoint; al LLM viaja la ventana recortada + el estado de slots) **+ `summary` al superar un umbral de tokens** (los mensajes antiguos se condensan con un modelo barato, en asíncrono — S9). El estado es **tipado y vive en código**, no en la labia del prompt.
 
 ### 4.4 Memoria de largo plazo (con consentimiento)
 Preferencias confirmadas del cliente y fechas relevantes (cumpleaños/aniversarios) **solo con consentimiento explícito**, para recordatorios y recompra; historial de cotizaciones previas. Nunca se persisten datos de pago. El traspaso corto→largo lo decide un filtro (qué le sirve al negocio), no una palabra clave.
