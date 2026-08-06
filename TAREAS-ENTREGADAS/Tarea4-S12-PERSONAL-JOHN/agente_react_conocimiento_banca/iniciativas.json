@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "nombre": "Samsung Pay",
+    "objetivo": "Poner en producción una nueva billetera llamada Samsung Pay para que se pueda pagar con celulares Samsung.",
+    "alcance": "Realizar las configuraciones correspondientes en el equipo de Xpay para que soporte esta nueva billetera.",
+    "estado": "En desarrollo",
+    "responsable": "No informado",
+    "fecha_entrega": "No informada",
+    "dependencias": [],
+    "decisiones": [],
+    "documentos_relacionados": [],
+    "procedimientos_relacionados": [],
+    "personas_relacionadas": [
+      {
+        "nombre": "VISA",
+        "relacion": "Socio estratégico/Integrador",
+        "rol": "Equipo de integración"
+      },
+      {
+        "nombre": "Thales",
+        "relacion": "Proveedor de tecnología/Integrador",
+        "rol": "Equipo de integración"
+      }
+    ],
+    "fuente": "Información proporcionada por el usuario",
+    "actualizado_en": "2026-08-02T19:42:02-05:00"
+  }
+]
