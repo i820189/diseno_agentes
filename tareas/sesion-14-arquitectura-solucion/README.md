@@ -35,7 +35,7 @@
 
 ### ✍️ Borrador de síntesis para Classroom (pulir DESPUÉS del debate)
 
-> El nuestro es un **agente único** (Goal-Based, patrón ReAct) porque el orden de la conversación lo decide el LLM en runtime según los datos que dé el cliente por WhatsApp. **No es workflow**: los pasos conocidos no van en el prompt, viven como gates deterministas en código (cobertura, factibilidad, precio solo del motor de reglas). **No es multiagente**: un solo rol y dominio con ~20 conversaciones/semana — más agentes sumarían costo sin beneficio; el proveedor podría integrarse a futuro como Agent-as-Tool. El cierre es **humano**: el asesor recibe el expediente y genera el link de pago. Corre en Docker local (FastAPI + LangChain `create_agent` + Chroma + SQLite sincronizado desde los Excel del negocio) con observabilidad en LangSmith.
+> El nuestro es un **agente único** (Goal-Based, patrón ReAct) porque el orden de la conversación lo decide el LLM en runtime según los datos que dé el cliente por WhatsApp. **No es workflow**: los pasos conocidos no van en el prompt, viven como gates deterministas en código (cobertura, factibilidad, precio solo del motor de reglas). **No es multiagente**: un solo rol y dominio con ~20 conversaciones/semana — más agentes sumarían costo sin beneficio; el proveedor podría integrarse a futuro como Agent-as-Tool. El cierre es **humano**: el asesor recibe el expediente y genera el link de pago. Corre en Docker local (FastAPI + LangChain `create_agent` + Chroma + SQLite sincronizado desde los Excel del negocio) con observabilidad en LangSmith. **Cumple el checklist de la S15** (¿compleja? ¿valiosa? ¿lograble? ¿costo del error?): la conversación es impredecible, es un negocio real (~20 cotizaciones/semana), el scope está acotado a cotizar, y el costo del error se controla con gates deterministas + cierre humano. **Adjuntamos además nuestro System Prompt (Goal-Based)** como evidencia de que no hay workflow oculto en el prompt.
 
 ## 2 · La arquitectura, capa por capa (cada caja existe por una razón)
 
@@ -53,6 +53,8 @@
 | **Asesor humano (WhatsApp)** | Recibe el expediente; **genera el link de pago** y confirma la reserva definitiva | El pago y el compromiso de stock son irreversibles → HITL siempre (y Ley 31601: derecho a humano) |
 | **LangSmith** | Trazas por thread/turn, tokens/costos, evaluadores | Observabilidad de la clase S12/S14; base de los KPIs del card §6 |
 | **Docker Compose (local)** | bff+agente · chroma · db | A 20 conv/semana la nube no se justifica (Boris: "no es necesario que paguen nube"); portar después es `docker push` |
+| **Canal de público abierto (SIN autenticación)** | Cualquier persona que escriba al WhatsApp del negocio es atendida; el número del cliente solo identifica la sesión (`thread_id`) | Es un canal comercial abierto: no aplica SSO/registro; los datos personales se piden recién en el cierre (minimización por etapa) |
+| **Omisiones conscientes: WAF / AI Gateway / balanceo de LLM** | Perímetro = verificación de firma del webhook de Meta; una sola ruta al LLM | Con un promedio de **~20 conversaciones/semana** no se justifican; el BFF centraliza la llamada al LLM y permite añadirlos sin refactor si el volumen crece |
 
 ## 3 · Coherencia sustento ↔ diagrama (checklist antes de subir)
 
@@ -66,6 +68,6 @@
 ## 4 · Operativa de entrega
 
 - **Editar el diagrama:** bajar `arquitectura-tus-eventos.drawio` (esta carpeta) → abrir en https://app.diagrams.net (o VS Code + extensión Draw.io) → ajustar → re-exportar el PNG (File → Export as → PNG) → re-subir ambos.
-- **Subir a Classroom (responsable: definir en la reu):** pegar el texto del §1 en la caja + adjuntar `arquitectura-tus-eventos.png` (o el `.drawio`).
+- **Subir a Classroom (responsable: definir en la reu):** pegar el texto del §1 en la caja + adjuntar `arquitectura-tus-eventos.png` (o el `.drawio`) **+ el System Prompt** (`profile-card/agente-ventas-tus-eventos.md`) — Boris: *"si me agregan un System Prompt sería un plus"*.
 - **Deadline interno del grupo: MIÉ 6-AGO por la noche** (un día de colchón).
 - Fuentes de datos del negocio: respuestas de Fernando (5-ago) — canal, precios por zona/temporada, recargo S/50, calendario Excel, 72 h/feriados, datos de cierre y link de pago.
