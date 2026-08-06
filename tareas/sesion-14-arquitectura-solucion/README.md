@@ -1,6 +1,6 @@
 # Tarea S14 — Arquitectura de Solución "Tus Eventos" (GRUPAL · 20 pts · due JUE 7-AGO 11:59pm)
 
-> **Entrega en Classroom = 2 partes:** ① la **caja de texto** con el sustento (abajo, listo para pegar) · ② el **archivo** del diagrama (el `.drawio` de esta carpeta — Boris acepta el XML directo, o exportar PNG desde draw.io).
+> **Entrega en Classroom = 2 partes:** ① la **caja de texto** con el sustento (abajo, listo para pegar) · ② el **archivo** del diagrama: adjuntar `arquitectura-tus-eventos.png` (ya exportada en esta carpeta) o el `.drawio` (Boris acepta el XML directo).
 > **Criterio de Boris:** *"en base a eso [el sustento] debería yo ver LO MISMO en su arquitectura"* — por eso este doc mapea cada afirmación a una caja del diagrama.
 > Basado en el **Profile Card v3.1** (`profile-card/agentic-profile-card-grupo5-v3.md`) y validado con los datos reales del negocio (Fernando).
 
@@ -41,7 +41,7 @@
 
 ## 4 · Operativa de entrega
 
-- **Editar el diagrama:** bajar `tareas/sesion-14-arquitectura-tus-eventos.drawio` → abrir en https://app.diagrams.net (o VS Code + extensión Draw.io) → ajustar → re-subir al repo.
-- **Subir a Classroom (responsable: definir en la reu):** pegar el texto del §1 en la caja + adjuntar el `.drawio` (o exportar PNG: File → Export as → PNG).
+- **Editar el diagrama:** bajar `arquitectura-tus-eventos.drawio` (esta carpeta) → abrir en https://app.diagrams.net (o VS Code + extensión Draw.io) → ajustar → re-exportar el PNG (File → Export as → PNG) → re-subir ambos.
+- **Subir a Classroom (responsable: definir en la reu):** pegar el texto del §1 en la caja + adjuntar `arquitectura-tus-eventos.png` (o el `.drawio`).
 - **Deadline interno del grupo: MIÉ 6-AGO por la noche** (un día de colchón).
 - Fuentes de datos del negocio: respuestas de Fernando (5-ago) — canal, precios por zona/temporada, recargo S/50, calendario Excel, 72 h/feriados, datos de cierre y link de pago.

@@ -111,8 +111,12 @@
         <mxCell id="e14" value="sync diario" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="sync" target="stores">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e15" value="derivacion / cierre (WhatsApp)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;dashed=1;fontSize=10;exitX=1;exitY=0.25;entryX=0;entryY=0.5;" edge="1" parent="1" source="tools" target="asesor">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="e15" value="derivacion / cierre (WhatsApp)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;dashed=1;fontSize=10;exitX=1;exitY=0.9;entryX=0;entryY=0.9;" edge="1" parent="1" source="tools" target="asesor">
+          <mxGeometry x="0.6" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1160" y="400" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="e16" value="trazas / evals" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;dashed=1;fontSize=10;exitX=1;exitY=0.9;entryX=0;entryY=0.5;" edge="1" parent="1" source="agente" target="langsmith">
           <mxGeometry relative="1" as="geometry">
