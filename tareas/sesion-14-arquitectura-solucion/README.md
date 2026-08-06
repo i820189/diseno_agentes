@@ -6,12 +6,36 @@
 
 ---
 
-## 1 · SUSTENTO — texto listo para pegar en Classroom
+## 1 · SUSTENTO — para debatir en equipo (y luego sintetizar)
 
-> **El nuestro es un AGENTE (único) debido a que** el orden de la conversación no se puede predefinir: cada cliente llega por WhatsApp con datos distintos y en distinto orden, y es el LLM quien decide en runtime qué preguntar, qué herramienta invocar (catálogo, cobertura, factibilidad, cotización) y cuándo derivar — el patrón ReAct con objetivo (Goal-Based): entregar una cotización referencial válida.
-> **No es un workflow** porque no hay secuencia fija que podamos cablear en código sin perder la conversación natural (los pasos conocidos NO van en el prompt: viven como gates deterministas alrededor del agente — validación de cobertura, factibilidad, precio solo desde el motor de reglas, y frase "referencial" obligatoria).
-> **No es un multiagente** porque hay un solo rol y un solo dominio (venta/cotización de equipos para eventos) y un volumen de ~20 conversaciones/semana: agregar agentes solo sumaría costo y riesgo sin fan-out real ("no construyas agentes para todo"). La colaboración existe pero es **humano-en-el-loop**: cotización aceptada → expediente → el asesor genera el link de pago; y a futuro el proveedor podría integrarse como Agent-as-Tool sin cambiar la arquitectura.
-> La solución corre **en Docker local** (BFF FastAPI + agente LangChain `create_agent` + Chroma para FAQ/políticas + SQLite para memoria y catálogo sincronizado desde los Excel reales del negocio), con observabilidad en LangSmith.
+**🎯 La tesis en una línea:**
+> "Tus Eventos" es un **AGENTE ÚNICO** (Goal-Based + ReAct) rodeado de **tools y gates deterministas**, con el **humano en el cierre** — ni workflow, ni multiagente.
+
+### Los 4 puntos a debatir (afirmación · porqué · qué descartamos)
+
+**① ¿Por qué AGENTE y no workflow?**
+- ✅ El orden de la conversación **no se puede predefinir**: cada cliente da los datos en distinto orden; el LLM decide en runtime qué preguntar y qué tool invocar.
+- ❌ Descartamos workflow: cablear la secuencia mataría la conversación natural de WhatsApp.
+- 🗣️ *Pregunta para el debate: ¿alguien ve una secuencia fija que yo no veo?*
+
+**② ¿Por qué NO multiagente?**
+- ✅ Un solo rol, un solo dominio, ~20 conversaciones/semana → agregar agentes suma costo y riesgo **sin fan-out real** ("no construyas agentes para todo").
+- ❌ Descartamos multiagente hoy; queda la puerta abierta: el proveedor como **Agent-as-Tool** a futuro, sin cambiar la arquitectura.
+- 🗣️ *Pregunta: ¿algún escenario real del negocio que exija un segundo agente YA?*
+
+**③ ¿Dónde viven los pasos que SÍ conocemos?**
+- ✅ En **código, no en el prompt**: gates deterministas (cobertura, factibilidad 72h/feriados, precio SOLO del motor de reglas zona×temporada + S/50, frase "referencial" obligatoria).
+- ❌ Descartamos el paso a paso en el system prompt (el "workflow oculto" que Boris penaliza).
+
+**④ ¿Dónde termina el agente?**
+- ✅ En el **cierre humano**: cotización aceptada → expediente → **el asesor genera el link de pago** y confirma la reserva. El agente jamás cobra ni reserva.
+- 🗣️ *Pregunta: ¿estamos todos de acuerdo con ese límite? (Fernando: ¿así funciona hoy?)*
+
+**Stack (para contexto del debate):** Docker local · BFF FastAPI + guardrails · `create_agent` · Chroma (FAQ/políticas) · SQLite (memoria + catálogo sync desde los Excel reales) · LangSmith.
+
+### ✍️ Borrador de síntesis para Classroom (pulir DESPUÉS del debate)
+
+> El nuestro es un **agente único** (Goal-Based, patrón ReAct) porque el orden de la conversación lo decide el LLM en runtime según los datos que dé el cliente por WhatsApp. **No es workflow**: los pasos conocidos no van en el prompt, viven como gates deterministas en código (cobertura, factibilidad, precio solo del motor de reglas). **No es multiagente**: un solo rol y dominio con ~20 conversaciones/semana — más agentes sumarían costo sin beneficio; el proveedor podría integrarse a futuro como Agent-as-Tool. El cierre es **humano**: el asesor recibe el expediente y genera el link de pago. Corre en Docker local (FastAPI + LangChain `create_agent` + Chroma + SQLite sincronizado desde los Excel del negocio) con observabilidad en LangSmith.
 
 ## 2 · La arquitectura, capa por capa (cada caja existe por una razón)
 
