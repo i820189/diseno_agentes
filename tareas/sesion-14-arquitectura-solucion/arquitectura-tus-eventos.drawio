@@ -22,22 +22,22 @@
         <mxCell id="guardrails" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" value="&lt;b&gt;GUARDRAILS&lt;/b&gt; E/S (software)&lt;br&gt;scope · anti-injection · filtro PII" vertex="1">
           <mxGeometry height="60" width="180" x="490" y="280" as="geometry" />
         </mxCell>
-        <mxCell id="checkpointer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;Checkpointer SQLite&lt;/b&gt;&lt;br&gt;memoria corto plazo (thread_id)" vertex="1">
+        <mxCell id="checkpointer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;Checkpointer (PostgresSaver)&lt;/b&gt;&lt;br&gt;memoria corto plazo (thread_id)" vertex="1">
           <mxGeometry height="60" width="180" x="490" y="400" as="geometry" />
         </mxCell>
         <mxCell id="agente" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" value="AGENTE — create_agent&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Goal-Based · ReAct&lt;br&gt;system prompt&lt;/span&gt;" vertex="1">
           <mxGeometry height="80" width="190" x="810" y="144" as="geometry" />
         </mxCell>
-        <mxCell id="tools" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" value="&lt;b&gt;TOOLS&lt;/b&gt; (deterministas)&lt;br&gt;consulta_catalogo &lt;br&gt;validar_cobertura&lt;br&gt;validar_factibilidad (72h/feriados)&lt;br&gt;calcular_cotizacion (zona x temporada + S/50)&lt;br&gt;derivar_a_asesor" vertex="1">
+        <mxCell id="tools" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" value="&lt;b&gt;TOOLS&lt;/b&gt; (deterministas)&lt;br&gt;consulta_catalogo &lt;br&gt;validar_cobertura&lt;br&gt;validar_factibilidad (72h/feriados)&lt;br&gt;calcular_cotizacion (zona x temporada + S/50)&lt;br&gt;crear_prereserva (hold TTL) · derivar_a_asesor" vertex="1">
           <mxGeometry height="100" width="240" x="785" y="274" as="geometry" />
         </mxCell>
         <mxCell id="chroma" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;Chroma&lt;/b&gt; (Agentic RAG)&lt;br&gt;FAQ · politicas · condiciones&lt;br&gt;(conocimiento/)" vertex="1">
           <mxGeometry height="80" width="150" x="1080" y="274" as="geometry" />
         </mxCell>
-        <mxCell id="stores" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;Catalogo&lt;/b&gt; (zona x temporada)&lt;br&gt;+ &lt;b&gt;Calendario&lt;/b&gt; disponibilidad&lt;br&gt;(SQLite, sync desde Excel)" vertex="1">
+        <mxCell id="stores" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;PostgreSQL&lt;/b&gt; — fuente de verdad&lt;br&gt;&lt;b&gt;catalogo&lt;/b&gt; (zona x temporada)&lt;br&gt;&lt;b&gt;calendario&lt;/b&gt; + pre-reservas (TTL)" vertex="1">
           <mxGeometry height="70" width="190" x="810" y="473" as="geometry" />
         </mxCell>
-        <mxCell id="dbcli" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="DB expedientes&lt;br&gt;(PII minima, por etapa)" vertex="1">
+        <mxCell id="dbcli" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="Expedientes (PostgreSQL)&lt;br&gt;(PII minima, por etapa)" vertex="1">
           <mxGeometry height="70" width="150" x="1030" y="473" as="geometry" />
         </mxCell>
         <mxCell id="excel1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="Excel del negocio:&lt;br&gt;&lt;b&gt;catalogo de precios&lt;/b&gt;&lt;br&gt;(zonas x temporada)" vertex="1">
@@ -46,7 +46,7 @@
         <mxCell id="excel2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="Excel del negocio:&lt;br&gt;&lt;b&gt;calendario disponibilidad&lt;/b&gt;&lt;br&gt;y reservas" vertex="1">
           <mxGeometry height="70" width="160" x="40" y="540" as="geometry" />
         </mxCell>
-        <mxCell id="sync" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;Job de sincronizacion&lt;/b&gt;&lt;br&gt;(pandas, diario)" vertex="1">
+        <mxCell id="sync" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;Carga inicial / migracion&lt;/b&gt;&lt;br&gt;(pandas, one-shot)" vertex="1">
           <mxGeometry height="60" width="150" x="260" y="480" as="geometry" />
         </mxCell>
         <mxCell id="llm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="&lt;b&gt;LLM&lt;/b&gt;: OpenAI gpt-4o-mini&lt;br&gt;(intercambiable via .env)" vertex="1">
@@ -94,7 +94,7 @@
         <mxCell id="e9" edge="1" parent="1" source="guardrails" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;dashed=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="checkpointer" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e10" edge="1" parent="1" source="tools" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10;exitX=0.5;exitY=1;entryX=0.5;entryY=0;spacing=11;sourcePerimeterSpacing=7;" target="stores" value="solo lectura">
+        <mxCell id="e10" edge="1" parent="1" source="tools" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10;exitX=0.5;exitY=1;entryX=0.5;entryY=0;spacing=11;sourcePerimeterSpacing=7;" target="stores" value="lectura + pre-reserva (TTL)">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e11" edge="1" parent="1" source="tools" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10;exitX=0.75;exitY=1;entryX=0.5;entryY=0;spacing=11;sourcePerimeterSpacing=7;" target="dbcli" value="expediente">
@@ -106,7 +106,7 @@
         <mxCell id="e13" edge="1" parent="1" source="excel2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;" target="sync" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e14" edge="1" parent="1" source="sync" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10;exitX=1;exitY=0.5;entryX=0;entryY=0.5;spacing=11;sourcePerimeterSpacing=7;" target="stores" value="sync diario">
+        <mxCell id="e14" edge="1" parent="1" source="sync" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10;exitX=1;exitY=0.5;entryX=0;entryY=0.5;spacing=11;sourcePerimeterSpacing=7;" target="stores" value="carga inicial">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e15" edge="1" parent="1" source="tools" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;dashed=1;fontSize=10;exitX=1;exitY=0.9;entryX=0;entryY=0.9;" target="asesor" value="derivacion / cierre (WhatsApp)">

@@ -1,5 +1,5 @@
 {
-  "_nota": "Catálogo SEMILLA sintético (estructura fiel al negocio: precio base por zona x temporada + adicionales). Los montos son de ejemplo — reemplazar con el Excel real de Fernando vía el job de sincronización.",
+  "_nota": "Catálogo SEMILLA sintético (estructura fiel al negocio: precio base por zona x temporada + adicionales). Los montos son de ejemplo — seed para las tablas PostgreSQL; la carga inicial real se migra desde los Excel de Fernando.",
   "vigencia": {"temporada": "regular-2026", "desde": "2026-07-01", "hasta": "2026-09-30"},
   "zonas": {
     "Z1": {"nombre": "Lima Moderna", "distritos": ["Miraflores", "San Isidro", "Surco", "San Borja", "La Molina", "Barranco", "Magdalena", "Jesus Maria", "Lince", "Pueblo Libre", "San Miguel", "Surquillo"]},

@@ -43,24 +43,24 @@ Venta y alquiler de equipos para eventos en Lima: **dispensadores de bebidas (ch
 
 | Fuente | Contenido (el detalle claro) | Acceso |
 |---|---|---|
-| **Catálogo de productos** | **2 líneas**: dispensadores 30 L / 50 L (incluyen CO₂, vasos, instalación) y paquetes S/M/L. Por ítem: `sku, precio base por ZONA × TEMPORADA, requisitos logísticos, disponibilidad, vigencia`. Adicionales: **+S/ 50 piso elevado sin ascensor**. Origen: **Excel del negocio → job de sync** (las tools nunca leen Excel en runtime) | Tool determinista |
-| **Calendario de disponibilidad** | Cantidad disponible y reservada por fecha/equipo (control de doble-booking); la reserva definitiva la confirma el asesor | Tool determinista |
+| **Catálogo de productos** | **2 líneas**: dispensadores 30 L / 50 L (incluyen CO₂, vasos, instalación) y paquetes S/M/L. Por ítem: `sku, precio base por ZONA × TEMPORADA, requisitos logísticos, disponibilidad, vigencia`. Adicionales: **+S/ 50 piso elevado sin ascensor**. Fuente de verdad: **tablas PostgreSQL** (`catalogo`, `precios_zona_temporada`), con **carga inicial migrada desde los Excel** del negocio | Tool determinista |
+| **Calendario de disponibilidad** | Tabla PostgreSQL con cantidad disponible/reservada por fecha y equipo. **El agente actualiza la disponibilidad creando PRE-RESERVAS (hold con expiración)** al aceptarse una cotización; la **reserva definitiva** la confirma el asesor tras el pago (control de doble-booking) | Tool lectura + escritura acotada |
 | **Cobertura** | Zonas/distritos atendidos de Lima | Tool determinista |
 | **Reglas de factibilidad** | **72 h mínimo**; feriados: se atiende **entregando el día hábil anterior y recogiendo el día siguiente**, mismo lugar | Tool determinista |
 | **FAQ / políticas / condiciones** | Qué incluye el alquiler, garantías, reclamos (docs en `conocimiento/`, validación de Fernando) | **RAG — Chroma** (retrieval como tool) |
 
 ### Tools
-`consulta_catalogo` · `consultar_alternativas` · `validar_cobertura_distrito` · `validar_factibilidad` · `calcular_cotizacion` (motor de reglas: base zona×temporada + adicionales) · `derivar_a_asesor` (expediente).
+`consulta_catalogo` · `consultar_alternativas` · `validar_cobertura_distrito` · `validar_factibilidad` · `calcular_cotizacion` (motor de reglas: base zona×temporada + adicionales) · `crear_prereserva` (hold temporal con TTL sobre el calendario — la **única escritura** del agente) · `derivar_a_asesor` (expediente).
 
 ### Short-Term Memory
-El **estado de la cotización** (slot-filling) por sesión: `thread_id` + **checkpointer** (SQLite). Gestión del historial en dos niveles (S9): **`trim_tokens`** (al LLM solo viaja la ventana reciente) y **`summary`** cuando la conversación supera un umbral de tokens — los mensajes antiguos se **condensan en un resumen** con un modelo barato (en asíncrono) en vez de descartarse. El estado es **tipado y vive en código**, no en el prompt: aunque el historial se recorte o resuma, los slots de la cotización sobreviven intactos en el checkpoint.
+El **estado de la cotización** (slot-filling) por sesión: `thread_id` + **checkpointer** (**PostgresSaver**, en el mismo PostgreSQL de la plataforma). Gestión del historial en dos niveles (S9): **`trim_tokens`** (al LLM solo viaja la ventana reciente) y **`summary`** cuando la conversación supera un umbral de tokens — los mensajes antiguos se **condensan en un resumen** con un modelo barato (en asíncrono) en vez de descartarse. El estado es **tipado y vive en código**, no en el prompt: aunque el historial se recorte o resuma, los slots de la cotización sobreviven intactos en el checkpoint.
 
 ### Long-Term Memory
-**Expedientes de cierre** (solo tras aceptar la cotización) y **preferencias/fechas con consentimiento** (recompra, recordatorios). El traspaso corto→largo lo decide un filtro de negocio. **Jamás** se persisten datos de pago.
+**Expedientes de cierre** en PostgreSQL (solo tras aceptar la cotización) y **preferencias/fechas con consentimiento** (recompra, recordatorios). El traspaso corto→largo lo decide un filtro de negocio. **Jamás** se persisten datos de pago.
 
 ## CAPA 4 · AUTONOMY DIMENSION
 
-**Semiautónomo y constreñido.** Decide solo: qué preguntar, qué consultar, qué recomendar, cuándo cotizar. **Nunca decide solo:** reservar, cobrar, enviar links de pago, autorizar descuentos, comprometer stock, resolver reclamos → todo eso **deriva al humano**.
+**Semiautónomo y constreñido.** Decide solo: qué preguntar, qué consultar, qué recomendar, cuándo cotizar. Al aceptarse una cotización **puede crear una pre-reserva temporal** (hold con expiración) para proteger la fecha. **Nunca decide solo:** confirmar la reserva definitiva, cobrar, enviar links de pago, autorizar descuentos, resolver reclamos → todo eso **deriva al humano**.
 
 ## CAPA 5 · CRITICALITY DIMENSION *(✔ corrección al feedback ③: criticidad nutrida — "guardrails que aporten visión sobre diversos escenarios de lo que podría salir mal y cómo controlarlo")*
 
@@ -77,6 +77,7 @@ El **estado de la cotización** (slot-filling) por sesión: `thread_id` + **chec
 | 9 | **Loop / costo desbocado** | Punto final en el prompt + tope de turnos/tokens | Código |
 | 10 | **Sobre-promesa legal** / precio de temporada desactualizado | Frase obligatoria "referencial, sujeto a confirmación" + vigencia en catálogo | Código |
 | 11 | Cliente quiere **pagar por el chat** | El link de pago SOLO lo genera el asesor; el bot jamás toca pagos | Prompt + humano |
+| 12 | **Escritura del agente en el calendario** (pre-reserva) | Única escritura permitida: **hold con TTL (24–48 h)** en transacción PostgreSQL; el agente jamás confirma ni cancela reservas definitivas; los holds vencidos se liberan solos y el asesor concilia | Código (tool safeguard) + humano |
 
 **Evals / KPIs de control:** `format pass rate` (cotizaciones 100% validadas) · `escalate/deflection rate` · % respuestas con precio no-validado (meta: 0) · reintentos promedio · NPS post-conversación. Observabilidad: LangSmith (trazas por thread/turn).
 
