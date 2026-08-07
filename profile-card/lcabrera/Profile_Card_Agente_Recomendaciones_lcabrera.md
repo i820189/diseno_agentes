@@ -52,12 +52,16 @@ Para lograrlo, el agente debe entender la intención del usuario, recopilar los 
 
 ### Fuente principal de negocio
 
-La fuente principal del agente es el **catálogo comercial de productos y servicios de alternativas para reuniones, celebraciones y eventos**, el cual debe describir claramente qué puede ofrecer el negocio, incluyendo:
+La fuente principal del agente es el **catálogo comercial de productos y servicios de alternativas para reuniones, celebraciones y eventos**.
+
+Este catálogo debe describir claramente qué puede ofrecer el negocio. Cada alternativa debe indicar:
+
+Catálogo comercial vigente de servicios para eventos, que incluya:
 
 - Catalogo disponible: paquetes, productos y servicios incluidos, precios, tipo de evento y capacidad de atención.
 - Condiciones de atención: zonas de cobertura
 - Disponibilidad real: estado activo de cada servicio y calendario actualizado de equipos y reservas.
-- Restricciones operativas y condiciones generales aplicables: 
+- restricciones operativas y condiciones generales aplicables: 
 pedidos con 72 horas de anticipación; en feriados se entrega el día hábil anterior y se recoge al día siguiente.
 
 
@@ -75,13 +79,13 @@ El agente no debe usar el conocimiento general del modelo para completar estos d
 
 ### Conexión con el catálogo comercial
 
-El agente se conecta al catálogo para obtener los productos o eventos activos que pueden atender el tipo de ocasión, número de asistentes y preferencias del usuario.
+El agente se conecta al sistema donde el negocio administra la operacion. Desde allí obtiene las opciones activas que pueden atender el tipo de ocasión, número de asistentes y preferencias del usuario.
 
-Esta conexión también permite revisar el detalle de una alternativa específica, como lo que incluye, su capacidad, sus restricciones y las zonas donde puede ofrecerse.
+Esta conexión también permite revisar el detalle de un servicio específico, como lo que incluye, su capacidad, sus restricciones y las zonas donde puede ofrecerse.
 
 ### Conexión con cobertura y operación
 
-El agente consulta el sistema operativo del negocio para confirmar si la ubicación solicitada puede atenderse y si la fecha, horario y cantidad de asistentes son viables.
+El agente consulta el sistema del negocio para confirmar si la ubicación solicitada puede atenderse y si la fecha, horario y cantidad de asistentes son viables.
 
 Esta validación se realiza antes de recomendar o cotizar. Si la zona no tiene cobertura o la solicitud no es operativamente posible, el agente no debe continuar como si fuera válida.
 
@@ -119,25 +123,34 @@ La derivación debe incluir un resumen de lo conversado, los datos recopilados, 
 
 Durante la conversación actual, el agente recuerda:
 
-- el tipo de evento;
+- qué quiere el usuario;
+- el tipo de ocasión;
 - número de asistentes;
 - fecha;
 - ubicación;
 - presupuesto;
-- categorias de productos;
-- datos de cliente (email, telefono)
+- preferencias indicadas;
+- datos que todavía faltan;
+- validaciones ya realizadas;
 - opciones descartadas;
-- ultima alternativa recomendada;
+- alternativa recomendada;
 - cotización en proceso;
 - etapa actual de la atención.
-- datos que todavía faltan;
-- validaciones ya realizadas (para evitar repreguntas);
 
 Esta memoria evita que el agente repita preguntas o pierda información importante dentro de la misma sesión.
 
 ## 3.4 Long-Term Memory
 
-Con autorización del usuario, el agente puede conservar cotizaciones cerradas previamente y preferencias sobre cotizaciones no concluidas
+Con autorización del usuario, el agente puede conservar preferencias que sean útiles para futuras solicitudes.
+
+Por ejemplo:
+
+- preferencia por opciones sencillas;
+- rango de presupuesto habitual;
+- tipo de atención preferida;
+- fechas relevantes autorizadas.
+
+No debe guardar como memoria permanente datos que cambian con frecuencia, como precios, disponibilidad, stock, cobertura temporal o condiciones comerciales vigentes.
 
 ---
 
@@ -167,54 +180,53 @@ La decisión de compra corresponde al usuario. Las excepciones y decisiones come
 
 # 5. Criticality Dimension Definition
 
-## Nivel de criticidad: Media controlada
+## Nivel de criticidad: Media-Alta controlada
 
-La criticidad es media porque el agente interviene en una decisión comercial, procesa datos del usuario y puede influir en una cotización.
+La criticidad es media-alta porque el agente interviene en una decisión comercial, procesa datos del usuario y puede influir en una cotización.
 
 Un error podría generar una recomendación incorrecta, una promesa que el negocio no puede cumplir, una pérdida económica, una mala experiencia o un uso indebido de información personal.
 
 ## 5.1 Risks
-## 5.1 Risks
 
-### Cotización con datos incompletos
+### Interpretación incorrecta de la intención
 
-El agente podría cotizar sin contar con información mínima como tipo de evento, fecha, ubicación o cantidad de asistentes.
+El agente podría confundir una consulta informativa con una solicitud de cotización, continuar cuando el usuario pidió hablar con una persona o recomendar sin haber comprendido bien la necesidad.
 
-### Cantidades mal dimensionadas
+### Recomendación con información incompleta
 
-El agente podría calcular una cantidad insuficiente o excesiva de productos, equipos o servicios para el evento.
+Podría proponer una alternativa sin conocer la ocasión, número de asistentes, fecha o ubicación, generando una recomendación poco útil o imposible de atender.
 
+### Uso de un catálogo incorrecto o desactualizado
 
-### Recursos no disponibles
+Podría mostrar una alternativa inactiva, incompatible con la ocasión o con información incompleta.
 
-El agente podría cotizar equipos, productos o personal que ya se encuentran reservados para la fecha solicitada y/o fuera de catalogo.
+### Precio o condición comercial inventada
 
-### Precio incorrecto
+El agente podría comunicar un importe, descuento, vigencia o condición que no existe en los sistemas oficiales.
 
-El agente podría mostrar precios, descuentos, impuestos o condiciones comerciales distintos a los registrados en el sistema oficial.
+### Cobertura o disponibilidad no confirmada
 
-### Evento fuera de cobertura
+Podría recomendar o cotizar una alternativa que no puede atenderse en la zona o fecha solicitada.
 
-El agente podría continuar con la cotización aunque la ubicación, horario o características del evento no puedan ser atendidos.
+### Comparación inconsistente
 
-### Recomendación inadecuada
+Podría favorecer una opción sin una razón clara o aplicar criterios diferentes entre solicitudes similares.
 
-El agente podría seleccionar una alternativa que no corresponda con la cantidad de asistentes, tipo de evento, preferencias o presupuesto del cliente.
+### Exposición de datos personales
 
-### Datos de clientes expuestos
+Podría mezclar información entre usuarios, guardar preferencias sin permiso o registrar datos innecesarios.
 
-El agente podría mostrar información, cotizaciones o preferencias pertenecientes a otro cliente.
+### Instrucciones maliciosas
 
-### Acciones comerciales no autorizadas
+Un usuario o documento podría intentar obligar al agente a ignorar las reglas, revelar información interna o ejecutar acciones no autorizadas.
 
-El agente podría aplicar descuentos, modificar precios, confirmar ventas sin autorización.
+### Fallo de sistemas externos
 
-### Fallo de sistemas
+Las conexiones con catálogo, disponibilidad, cobertura o precios podrían fallar o devolver información contradictoria.
 
-El agente podría recibir información incompleta o no disponible desde catálogo, reservas, precios y continuar la cotización como si los datos fueran válidos.
+### Exceso de autonomía
 
-
-Version 06-08-2026 
+El agente podría intentar negociar, aprobar descuentos, confirmar pagos o cerrar una venta sin autorización.
 
 ## 5.2 Guardrails, Evals and Controls
 
@@ -222,13 +234,13 @@ Version 06-08-2026
 
 El agente debe identificar si el usuario busca información, recomendación, cotización, modificación de su solicitud o atención humana.
 
-Cuando la intención no sea clara, debe pedir una aclaración breve o terminar amablemente la conversacion. Si el usuario solicita un asesor, la derivación debe realizarse sin intentar retenerlo en el flujo automático.
+Cuando la intención no sea clara, debe pedir una aclaración breve. Si el usuario solicita un asesor, la derivación debe realizarse sin intentar retenerlo en el flujo automático.
 
 ### Datos mínimos obligatorios
 
 Antes de recomendar, el agente debe conocer:
 
-- evento;
+- ocasión;
 - número de asistentes;
 - fecha;
 - ubicación.
@@ -239,7 +251,7 @@ Debe preguntar solamente por los datos que faltan y bloquear la recomendación m
 
 Solo pueden utilizarse alternativas activas y completas provenientes del catálogo oficial.
 
-Si no existen alternativas válidas, el agente debe indicarlo claramente.
+Cada consulta debe registrar la versión o fecha de la fuente utilizada. Si no existen alternativas válidas, el agente debe indicarlo claramente y derivar cuando corresponda.
 
 ### Control de precios
 
@@ -252,20 +264,15 @@ El agente debe mostrar moneda, subtotal, impuestos, total, vigencia y condicione
 Antes de recomendar o cotizar, el agente debe confirmar:
 
 - que la ubicación tiene cobertura;
-- que la fecha esta disponible;
-- que la alternativa propuesta se encuentra disponible;
+- que la fecha es viable;
+- que la alternativa se encuentra disponible;
 - que la capacidad requerida puede atenderse.
 
 Una opción que no cumpla estas condiciones debe ser descartada.
 
-### Control de politicas y restricciones operativas
+### Comparación explicable
 
-Antes de recomendar o cotizar, el agente debe confirmar:
-
-- que se cumplan con las politcas de la empresa y restricciones operativas;
-- siempre incluir un disclaimer respecto de la vigencia del precio y disponibilidad. 
-
-### Comparación explicable de la propuesta
+El ordenamiento de alternativas debe realizarse mediante reglas y pesos definidos por el negocio.
 
 El agente debe poder explicar la recomendación utilizando datos como ocasión, capacidad, disponibilidad, preferencias y presupuesto, sin mostrar razonamiento interno oculto.
 
@@ -283,22 +290,22 @@ Las políticas del sistema y del negocio siempre tienen prioridad. El agente sol
 
 ### Manejo de fallos y conflictos
 
-Cuando una herramienta falle, el agente puede realizar reintentos seguros y limitados (5).
+Cuando una herramienta falle, el agente puede realizar reintentos seguros y limitados.
 
-Si el problema continúa, debe informar que no puede confirmar el dato y ofrecer atención humana.
+Si el problema continúa, debe informar que no puede confirmar el dato y ofrecer atención humana. Cuando existan fuentes contradictorias, debe priorizar el sistema oficial y registrar el conflicto.
 
 ### Supervisión humana
 
 La derivación es obligatoria para:
 
 - descuentos;
-- excepciones comerciales (clientes preferentes, convenios);
+- excepciones comerciales;
 - pagos;
 - confirmación de compra;
-- reclamos;
+- reclamos complejos;
 - solicitudes explícitas de atención humana;
-- exceso de reintentos por fallos en tools;
-- conflictos debido a contradicciones o ambiguedad en la informacion;
+- fallos sin alternativa segura;
+- conflictos de información;
 - riesgos de seguridad o privacidad.
 
 ### Evaluaciones
@@ -308,18 +315,17 @@ El agente debe probarse con casos que midan:
 - precisión al identificar la intención;
 - correcta extracción de datos;
 - detección de información faltante;
-- cumplimiento de reglas y restricciones operativas;
+- selección adecuada de sistemas;
+- cumplimiento de reglas;
 - calidad de la recomendación;
 - exactitud de la derivación;
 - ausencia de precios inventados;
 - cumplimiento del consentimiento;
-- selección adecuada de tools;
+- claridad de la explicación.
 
+Los criterios comerciales, de seguridad y de precios deben evaluarse con reglas determinísticas. Un modelo evaluador puede utilizarse únicamente para revisar claridad, relevancia y naturalidad de la respuesta.
 
-Los criterios comerciales, de seguridad y de precios deben evaluarse con reglas determinísticas.
 ---
-
--------------------------- REVISAR SI ESTO ES RELLENO ----------------------
 
 # 6. Resultado esperado del Profile Card
 
