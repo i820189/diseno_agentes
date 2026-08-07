@@ -52,16 +52,12 @@ Para lograrlo, el agente debe entender la intención del usuario, recopilar los 
 
 ### Fuente principal de negocio
 
-La fuente principal del agente es el **catálogo comercial de productos y servicios de alternativas para reuniones, celebraciones y eventos**.
-
-Este catálogo debe describir claramente qué puede ofrecer el negocio. Cada alternativa debe indicar:
-
-Catálogo comercial vigente de servicios para eventos, que incluya:
+La fuente principal del agente es el **catálogo comercial de productos y servicios de alternativas para reuniones, celebraciones y eventos**, el cual debe describir claramente qué puede ofrecer el negocio, incluyendo:
 
 - Catalogo disponible: paquetes, productos y servicios incluidos, precios, tipo de evento y capacidad de atención.
 - Condiciones de atención: zonas de cobertura
 - Disponibilidad real: estado activo de cada servicio y calendario actualizado de equipos y reservas.
-- restricciones operativas y condiciones generales aplicables: 
+- Restricciones operativas y condiciones generales aplicables: 
 pedidos con 72 horas de anticipación; en feriados se entrega el día hábil anterior y se recoge al día siguiente.
 
 
@@ -79,7 +75,7 @@ El agente no debe usar el conocimiento general del modelo para completar estos d
 
 ### Conexión con el catálogo comercial
 
-El agente se conecta al sistema donde el negocio administra sus alternativas. Desde allí obtiene las opciones activas que pueden atender el tipo de ocasión, número de asistentes y preferencias del usuario.
+El agente se conecta al catálogo para obtener los productos o eventos activos que pueden atender el tipo de ocasión, número de asistentes y preferencias del usuario.
 
 Esta conexión también permite revisar el detalle de una alternativa específica, como lo que incluye, su capacidad, sus restricciones y las zonas donde puede ofrecerse.
 
