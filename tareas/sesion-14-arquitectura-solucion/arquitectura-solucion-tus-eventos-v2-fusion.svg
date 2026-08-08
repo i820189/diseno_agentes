@@ -1,0 +1,420 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2060 1190" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.2" stdDeviation="2" flood-opacity="0.14"/>
+    </filter>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#555"/>
+    </marker>
+    <marker id="arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#5a9e4b"/>
+    </marker>
+    <marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9673a6"/>
+    </marker>
+    <style>
+      .panel{fill:#ffffff;filter:url(#sh);}
+      .hdr{font-size:13.5px;font-weight:bold;}
+      .t1{font-size:14px;font-weight:bold;fill:#222;}
+      .t2{font-size:12px;fill:#444;}
+      .t3{font-size:11px;fill:#444;}
+      .lbl{font-size:11px;fill:#333;paint-order:stroke;stroke:#ffffff;stroke-width:5px;font-style:italic;}
+      .flow{stroke:#555;stroke-width:2;fill:none;marker-end:url(#arr);}
+      .dash{stroke:#888;stroke-width:1.8;fill:none;stroke-dasharray:7 5;marker-end:url(#arr);}
+      .trans{stroke:#5a6472;stroke-width:1.4;fill:none;stroke-dasharray:3 4;opacity:.55;}
+    </style>
+  </defs>
+
+  <!-- ============ TITULO ============ -->
+  <text x="1030" y="42" text-anchor="middle" font-size="27" font-weight="bold" fill="#1a1a1a">ARQUITECTURA DE SOLUCIÓN — TUS EVENTOS</text>
+  <text x="1030" y="68" text-anchor="middle" font-size="14.5" fill="#555">Agente de recomendaciones y atención para ocasiones de consumo · V2 — fusión del equipo (Azure + gates deterministas)</text>
+  <text x="1030" y="90" text-anchor="middle" font-size="12.5" font-style="italic" fill="#777">Monoagente híbrido con flujo controlado · basado en el Agentic Profile Card v3.2</text>
+
+  <!-- ============ 1. CANALES ============ -->
+  <rect class="panel" x="40" y="150" width="200" height="380" rx="14" stroke="#9673a6" stroke-width="1.6"/>
+  <rect x="40" y="150" width="200" height="30" rx="14" fill="#f3ecfa"/>
+  <rect x="40" y="166" width="200" height="14" fill="#f3ecfa"/>
+  <text class="hdr" x="140" y="170" text-anchor="middle" fill="#6a4d7a">1. CANALES</text>
+  <g transform="translate(118,225) scale(1.5)">
+    <circle cx="12" cy="7.5" r="4.4" fill="#4a90d9"/>
+    <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7v.5H4z" fill="#4a90d9"/>
+  </g>
+  <text class="t2" x="140" y="290" text-anchor="middle" font-weight="bold">Usuario</text>
+  <text class="t3" x="140" y="308" text-anchor="middle">público abierto (sin auth)</text>
+  <g transform="translate(118,380)">
+    <circle cx="15" cy="15" r="15" fill="#25D366"/>
+    <path d="M8.3 13.4c1.2 2.4 3.2 4.4 5.6 5.6l1.9-1.9c.2-.2.6-.3.9-.2 1 .3 2 .5 3 .5.5 0 .9.4.9.9v3c0 .5-.4.9-.9.9-8 0-14.5-6.5-14.5-14.5 0-.5.4-.9.9-.9h3c.5 0 .9.4.9.9 0 1.1.2 2.1.5 3 .1.3 0 .6-.2.9z" fill="#fff"/>
+  </g>
+  <text class="t2" x="140" y="448" text-anchor="middle" font-weight="bold">WhatsApp</text>
+  <text class="t3" x="140" y="466" text-anchor="middle">Cloud API (Meta)</text>
+
+  <!-- ============ 2. EXPOSICION ============ -->
+  <rect class="panel" x="280" y="150" width="220" height="380" rx="14" stroke="#0078D4" stroke-width="1.6"/>
+  <rect x="280" y="150" width="220" height="30" rx="14" fill="#eaf4fc"/>
+  <rect x="280" y="166" width="220" height="14" fill="#eaf4fc"/>
+  <text class="hdr" x="390" y="170" text-anchor="middle" fill="#0f6cbd">2. EXPOSICIÓN Y SEGURIDAD</text>
+  <g transform="translate(366,240) scale(1.6)" stroke="#0078D4" fill="none">
+    <circle cx="13" cy="13" r="5" stroke-width="2.2"/>
+    <g stroke-width="2.2" stroke-linecap="round">
+      <line x1="13" y1="2.5" x2="13" y2="6"/><line x1="13" y1="20" x2="13" y2="23.5"/>
+      <line x1="2.5" y1="13" x2="6" y2="13"/><line x1="20" y1="13" x2="23.5" y2="13"/>
+      <line x1="5.5" y1="5.5" x2="8" y2="8"/><line x1="18" y1="18" x2="20.5" y2="20.5"/>
+      <line x1="20.5" y1="5.5" x2="18" y2="8"/><line x1="8" y1="18" x2="5.5" y2="20.5"/>
+    </g>
+  </g>
+  <text class="t1" x="390" y="316" text-anchor="middle">API Management</text>
+  <text class="t2" x="390" y="338" text-anchor="middle">claves · cuotas · WAF</text>
+  <text class="t2" x="390" y="356" text-anchor="middle">expone el webhook a Meta</text>
+  <text class="t3" x="390" y="380" text-anchor="middle" font-style="italic">rate limit por número</text>
+  <text class="t3" x="390" y="500" text-anchor="middle" font-style="italic" fill="#666">en local: lo cubre el BFF</text>
+
+  <!-- ============ 3. CAPA DE APLICACION ============ -->
+  <rect class="panel" x="540" y="150" width="600" height="440" rx="14" stroke="#2b6cb0" stroke-width="1.8"/>
+  <rect x="540" y="150" width="600" height="30" rx="14" fill="#f4f8fd"/>
+  <rect x="540" y="166" width="600" height="14" fill="#f4f8fd"/>
+  <text class="hdr" x="840" y="170" text-anchor="middle" fill="#2b6cb0">3. CAPA DE APLICACIÓN — Container Apps (scale-to-zero · evolución: AKS)</text>
+
+  <!-- BFF -->
+  <rect class="panel" x="565" y="215" width="180" height="120" rx="10" stroke="#4aa8a0" stroke-width="1.5"/>
+  <g transform="translate(578,228)">
+    <circle cx="12" cy="12" r="12" fill="#05998b"/>
+    <polygon points="12,4 7,13 11,13 10,20 16,10 12,10" fill="#fff"/>
+  </g>
+  <text class="t1" x="612" y="242" font-size="13.5">API Service</text>
+  <text class="t2" x="580" y="270">BFF — FastAPI</text>
+  <text class="t3" x="580" y="290">webhook · sesiones ·</text>
+  <text class="t3" x="580" y="306">rate limit · API externa</text>
+  <text class="t3" x="580" y="326" font-style="italic">guardrails E/S aquí</text>
+
+  <!-- AGENTE -->
+  <rect class="panel" x="800" y="205" width="315" height="135" rx="10" stroke="#9673a6" stroke-width="1.8"/>
+  <g transform="translate(814,220)" stroke="#7c5aa6" stroke-width="2.4" fill="none">
+    <rect x="0" y="7" width="12" height="7.5" rx="3.7" transform="rotate(-32 6 11)"/>
+    <rect x="9" y="7" width="12" height="7.5" rx="3.7" transform="rotate(-32 15 11)"/>
+  </g>
+  <text class="t1" x="852" y="234">AGENTE — create_agent</text>
+  <text class="t2" x="816" y="262" font-weight="bold" fill="#7c5aa6">MONOAGENTE (no orchestrator)</text>
+  <text class="t2" x="816" y="282">LangGraph debajo (harness S12)</text>
+  <text class="t2" x="816" y="302">Goal-Based · ReAct · system prompt</text>
+  <text class="t3" x="816" y="324" font-style="italic">el LLM decide el orden en runtime</text>
+
+  <!-- TOOLS -->
+  <rect class="panel" x="800" y="425" width="315" height="140" rx="10" stroke="#d6b656" stroke-width="1.6"/>
+  <g transform="translate(814,440)">
+    <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z" fill="#b08d2f"/>
+  </g>
+  <text class="t1" x="850" y="452">TOOLS — Tool Layer (8)</text>
+  <text class="t3" x="816" y="478">catálogo · cobertura · disponibilidad ·</text>
+  <text class="t3" x="816" y="496">precio (zona&#215;temporada) · motor_comparación</text>
+  <text class="t3" x="816" y="514">preferencias (consentimiento) · derivar</text>
+  <text class="t3" x="816" y="536" font-weight="bold">registrar_cotizacion (insert · NO bloquea)</text>
+  <text class="t3" x="816" y="554" font-style="italic" fill="#8a6d1f">deterministas: precio/fecha JAMÁS del LLM</text>
+
+  <!-- ReAct loop -->
+  <path class="flow" d="M880 340 V425"/>
+  <path class="flow" d="M1035 425 V340"/>
+  <text class="lbl" x="870" y="388" text-anchor="end">action</text>
+  <text class="lbl" x="1046" y="388">observation</text>
+  <text x="957" y="380" text-anchor="middle" font-size="12" font-weight="bold" font-style="italic" fill="#9673a6">ReAct</text>
+  <text x="957" y="396" text-anchor="middle" font-size="12" font-weight="bold" font-style="italic" fill="#9673a6">loop</text>
+  <!-- BFF -> agente -->
+  <path class="flow" d="M745 272 H800"/>
+  <text class="lbl" x="772" y="262" text-anchor="middle">invoke</text>
+  <text class="t3" x="565" y="578" font-style="italic" fill="#4a6ea5">módulos .py en UNA app (misma imagen Docker que corre en local) — no microservicios a este volumen</text>
+
+  <!-- ============ 4. MEMORIA Y DATOS ============ -->
+  <rect class="panel" x="1170" y="150" width="300" height="440" rx="14" stroke="#4b8a3d" stroke-width="1.6"/>
+  <rect x="1170" y="150" width="300" height="30" rx="14" fill="#f0f7ee"/>
+  <rect x="1170" y="166" width="300" height="14" fill="#f0f7ee"/>
+  <text class="hdr" x="1320" y="170" text-anchor="middle" fill="#4b8a3d">4. MEMORIA Y DATOS</text>
+
+  <rect class="panel" x="1190" y="205" width="260" height="115" rx="10" stroke="#A41E11" stroke-width="1.5"/>
+  <g transform="translate(1204,232)">
+    <ellipse cx="11" cy="4" rx="9" ry="3.2" fill="#D82C20"/>
+    <path d="M2 4v10c0 1.8 4 3.2 9 3.2s9-1.4 9-3.2V4" fill="#A41E11"/>
+    <ellipse cx="11" cy="9" rx="9" ry="3" fill="none" stroke="#e0604f" stroke-width=".8"/>
+  </g>
+  <text class="t1" x="1238" y="230" font-size="13.5">Azure Managed Redis</text>
+  <text class="t3" x="1204" y="266">short-term · checkpointer</text>
+  <text class="t3" x="1204" y="284">(thread_id) · estado de sesión</text>
+  <text class="t3" x="1204" y="304" font-style="italic">local: vive en el contenedor</text>
+
+  <rect class="panel" x="1190" y="350" width="260" height="215" rx="10" stroke="#3999C6" stroke-width="1.7"/>
+  <g transform="translate(1204,372)">
+    <circle cx="13" cy="13" r="9" fill="#3999C6"/>
+    <ellipse cx="13" cy="13" rx="15" ry="5" fill="none" stroke="#2578a0" stroke-width="1.8" transform="rotate(-22 13 13)"/>
+    <circle cx="24" cy="7" r="1.8" fill="#2578a0"/>
+  </g>
+  <text class="t1" x="1240" y="380" font-size="13.5">Azure Cosmos DB</text>
+  <text class="t3" x="1204" y="410">long-term · JSON · expedientes</text>
+  <text class="t3" x="1204" y="428">preferencias (con consentimiento)</text>
+  <text class="t3" x="1204" y="452" font-weight="bold" fill="#2578a0">cotización &#8594; reserva PENDIENTE</text>
+  <text class="t3" x="1204" y="470" font-weight="bold" fill="#2578a0">&#8594; pago &#8594; CONFIRMADA (bloquea)</text>
+  <text class="t3" x="1204" y="492">el ciclo COMPLETO vive aquí:</text>
+  <text class="t3" x="1204" y="510" font-weight="bold">única fuente de verdad</text>
+  <text class="t3" x="1204" y="532" font-style="italic">catálogo/precios/calendario</text>
+  <text class="t3" x="1204" y="548" font-style="italic">como contenedores de datos</text>
+
+  <!-- ============ 5. CONOCIMIENTO / RAG ============ -->
+  <rect class="panel" x="1170" y="620" width="300" height="250" rx="14" stroke="#0e7c86" stroke-width="1.6"/>
+  <rect x="1170" y="620" width="300" height="30" rx="14" fill="#eef8f8"/>
+  <rect x="1170" y="636" width="300" height="14" fill="#eef8f8"/>
+  <text class="hdr" x="1320" y="640" text-anchor="middle" fill="#0e7c86">5. BASE DE CONOCIMIENTO / RAG</text>
+  <rect class="panel" x="1190" y="668" width="260" height="80" rx="10" stroke="#0078D4" stroke-width="1.4"/>
+  <g transform="translate(1204,684)">
+    <rect x="0" y="0" width="16" height="6" rx="2" fill="#4a9fd8"/>
+    <rect x="4" y="8" width="16" height="6" rx="2" fill="#2b8ac9"/>
+    <rect x="0" y="16" width="16" height="6" rx="2" fill="#0f6cbd"/>
+  </g>
+  <text class="t1" x="1236" y="692" font-size="13">Blob Storage</text>
+  <text class="t3" x="1236" y="712">PDFs: políticas · condiciones</text>
+  <text class="t3" x="1236" y="730">· catálogo comercial</text>
+  <path d="M1320 748 V790" stroke="#9673a6" stroke-width="2" fill="none" stroke-dasharray="6 4" marker-end="url(#arrP)"/>
+  <text class="lbl" x="1330" y="774">ingesta</text>
+  <rect class="panel" x="1190" y="790" width="260" height="66" rx="10" stroke="#9673a6" stroke-width="1.5"/>
+  <g transform="translate(1204,804)" fill="none">
+    <circle cx="8" cy="8" r="6" stroke="#555" stroke-width="2.2"/>
+    <line x1="12.5" y1="12.5" x2="18" y2="18" stroke="#555" stroke-width="2.6" stroke-linecap="round"/>
+    <circle cx="6.5" cy="6.5" r="1.3" fill="#2D6BFF"/>
+    <circle cx="10" cy="7" r="1.1" fill="#FF6B35"/>
+  </g>
+  <text class="t1" x="1236" y="812" font-size="13">Azure AI Search</text>
+  <text class="t3" x="1236" y="832">índice híbrido (vector + keyword)</text>
+  <text class="t3" x="1236" y="848" font-style="italic">retrieval como tool (S13)</text>
+
+  <!-- ============ 6. LLM PROVIDER ============ -->
+  <rect class="panel" x="280" y="620" width="220" height="250" rx="14" stroke="#0078D4" stroke-width="1.6"/>
+  <rect x="280" y="620" width="220" height="30" rx="14" fill="#eaf4fc"/>
+  <rect x="280" y="636" width="220" height="14" fill="#eaf4fc"/>
+  <text class="hdr" x="390" y="640" text-anchor="middle" fill="#0f6cbd">6. LLM PROVIDER LAYER</text>
+  <g transform="translate(368,672)">
+    <g fill="#111">
+      <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4"/>
+      <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4" transform="rotate(60 12 12)"/>
+      <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4" transform="rotate(120 12 12)"/>
+      <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4" transform="rotate(180 12 12)"/>
+      <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4" transform="rotate(240 12 12)"/>
+      <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4" transform="rotate(300 12 12)"/>
+    </g>
+  </g>
+  <text class="t1" x="390" y="726" text-anchor="middle" font-size="13.5">Azure OpenAI</text>
+  <text class="t2" x="390" y="746" text-anchor="middle">gpt-4o-mini · Global Std</text>
+  <rect x="300" y="766" width="180" height="80" rx="10" fill="none" stroke="#8a8f98" stroke-width="1.3" stroke-dasharray="6 4"/>
+  <text class="t3" x="390" y="790" text-anchor="middle" font-style="italic">futuros modelos locales:</text>
+  <text class="t3" x="390" y="808" text-anchor="middle" font-style="italic">vLLM / Ollama / Llama</text>
+  <text class="t3" x="390" y="826" text-anchor="middle" font-style="italic">(flujo opcional)</text>
+
+  <!-- ============ 7. INTEGRACIONES ============ -->
+  <rect class="panel" x="540" y="620" width="600" height="250" rx="14" stroke="#0e7c86" stroke-width="1.6"/>
+  <rect x="540" y="620" width="600" height="30" rx="14" fill="#eef8f8"/>
+  <rect x="540" y="636" width="600" height="14" fill="#eef8f8"/>
+  <text class="hdr" x="840" y="640" text-anchor="middle" fill="#0e7c86">7. INTEGRACIONES / SISTEMAS OFICIALES (vía tools)</text>
+  <!-- mini cards -->
+  <g>
+    <rect class="panel" x="558" y="672" width="104" height="150" rx="10" stroke="#9673a6" stroke-width="1.3"/>
+    <g transform="translate(596,688)" stroke="#9673a6" stroke-width="2" fill="none">
+      <path d="M2 3h3l3 12h10l3-8H7" stroke-linejoin="round"/>
+      <circle cx="9" cy="19" r="1.8" fill="#9673a6"/>
+      <circle cx="16" cy="19" r="1.8" fill="#9673a6"/>
+    </g>
+    <text class="t3" x="610" y="732" text-anchor="middle" font-weight="bold">Catálogo</text>
+    <text class="t3" x="610" y="748" text-anchor="middle" font-weight="bold">comercial</text>
+    <text class="t3" x="610" y="772" text-anchor="middle" font-style="italic">API / Sistema</text>
+  </g>
+  <g>
+    <rect class="panel" x="674" y="672" width="104" height="150" rx="10" stroke="#2b6cb0" stroke-width="1.3"/>
+    <g transform="translate(712,686)" stroke="#2b6cb0" fill="none">
+      <circle cx="12" cy="12" r="4.5" stroke-width="2"/>
+      <g stroke-width="2" stroke-linecap="round">
+        <line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="21"/>
+        <line x1="3" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="21" y2="12"/>
+      </g>
+    </g>
+    <text class="t3" x="726" y="732" text-anchor="middle" font-weight="bold">Cobertura y</text>
+    <text class="t3" x="726" y="748" text-anchor="middle" font-weight="bold">operación</text>
+    <text class="t3" x="726" y="772" text-anchor="middle" font-style="italic">API / Sistema</text>
+  </g>
+  <g>
+    <rect class="panel" x="790" y="672" width="104" height="150" rx="10" stroke="#4b8a3d" stroke-width="1.3"/>
+    <g transform="translate(828,686)" stroke="#4b8a3d" fill="none" stroke-width="2">
+      <rect x="3" y="4" width="18" height="16" rx="2"/>
+      <line x1="3" y1="9" x2="21" y2="9"/>
+      <line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/>
+    </g>
+    <text class="t3" x="842" y="732" text-anchor="middle" font-weight="bold">Disponibilidad</text>
+    <text class="t3" x="842" y="748" text-anchor="middle" font-weight="bold">/ reservas</text>
+    <text class="t3" x="842" y="772" text-anchor="middle" font-style="italic">API / Sistema</text>
+  </g>
+  <g>
+    <rect class="panel" x="906" y="672" width="104" height="150" rx="10" stroke="#0e7c86" stroke-width="1.3"/>
+    <g transform="translate(944,686)">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="#0e7c86" stroke-width="2"/>
+      <text x="12" y="17" text-anchor="middle" font-size="13" font-weight="bold" fill="#0e7c86">S/</text>
+    </g>
+    <text class="t3" x="958" y="732" text-anchor="middle" font-weight="bold">Precios y</text>
+    <text class="t3" x="958" y="748" text-anchor="middle" font-weight="bold">cotizaciones</text>
+    <text class="t3" x="958" y="772" text-anchor="middle" font-style="italic">API / Sistema</text>
+  </g>
+  <g>
+    <rect class="panel" x="1022" y="672" width="104" height="150" rx="10" stroke="#82b366" stroke-width="1.6" fill="#f7fbf4"/>
+    <g transform="translate(1058,684)">
+      <circle cx="12" cy="8" r="4" fill="#5a8f4f"/>
+      <path d="M5 19c0-3.8 3.2-6 7-6s7 2.2 7 6v.5H5z" fill="#5a8f4f"/>
+      <path d="M6 8a6 6 0 0 1 12 0" stroke="#3c6b33" stroke-width="1.8" fill="none"/>
+      <rect x="16.5" y="7.5" width="2.6" height="5.2" rx="1.3" fill="#3c6b33"/>
+    </g>
+    <text class="t3" x="1074" y="732" text-anchor="middle" font-weight="bold">Atención</text>
+    <text class="t3" x="1074" y="748" text-anchor="middle" font-weight="bold">humana (HITL)</text>
+    <text class="t3" x="1074" y="772" text-anchor="middle" font-style="italic">derivación</text>
+  </g>
+  <text class="t3" x="840" y="850" text-anchor="middle" font-style="italic" fill="#0e7c86">las 5 conexiones del Profile Card §3.2 — cada una es una tool determinista, no una promesa del prompt</text>
+
+  <!-- ============ 8. TRANSVERSAL ============ -->
+  <rect class="panel" x="280" y="910" width="1190" height="150" rx="14" stroke="#5a6472" stroke-width="1.6"/>
+  <rect x="280" y="910" width="1190" height="30" rx="14" fill="#f3f4f6"/>
+  <rect x="280" y="926" width="1190" height="14" fill="#f3f4f6"/>
+  <text class="hdr" x="875" y="930" text-anchor="middle" fill="#3f4650">8. SEGURIDAD, OBSERVABILIDAD Y GOBIERNO (capa transversal)</text>
+  <g transform="translate(330,975)" stroke="#c69a1d" fill="none" stroke-width="2.4" stroke-linecap="round">
+    <circle cx="7" cy="7" r="4.2"/>
+    <line x1="10" y1="10" x2="18.5" y2="18.5"/>
+    <line x1="14.5" y1="14.5" x2="16.8" y2="12.2"/>
+    <line x1="17" y1="17" x2="19.3" y2="14.7"/>
+  </g>
+  <text class="t2" x="368" y="984" font-weight="bold">Key Vault</text>
+  <text class="t3" x="368" y="1002">secretos + SYSTEM PROMPT</text>
+  <text class="t3" x="368" y="1018">versionado (Boris S12)</text>
+  <g transform="translate(640,975)" stroke="#555" fill="none">
+    <circle cx="8" cy="8" r="6" stroke-width="2.2"/>
+    <line x1="12.5" y1="12.5" x2="19" y2="19" stroke-width="2.8" stroke-linecap="round"/>
+  </g>
+  <text class="t2" x="676" y="984" font-weight="bold">LangSmith</text>
+  <text class="t3" x="676" y="1002">trazas · tokens · evals ·</text>
+  <text class="t3" x="676" y="1018">debugging (LLMOps)</text>
+  <g transform="translate(930,972)">
+    <path d="M11 1l7.5 3v5.5c0 4.6-3.1 8.1-7.5 10-4.4-1.9-7.5-5.4-7.5-10V4z" fill="#b85450"/>
+    <path d="M7.8 10.5l2.3 2.3 4.1-4.6" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  </g>
+  <text class="t2" x="962" y="984" font-weight="bold">Guardrails / Evals</text>
+  <text class="t3" x="962" y="1002">scope · anti-injection · PII ·</text>
+  <text class="t3" x="962" y="1018">evals con reglas deterministas</text>
+  <g transform="translate(1230,975)" fill="none">
+    <rect x="0" y="0" width="22" height="15" rx="2" stroke="#555" stroke-width="1.8"/>
+    <polyline points="3,11 7,6 11,9 18,3" stroke="#0078D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text class="t2" x="1264" y="984" font-weight="bold">Monitor + App Insights</text>
+  <text class="t3" x="1264" y="1002">logs · métricas · alertas</text>
+  <!-- conectores transversales -->
+  <path class="trans" d="M700 910 V870"/>
+  <path class="trans" d="M950 910 V870"/>
+  <path class="trans" d="M1320 910 V870"/>
+  <path class="trans" d="M420 910 V870"/>
+
+  <!-- ============ 9. FLUJO FUNCIONAL ============ -->
+  <rect class="panel" x="1500" y="150" width="250" height="560" rx="14" stroke="#9673a6" stroke-width="1.6"/>
+  <rect x="1500" y="150" width="250" height="30" rx="14" fill="#f3ecfa"/>
+  <rect x="1500" y="166" width="250" height="14" fill="#f3ecfa"/>
+  <text class="hdr" x="1625" y="170" text-anchor="middle" fill="#6a4d7a">9. FLUJO FUNCIONAL RESUMIDO</text>
+  <g transform="translate(1530,210)">
+    <rect x="0" y="0" width="26" height="18" rx="5" fill="#7c5aa6"/>
+    <path d="M6 18 l3 6 3-6z" fill="#7c5aa6"/>
+    <line x1="5" y1="6" x2="21" y2="6" stroke="#fff" stroke-width="1.6"/>
+    <line x1="5" y1="11" x2="16" y2="11" stroke="#fff" stroke-width="1.6"/>
+  </g>
+  <text class="t2" x="1572" y="226" font-weight="bold">Entender intención</text>
+  <path class="flow" d="M1625 246 V282"/>
+  <g transform="translate(1530,292)" stroke="#4a90d9" fill="none" stroke-width="2">
+    <rect x="0" y="0" width="24" height="24" rx="3"/>
+    <line x1="5" y1="7" x2="19" y2="7"/><line x1="5" y1="12" x2="19" y2="12"/><line x1="5" y1="17" x2="13" y2="17"/>
+  </g>
+  <text class="t2" x="1572" y="302" font-weight="bold">Completar datos</text>
+  <text class="t3" x="1572" y="318">mínimos (4 slots)</text>
+  <path class="flow" d="M1625 328 V364"/>
+  <g transform="translate(1530,374)">
+    <path d="M12 1l8 3.2V10c0 4.8-3.3 8.6-8 10.6C7.3 18.6 4 14.8 4 10V4.2z" fill="#4b8a3d"/>
+    <path d="M8.5 10l2.5 2.5 4.5-5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+  <text class="t2" x="1572" y="386" font-weight="bold">Validar</text>
+  <text class="t3" x="1572" y="402">cobertura · disponibilidad</text>
+  <text class="t3" x="1572" y="418">· reglas (72h/feriados)</text>
+  <path class="flow" d="M1625 428 V464"/>
+  <g transform="translate(1530,474)" fill="none">
+    <circle cx="12" cy="12" r="10" stroke="#9673a6" stroke-width="2"/>
+    <circle cx="12" cy="12" r="5.5" stroke="#9673a6" stroke-width="2"/>
+    <circle cx="12" cy="12" r="1.8" fill="#9673a6"/>
+  </g>
+  <text class="t2" x="1572" y="486" font-weight="bold">Recomendar + cotizar</text>
+  <text class="t3" x="1572" y="502">motor de comparación ·</text>
+  <text class="t3" x="1572" y="518">precio del sistema oficial</text>
+  <path class="flow" d="M1625 528 V564"/>
+  <g transform="translate(1530,574)">
+    <circle cx="12" cy="8" r="4.2" fill="#5a8f4f"/>
+    <path d="M4 20c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5v.5H4z" fill="#5a8f4f"/>
+  </g>
+  <text class="t2" x="1572" y="586" font-weight="bold">Derivar (HITL)</text>
+  <text class="t3" x="1572" y="602">si excede su autonomía</text>
+  <text class="t3" x="1572" y="618">o el usuario lo pide</text>
+  <text class="t3" x="1625" y="668" text-anchor="middle" font-style="italic" fill="#6a4d7a">= objetivo del card §2.2:</text>
+  <text class="t3" x="1625" y="686" text-anchor="middle" font-style="italic" fill="#6a4d7a">convertir en oportunidad de venta</text>
+
+  <!-- ============ 10. LEYENDA ============ -->
+  <rect class="panel" x="1780" y="150" width="240" height="240" rx="14" stroke="#8a8f98" stroke-width="1.4"/>
+  <rect x="1780" y="150" width="240" height="30" rx="14" fill="#f3f4f6"/>
+  <rect x="1780" y="166" width="240" height="14" fill="#f3f4f6"/>
+  <text class="hdr" x="1900" y="170" text-anchor="middle" fill="#3f4650">10. LEYENDA VISUAL</text>
+  <line x1="1800" y1="210" x2="1840" y2="210" stroke="#555" stroke-width="2.2"/>
+  <text class="t3" x="1850" y="214">flujo principal</text>
+  <line x1="1800" y1="244" x2="1840" y2="244" stroke="#888" stroke-width="2" stroke-dasharray="7 5"/>
+  <text class="t3" x="1850" y="248">flujo opcional / futuro</text>
+  <line x1="1800" y1="278" x2="1840" y2="278" stroke="#5a9e4b" stroke-width="2.2" stroke-dasharray="8 5"/>
+  <text class="t3" x="1850" y="282">derivación humana (HITL)</text>
+  <line x1="1800" y1="312" x2="1840" y2="312" stroke="#9673a6" stroke-width="2" stroke-dasharray="6 4"/>
+  <text class="t3" x="1850" y="316">ingesta de conocimiento</text>
+  <line x1="1800" y1="346" x2="1840" y2="346" stroke="#5a6472" stroke-width="1.4" stroke-dasharray="3 4" opacity=".55"/>
+  <text class="t3" x="1850" y="350">capa transversal</text>
+
+  <!-- ============ ASESOR ============ -->
+  <rect class="panel" x="1780" y="440" width="240" height="200" rx="14" stroke="#82b366" stroke-width="1.8" fill="#f2f9ee"/>
+  <g transform="translate(1796,462) scale(1.15)">
+    <circle cx="12" cy="9" r="4.4" fill="#5a8f4f"/>
+    <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7v.5H4z" fill="#5a8f4f"/>
+    <path d="M5.5 9a6.5 6.5 0 0 1 13 0" stroke="#3c6b33" stroke-width="2" fill="none"/>
+    <rect x="17" y="8.4" width="3" height="6" rx="1.5" fill="#3c6b33"/>
+  </g>
+  <text class="t1" x="1836" y="472" font-size="13.5">ASESOR HUMANO</text>
+  <text class="t3" x="1800" y="502">recibe expediente por WhatsApp</text>
+  <text class="t3" x="1800" y="520">cotización &#8594; reserva pendiente</text>
+  <text class="t3" x="1800" y="538">pago &#8594; reserva CONFIRMADA</text>
+  <text class="t3" x="1800" y="562" font-weight="bold" font-style="italic" fill="#3c6b33">el único que bloquea</text>
+  <text class="t3" x="1800" y="580" font-weight="bold" font-style="italic" fill="#3c6b33">disponibilidad</text>
+  <text class="t3" x="1800" y="604" font-style="italic">gestiona el ciclo en Cosmos DB</text>
+
+  <!-- ============ FLECHAS ENTRE PANELES ============ -->
+  <path d="M195 262 H255 V335" stroke="#555" stroke-width="2" fill="none"/>
+  <path d="M195 428 H255 V345" stroke="#555" stroke-width="2" fill="none"/>
+  <path class="flow" d="M255 340 H280"/>
+  <path class="flow" d="M500 340 H520 V275 H565"/>
+  <text class="lbl" x="508" y="330">webhook</text>
+  <!-- agente -> redis -->
+  <path class="flow" d="M1115 250 H1190"/>
+  <text class="lbl" x="1152" y="242" text-anchor="middle">estado</text>
+  <!-- tools -> cosmos -->
+  <path class="flow" d="M1115 520 H1190"/>
+  <text class="lbl" x="1152" y="510" text-anchor="middle">insert</text>
+  <!-- agente/tools -> ai search -->
+  <path class="flow" d="M1115 465 H1150 V823 H1190"/>
+  <text class="lbl" x="1158" y="660" text-anchor="middle" transform="rotate(-90 1158 660)">retrieval como tool</text>
+  <!-- app -> llm -->
+  <path class="flow" d="M600 590 V605 H390 V620"/>
+  <text class="lbl" x="470" y="600" text-anchor="middle">razonamiento (LLM)</text>
+  <!-- tools -> integraciones -->
+  <path class="flow" d="M950 565 V620"/>
+  <text class="lbl" x="958" y="600">gates deterministas</text>
+  <!-- derivacion -->
+  <path d="M1074 822 V888 H1765 V540 H1780" stroke="#5a9e4b" stroke-width="2.2" fill="none" stroke-dasharray="8 5" marker-end="url(#arrG)"/>
+  <text class="lbl" x="1420" y="880" text-anchor="middle">derivación / cierre (WhatsApp)</text>
+
+  <!-- ============ SUSTENTO ============ -->
+  <text x="1030" y="1100" text-anchor="middle" font-size="13.5" font-style="italic" fill="#333"><tspan font-weight="bold">Sustento V2 (fusión):</tspan> capas y stack Azure del equipo + gates deterministas del diseño base. MONOAGENTE con create_agent (LangGraph debajo) — no hay orquestador multiagente.</text>
+  <text x="1030" y="1122" text-anchor="middle" font-size="13.5" font-style="italic" fill="#333">El agente solo INSERTA cotizaciones en Cosmos DB (no bloquea); el asesor convierte pendiente &#8594; CONFIRMADA en la MISMA base: una sola fuente de verdad del ciclo.</text>
+  <text x="1030" y="1144" text-anchor="middle" font-size="13.5" font-style="italic" fill="#333">Container Apps scale-to-zero hoy (~20 conv/sem); AKS y Redis dedicado cuando el volumen lo exija. La misma imagen Docker corre en local (Boris S14: sin pagar suscripción).</text>
+</svg>
