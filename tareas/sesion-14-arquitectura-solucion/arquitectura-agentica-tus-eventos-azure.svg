@@ -1,0 +1,299 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1980 1150" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="2.5" flood-opacity="0.16"/>
+    </filter>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#555"/>
+    </marker>
+    <marker id="arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#5a9e4b"/>
+    </marker>
+    <marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9673a6"/>
+    </marker>
+    <marker id="arrY" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#c69a1d"/>
+    </marker>
+    <style>
+      .card{fill:#ffffff;filter:url(#sh);}
+      .t1{font-size:15px;font-weight:bold;fill:#222;}
+      .t2{font-size:12.5px;fill:#444;}
+      .lbl{font-size:11.5px;fill:#333;paint-order:stroke;stroke:#ffffff;stroke-width:5px;font-style:italic;}
+      .flow{stroke:#555;stroke-width:2.2;fill:none;marker-end:url(#arr);}
+      .dash{stroke:#888;stroke-width:2;fill:none;stroke-dasharray:7 5;marker-end:url(#arr);}
+    </style>
+  </defs>
+
+  <!-- ============ TITULO ============ -->
+  <text x="990" y="46" text-anchor="middle" font-size="28" font-weight="bold" fill="#1a1a1a">ARQUITECTURA AGÉNTICA — TUS EVENTOS · VERSIÓN AZURE</text>
+  <text x="990" y="72" text-anchor="middle" font-size="14.5" fill="#555">Evolución cloud de la versión local: la MISMA imagen Docker, ahora en servicios administrados</text>
+  <text x="990" y="94" text-anchor="middle" font-size="12.5" font-style="italic" fill="#777">Se activa cuando el volumen lo justifique — hoy (~20 conv/semana) basta la versión local</text>
+
+  <!-- ============ MARCO AZURE ============ -->
+  <rect x="430" y="150" width="1180" height="880" rx="24" fill="#eef6fd" stroke="#0078D4" stroke-width="1.8" stroke-dasharray="10 6"/>
+  <!-- logo azure -->
+  <g transform="translate(458,164) scale(1.5)">
+    <path d="M11.5 2 L4 18.5 H8.6 L15.5 4.5 z" fill="#1489d3"/>
+    <path d="M13 8.5 L8.8 18.5 H20 z" fill="#0f6cbd"/>
+  </g>
+  <text x="520" y="190" font-size="19" font-weight="bold" fill="#1a1a1a">SUSCRIPCIÓN AZURE — rg-tus-eventos (IaC: Bicep/Terraform)</text>
+  <text x="520" y="211" font-size="13" font-style="italic" fill="#666">región única · private endpoints</text>
+
+  <!-- ============ APIM ============ -->
+  <g>
+    <rect class="card" x="470" y="290" width="230" height="116" rx="12" stroke="#0078D4" stroke-width="1.8"/>
+    <rect x="470" y="290" width="6" height="116" rx="3" fill="#0078D4"/>
+    <g transform="translate(488,322)" stroke="#0078D4" fill="none">
+      <circle cx="13" cy="13" r="5" stroke-width="2.4"/>
+      <g stroke-width="2.4" stroke-linecap="round">
+        <line x1="13" y1="2.5" x2="13" y2="6"/><line x1="13" y1="20" x2="13" y2="23.5"/>
+        <line x1="2.5" y1="13" x2="6" y2="13"/><line x1="20" y1="13" x2="23.5" y2="13"/>
+        <line x1="5.5" y1="5.5" x2="8" y2="8"/><line x1="18" y1="18" x2="20.5" y2="20.5"/>
+        <line x1="20.5" y1="5.5" x2="18" y2="8"/><line x1="8" y1="18" x2="5.5" y2="20.5"/>
+      </g>
+    </g>
+    <text class="t1" x="532" y="318">API Management</text>
+    <text class="t2" x="532" y="340">claves · cuotas · políticas WAF</text>
+    <text class="t2" x="532" y="358">expone el webhook a Meta</text>
+    <text class="t2" x="532" y="378" font-style="italic" fill="#0f6cbd">aquí SÍ corresponde (no en local)</text>
+  </g>
+
+  <!-- ============ KEY VAULT ============ -->
+  <g>
+    <rect class="card" x="470" y="560" width="230" height="120" rx="12" stroke="#c69a1d" stroke-width="1.6"/>
+    <rect x="470" y="560" width="6" height="120" rx="3" fill="#c69a1d"/>
+    <g transform="translate(488,592)" stroke="#c69a1d" fill="none" stroke-width="2.5" stroke-linecap="round">
+      <circle cx="7.5" cy="7.5" r="4.5"/>
+      <line x1="10.8" y1="10.8" x2="20" y2="20"/>
+      <line x1="15.5" y1="15.5" x2="18" y2="13"/>
+      <line x1="18.2" y1="18.2" x2="20.7" y2="15.7"/>
+    </g>
+    <text class="t1" x="532" y="588">Key Vault</text>
+    <text class="t2" x="532" y="610">API keys · credenciales BD</text>
+    <text class="t2" x="532" y="628">SYSTEM PROMPT versionado</text>
+    <text class="t2" x="532" y="648" font-style="italic">(Boris S12: "como secreto")</text>
+  </g>
+
+  <!-- ============ CONTAINER APPS ENVIRONMENT ============ -->
+  <rect x="760" y="230" width="560" height="430" rx="16" fill="#f7fbff" stroke="#6c8ebf" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <!-- icono contenedores -->
+  <g transform="translate(1272,244)">
+    <rect x="0" y="0" width="26" height="6" rx="1.5" fill="#4a9fd8"/>
+    <rect x="0" y="8" width="26" height="6" rx="1.5" fill="#2b8ac9"/>
+    <rect x="0" y="16" width="26" height="6" rx="1.5" fill="#0f6cbd"/>
+  </g>
+  <text x="784" y="648" font-size="12.5" font-style="italic" fill="#4a6ea5">Container Apps Environment — <tspan font-weight="bold">scale-to-zero</tspan> · la imagen llega vía ACR (docker push)</text>
+
+  <!-- bff-agente -->
+  <g>
+    <rect class="card" x="790" y="290" width="250" height="200" rx="12" stroke="#9673a6" stroke-width="1.8"/>
+    <rect x="790" y="290" width="6" height="200" rx="3" fill="#9673a6"/>
+    <g transform="translate(806,306)" stroke="#7c5aa6" stroke-width="2.4" fill="none">
+      <rect x="0" y="7" width="12" height="7.5" rx="3.7" transform="rotate(-32 6 11)"/>
+      <rect x="9" y="7" width="12" height="7.5" rx="3.7" transform="rotate(-32 15 11)"/>
+    </g>
+    <text class="t1" x="846" y="318">Container App: bff-agente</text>
+    <text class="t2" x="812" y="346" font-weight="bold" fill="#7c5aa6">la MISMA imagen del local:</text>
+    <text class="t2" x="812" y="368">BFF FastAPI · guardrails E/S</text>
+    <text class="t2" x="812" y="388">agente LangChain (ReAct loop)</text>
+    <text class="t2" x="812" y="408">tools deterministas (8)</text>
+    <text class="t2" x="812" y="428">checkpointer &#8594; PostgreSQL</text>
+    <text class="t2" x="812" y="452" font-style="italic">ingress interno · minReplicas=0</text>
+  </g>
+
+  <!-- demo -->
+  <g>
+    <rect class="card" x="1080" y="540" width="210" height="100" rx="12" stroke="#8a8f98" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <g transform="translate(1094,566)">
+      <polygon points="11,16 2,5 11,9 20,5" fill="#FF4B4B"/>
+    </g>
+    <text class="t1" x="1126" y="572" font-size="13.5">Container App: demo</text>
+    <text class="t2" x="1126" y="592">Streamlit (interna)</text>
+    <text class="t2" x="1126" y="610" font-style="italic">acceso con Entra ID</text>
+  </g>
+
+  <!-- ============ AI SEARCH ============ -->
+  <g>
+    <rect class="card" x="1340" y="300" width="250" height="120" rx="12" stroke="#9673a6" stroke-width="1.6"/>
+    <rect x="1340" y="300" width="6" height="120" rx="3" fill="#9673a6"/>
+    <g transform="translate(1356,330)" fill="none">
+      <circle cx="9" cy="9" r="6.5" stroke="#555" stroke-width="2.4"/>
+      <line x1="14" y1="14" x2="20" y2="20" stroke="#555" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="7" cy="7" r="1.5" fill="#2D6BFF"/>
+      <circle cx="11.5" cy="8" r="1.3" fill="#FF6B35"/>
+      <circle cx="9" cy="11.5" r="1.2" fill="#FFC53D"/>
+    </g>
+    <text class="t1" x="1400" y="328">Azure AI Search</text>
+    <text class="t2" x="1400" y="350">índice RAG: FAQ · políticas</text>
+    <text class="t2" x="1400" y="368">híbrida: vector + keyword</text>
+    <text class="t2" x="1400" y="388" font-style="italic">(alternativa portable: Chroma)</text>
+  </g>
+
+  <!-- ============ BLOB ============ -->
+  <g>
+    <rect class="card" x="1340" y="560" width="250" height="110" rx="12" stroke="#0078D4" stroke-width="1.5"/>
+    <rect x="1340" y="560" width="6" height="110" rx="3" fill="#0078D4"/>
+    <g transform="translate(1356,588)">
+      <rect x="0" y="0" width="18" height="7" rx="2.5" fill="#4a9fd8"/>
+      <rect x="4" y="9" width="18" height="7" rx="2.5" fill="#2b8ac9"/>
+      <rect x="0" y="18" width="18" height="7" rx="2.5" fill="#0f6cbd"/>
+    </g>
+    <text class="t1" x="1400" y="590">Blob Storage</text>
+    <text class="t2" x="1400" y="612">PDFs del negocio:</text>
+    <text class="t2" x="1400" y="630">políticas · condiciones · cat.</text>
+  </g>
+
+  <!-- ============ POSTGRES ============ -->
+  <g>
+    <rect class="card" x="470" y="840" width="360" height="152" rx="12" stroke="#336791" stroke-width="1.8"/>
+    <rect x="470" y="840" width="6" height="152" rx="3" fill="#336791"/>
+    <g transform="translate(490,882) scale(1.5)">
+      <ellipse cx="12" cy="5" rx="9" ry="3.4" fill="#4a86b8"/>
+      <path d="M3 5v12c0 1.9 4 3.4 9 3.4s9-1.5 9-3.4V5" fill="#336791"/>
+      <ellipse cx="12" cy="10.5" rx="9" ry="3.2" fill="none" stroke="#5b93bd" stroke-width=".8"/>
+    </g>
+    <text class="t1" x="544" y="866">Azure PostgreSQL — Flexible</text>
+    <text class="t2" x="544" y="888">la BD del negocio, administrada:</text>
+    <text class="t2" x="544" y="908">catálogo · precios · calendario</text>
+    <text class="t2" x="544" y="930" font-weight="bold" fill="#2c5a7c">cotización &#8594; PENDIENTE &#8594; CONFIRMADA</text>
+    <text class="t2" x="544" y="952" font-style="italic">private endpoint · backups automáticos</text>
+  </g>
+
+  <!-- ============ AZURE OPENAI ============ -->
+  <g>
+    <rect class="card" x="880" y="840" width="330" height="152" rx="12" stroke="#333" stroke-width="1.5"/>
+    <rect x="880" y="840" width="6" height="152" rx="3" fill="#333"/>
+    <g transform="translate(900,890)">
+      <g fill="#111">
+        <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4"/>
+        <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4" transform="rotate(60 12 12)"/>
+        <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4" transform="rotate(120 12 12)"/>
+        <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4" transform="rotate(180 12 12)"/>
+        <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4" transform="rotate(240 12 12)"/>
+        <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4" transform="rotate(300 12 12)"/>
+      </g>
+    </g>
+    <text class="t1" x="944" y="870">Azure OpenAI — gpt-4o-mini</text>
+    <text class="t2" x="944" y="894">despliegue Global Standard</text>
+    <text class="t2" x="944" y="914">PTU solo si escala (S14)</text>
+    <text class="t2" x="944" y="936" font-style="italic">mismos modelos, compliance</text>
+    <text class="t2" x="944" y="954" font-style="italic">enterprise · sin salir de la red</text>
+  </g>
+
+  <!-- ============ MONITOR ============ -->
+  <g>
+    <rect class="card" x="1340" y="840" width="250" height="112" rx="12" stroke="#8a8f98" stroke-width="1.4"/>
+    <g transform="translate(1356,868)" fill="none">
+      <rect x="0" y="0" width="24" height="17" rx="2" stroke="#555" stroke-width="2"/>
+      <polyline points="3,13 8,7 13,10 20,3.5" stroke="#0078D4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text class="t1" x="1398" y="870">Monitor + App Insights</text>
+    <text class="t2" x="1398" y="892">logs · métricas · alertas</text>
+    <text class="t2" x="1398" y="910" font-style="italic">salud de la plataforma</text>
+  </g>
+
+  <!-- ============ EXTERNOS ============ -->
+  <g>
+    <rect class="card" x="1680" y="160" width="250" height="84" rx="12" stroke="#8a8f98" stroke-width="1.4"/>
+    <g transform="translate(1698,182)" stroke="#555" fill="none">
+      <circle cx="10" cy="10" r="7" stroke-width="2.6"/>
+      <line x1="15.5" y1="15.5" x2="22" y2="22" stroke-width="3.2" stroke-linecap="round"/>
+    </g>
+    <text class="t1" x="1742" y="192">LangSmith</text>
+    <text class="t2" x="1742" y="214">trazas · tokens · evals</text>
+    <text class="t2" x="1742" y="232" font-style="italic">LLMOps (SaaS)</text>
+  </g>
+
+  <g>
+    <rect class="card" x="1660" y="560" width="290" height="170" rx="12" stroke="#82b366" stroke-width="1.8" fill="#f2f9ee"/>
+    <rect x="1660" y="560" width="6" height="170" rx="3" fill="#82b366"/>
+    <g transform="translate(1680,586) scale(1.25)">
+      <circle cx="12" cy="9" r="4.4" fill="#5a8f4f"/>
+      <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7v.5H4z" fill="#5a8f4f"/>
+      <path d="M5.5 9a6.5 6.5 0 0 1 13 0" stroke="#3c6b33" stroke-width="2" fill="none"/>
+      <rect x="17" y="8.4" width="3" height="6" rx="1.5" fill="#3c6b33"/>
+    </g>
+    <text class="t1" x="1726" y="590">ASESOR HUMANO (HITL)</text>
+    <text class="t2" x="1726" y="614">recibe expediente por WhatsApp</text>
+    <text class="t2" x="1726" y="636">cotización &#8594; reserva pendiente</text>
+    <text class="t2" x="1726" y="658">pago &#8594; reserva CONFIRMADA</text>
+    <text class="t2" x="1726" y="682" font-style="italic" font-weight="bold" fill="#3c6b33">el único que bloquea</text>
+    <text class="t2" x="1726" y="700" font-style="italic" font-weight="bold" fill="#3c6b33">disponibilidad</text>
+  </g>
+
+  <!-- ============ CANAL ============ -->
+  <g>
+    <rect class="card" x="40" y="340" width="170" height="94" rx="12" stroke="#82b366" stroke-width="1.8" fill="#f2f9ee"/>
+    <g transform="translate(56,366) scale(1.25)">
+      <circle cx="12" cy="7.5" r="4.4" fill="#5a8f4f"/>
+      <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7v.5H4z" fill="#5a8f4f"/>
+    </g>
+    <text class="t1" x="102" y="380">CLIENTE</text>
+    <text class="t2" x="102" y="402">público abierto</text>
+    <text class="t2" x="102" y="420">(sin autenticación)</text>
+  </g>
+
+  <g>
+    <rect class="card" x="250" y="336" width="160" height="102" rx="12" stroke="#25D366" stroke-width="1.8"/>
+    <g transform="translate(266,356)">
+      <circle cx="15" cy="15" r="15" fill="#25D366"/>
+      <path d="M8.3 13.4c1.2 2.4 3.2 4.4 5.6 5.6l1.9-1.9c.2-.2.6-.3.9-.2 1 .3 2 .5 3 .5.5 0 .9.4.9.9v3c0 .5-.4.9-.9.9-8 0-14.5-6.5-14.5-14.5 0-.5.4-.9.9-.9h3c.5 0 .9.4.9.9 0 1.1.2 2.1.5 3 .1.3 0 .6-.2.9z" fill="#fff"/>
+    </g>
+    <text class="t1" x="316" y="372">WhatsApp</text>
+    <text class="t2" x="316" y="394">Business</text>
+    <text class="t2" x="316" y="412">Cloud API (Meta)</text>
+  </g>
+
+  <!-- ============ FLECHAS ============ -->
+  <path class="flow" d="M210 387 H250"/>
+  <path class="flow" d="M410 387 H445 V345 H470"/>
+  <text class="lbl" x="415" y="378">webhook</text>
+  <path class="flow" d="M700 345 H790"/>
+  <text class="lbl" x="745" y="336" text-anchor="middle">valida y enruta</text>
+  <!-- kv -> bff (secretos) -->
+  <path d="M700 610 H755 V430 H790" stroke="#c69a1d" stroke-width="2" fill="none" stroke-dasharray="6 4" marker-end="url(#arrY)"/>
+  <text class="lbl" x="762" y="520" text-anchor="middle" transform="rotate(-90 762 520)">secretos</text>
+  <!-- bff -> aoai -->
+  <path class="flow" d="M900 490 V840"/>
+  <text class="lbl" x="908" y="680">razonamiento (LLM)</text>
+  <!-- bff -> postgres -->
+  <path class="flow" d="M820 490 V700 H650 V840"/>
+  <text class="lbl" x="658" y="792">lectura + insertar cotización</text>
+  <!-- bff -> ai search -->
+  <path class="flow" d="M1040 380 H1190 V360 H1340"/>
+  <text class="lbl" x="1188" y="348" text-anchor="middle">retrieval como tool</text>
+  <!-- blob -> ai search -->
+  <path d="M1465 560 V420" stroke="#9673a6" stroke-width="2" fill="none" stroke-dasharray="6 4" marker-end="url(#arrP)"/>
+  <text class="lbl" x="1474" y="495">ingesta (embeddings)</text>
+  <!-- demo -> bff -->
+  <path class="dash" d="M1080 585 H1020 V490"/>
+  <text class="lbl" x="1046" y="575">demo</text>
+  <!-- bff -> monitor -->
+  <path class="dash" d="M990 490 V780 H1615 V895 H1590"/>
+  <text class="lbl" x="1300" y="772" text-anchor="middle">logs / métricas</text>
+  <!-- bff -> langsmith -->
+  <path class="dash" d="M830 290 V205 H1680"/>
+  <text class="lbl" x="1300" y="197" text-anchor="middle">trazas / evals</text>
+  <!-- derivacion -->
+  <path d="M1040 470 H1050 V700 H1630 V645 H1660" stroke="#5a9e4b" stroke-width="2.2" fill="none" stroke-dasharray="8 5" marker-end="url(#arrG)"/>
+  <text class="lbl" x="1350" y="692" text-anchor="middle">derivación / cierre (WhatsApp)</text>
+
+  <!-- ============ LEYENDA ============ -->
+  <g font-size="12" fill="#555">
+    <line x1="60" y1="1052" x2="100" y2="1052" stroke="#555" stroke-width="2.2"/>
+    <text x="108" y="1056">flujo síncrono</text>
+    <line x1="220" y1="1052" x2="260" y2="1052" stroke="#888" stroke-width="2" stroke-dasharray="7 5"/>
+    <text x="268" y="1056">demo / observabilidad</text>
+    <line x1="440" y1="1052" x2="480" y2="1052" stroke="#c69a1d" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="488" y="1056">secretos</text>
+    <line x1="580" y1="1052" x2="620" y2="1052" stroke="#5a9e4b" stroke-width="2.2" stroke-dasharray="8 5"/>
+    <text x="628" y="1056">derivación humana (HITL)</text>
+    <line x1="810" y1="1052" x2="850" y2="1052" stroke="#9673a6" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="858" y="1056">ingesta de conocimiento</text>
+  </g>
+
+  <!-- ============ SUSTENTO ============ -->
+  <text x="990" y="1094" text-anchor="middle" font-size="14" font-style="italic" fill="#333"><tspan font-weight="bold">Sustento:</tspan> misma app (LangChain agnóstico &#8594; sin lock-in; Boris S14: "te casas con esa nube"). Container Apps con scale-to-zero &#8776; costo ~0 en reposo; AKS recién si el volumen lo exige.</text>
+  <text x="990" y="1116" text-anchor="middle" font-size="14" font-style="italic" fill="#333">APIM aparece AQUÍ y no en local: capa de exposición administrada (claves, WAF, cuotas). El ciclo cotización &#8594; pendiente &#8594; CONFIRMADA no cambia: la BD sigue siendo la fuente de verdad.</text>
+</svg>
