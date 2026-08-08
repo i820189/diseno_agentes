@@ -1,0 +1,240 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 990" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.2" stdDeviation="2" flood-opacity="0.14"/>
+    </filter>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#555"/>
+    </marker>
+    <marker id="arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#5a9e4b"/>
+    </marker>
+    <style>
+      .panel{fill:#ffffff;filter:url(#sh);}
+      .hdr{font-size:13px;font-weight:bold;}
+      .t1{font-size:13.5px;font-weight:bold;fill:#222;}
+      .t2{font-size:11.5px;fill:#444;}
+      .lbl{font-size:11px;fill:#333;paint-order:stroke;stroke:#ffffff;stroke-width:5px;font-style:italic;}
+      .flow{stroke:#555;stroke-width:2;fill:none;marker-end:url(#arr);}
+      .trans{stroke:#5a6472;stroke-width:1.4;fill:none;stroke-dasharray:3 4;opacity:.5;}
+    </style>
+  </defs>
+
+  <text x="750" y="38" text-anchor="middle" font-size="24" font-weight="bold" fill="#1a1a1a">ARQUITECTURA FINAL — TUS EVENTOS</text>
+  <text x="750" y="62" text-anchor="middle" font-size="13" font-style="italic" fill="#666">Monoagente híbrido con flujo controlado · Agentic Profile Card v3.2</text>
+
+  <!-- CANALES -->
+  <rect class="panel" x="40" y="120" width="180" height="320" rx="14" stroke="#9673a6" stroke-width="1.6"/>
+  <rect x="40" y="120" width="180" height="28" rx="14" fill="#f3ecfa"/>
+  <rect x="40" y="134" width="180" height="14" fill="#f3ecfa"/>
+  <text class="hdr" x="130" y="139" text-anchor="middle" fill="#6a4d7a">CANALES</text>
+  <g transform="translate(108,168) scale(1.6)">
+    <circle cx="12" cy="7.5" r="4.4" fill="#4a90d9"/>
+    <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7v.5H4z" fill="#4a90d9"/>
+  </g>
+  <text class="t2" x="130" y="230" text-anchor="middle">Usuario</text>
+  <g transform="translate(112,252) scale(1.2)">
+    <circle cx="15" cy="15" r="15" fill="#25D366"/>
+    <path d="M8.3 13.4c1.2 2.4 3.2 4.4 5.6 5.6l1.9-1.9c.2-.2.6-.3.9-.2 1 .3 2 .5 3 .5.5 0 .9.4.9.9v3c0 .5-.4.9-.9.9-8 0-14.5-6.5-14.5-14.5 0-.5.4-.9.9-.9h3c.5 0 .9.4.9.9 0 1.1.2 2.1.5 3 .1.3 0 .6-.2.9z" fill="#fff"/>
+  </g>
+  <text class="t2" x="130" y="312" text-anchor="middle">WhatsApp</text>
+  <g transform="translate(112,334)" stroke="#4a6ea5" fill="none" stroke-width="2">
+    <circle cx="18" cy="18" r="16"/>
+    <ellipse cx="18" cy="18" rx="7" ry="16"/>
+    <line x1="2" y1="18" x2="34" y2="18"/>
+  </g>
+  <text class="t2" x="130" y="398" text-anchor="middle">Web</text>
+
+  <!-- APIM -->
+  <rect class="panel" x="260" y="200" width="180" height="150" rx="14" stroke="#0078D4" stroke-width="1.6"/>
+  <g transform="translate(326,216) scale(1.4)" stroke="#0078D4" fill="none">
+    <circle cx="13" cy="13" r="5" stroke-width="2.2"/>
+    <g stroke-width="2.2" stroke-linecap="round">
+      <line x1="13" y1="2.5" x2="13" y2="6"/><line x1="13" y1="20" x2="13" y2="23.5"/>
+      <line x1="2.5" y1="13" x2="6" y2="13"/><line x1="20" y1="13" x2="23.5" y2="13"/>
+      <line x1="5.5" y1="5.5" x2="8" y2="8"/><line x1="18" y1="18" x2="20.5" y2="20.5"/>
+      <line x1="20.5" y1="5.5" x2="18" y2="8"/><line x1="8" y1="18" x2="5.5" y2="20.5"/>
+    </g>
+  </g>
+  <text class="t1" x="350" y="280" text-anchor="middle">APIM</text>
+  <text class="t2" x="350" y="300" text-anchor="middle">claves · cuotas · WAF</text>
+  <text class="t2" x="350" y="318" text-anchor="middle" font-style="italic">AI Gateway (evolución)</text>
+
+  <!-- AKS -->
+  <rect class="panel" x="480" y="120" width="560" height="360" rx="14" stroke="#2b6cb0" stroke-width="1.8"/>
+  <rect x="480" y="120" width="560" height="28" rx="14" fill="#f4f8fd"/>
+  <rect x="480" y="134" width="560" height="14" fill="#f4f8fd"/>
+  <text class="hdr" x="760" y="139" text-anchor="middle" fill="#2b6cb0">AKS — pods Python</text>
+
+  <rect class="panel" x="505" y="180" width="150" height="90" rx="10" stroke="#4aa8a0" stroke-width="1.5"/>
+  <g transform="translate(514,190)">
+    <circle cx="13" cy="13" r="13" fill="#05998b"/>
+    <polygon points="13,4 8,14 12,14 11,22 17,11 13,11" fill="#fff"/>
+  </g>
+  <text class="t1" x="546" y="204">API Service</text>
+  <text class="t2" x="514" y="232">FastAPI · webhook</text>
+  <text class="t2" x="514" y="250">sesiones · guardrails E/S</text>
+
+  <rect class="panel" x="700" y="180" width="180" height="100" rx="10" stroke="#9673a6" stroke-width="1.8"/>
+  <g transform="translate(710,190) scale(1.2)" stroke="#7c5aa6" stroke-width="2.4" fill="none">
+    <rect x="0" y="7" width="12" height="7.5" rx="3.7" transform="rotate(-32 6 11)"/>
+    <rect x="9" y="7" width="12" height="7.5" rx="3.7" transform="rotate(-32 15 11)"/>
+  </g>
+  <text class="t1" x="748" y="206">MONOAGENTE</text>
+  <text class="t2" x="712" y="234">create_agent</text>
+  <text class="t2" x="712" y="252">(LangGraph) · ReAct</text>
+
+  <rect class="panel" x="700" y="330" width="300" height="110" rx="10" stroke="#2b6cb0" stroke-width="1.8"/>
+  <g transform="translate(708,340) scale(1.2)" stroke="#2b6cb0" stroke-width="2.2" fill="none" stroke-linecap="round">
+    <rect x="6" y="8" width="12" height="9" rx="2.5"/>
+    <line x1="9.5" y1="8" x2="9.5" y2="3.5"/>
+    <line x1="14.5" y1="8" x2="14.5" y2="3.5"/>
+    <path d="M12 17v3q0 3 4.5 3"/>
+  </g>
+  <text class="t1" x="748" y="356">MCP SERVER — Tools (8)</text>
+  <text class="t2" x="712" y="384">catálogo · cobertura · disponibilidad ·</text>
+  <text class="t2" x="712" y="402">cotizar · comparación · preferencias · derivar</text>
+  <text class="t2" x="712" y="424" font-style="italic" fill="#b85450">gates deterministas · allowlist (S11)</text>
+
+  <path class="flow" d="M655 225 H700"/>
+  <text class="lbl" x="677" y="216" text-anchor="middle">invoke</text>
+  <path class="flow" d="M760 280 V330"/>
+  <path class="flow" d="M860 330 V280"/>
+  <text class="lbl" x="752" y="308" text-anchor="end">action</text>
+  <text class="lbl" x="868" y="308">observation</text>
+  <text x="812" y="300" text-anchor="middle" font-size="11" font-weight="bold" font-style="italic" fill="#9673a6">ReAct</text>
+
+  <!-- MEMORIA -->
+  <rect class="panel" x="1080" y="120" width="380" height="360" rx="14" stroke="#4b8a3d" stroke-width="1.6"/>
+  <rect x="1080" y="120" width="380" height="28" rx="14" fill="#f0f7ee"/>
+  <rect x="1080" y="134" width="380" height="14" fill="#f0f7ee"/>
+  <text class="hdr" x="1270" y="139" text-anchor="middle" fill="#4b8a3d">MEMORIA Y DATOS</text>
+  <rect class="panel" x="1100" y="180" width="340" height="80" rx="10" stroke="#A41E11" stroke-width="1.5"/>
+  <g transform="translate(1110,192) scale(1.25)">
+    <ellipse cx="11" cy="4" rx="9" ry="3.2" fill="#D82C20"/>
+    <path d="M2 4v10c0 1.8 4 3.2 9 3.2s9-1.4 9-3.2V4" fill="#A41E11"/>
+  </g>
+  <text class="t1" x="1150" y="208">Redis</text>
+  <text class="t2" x="1150" y="230">short-term · sesión (thread_id)</text>
+  <rect class="panel" x="1100" y="290" width="340" height="160" rx="10" stroke="#3999C6" stroke-width="1.7"/>
+  <g transform="translate(1108,300) scale(1.25)">
+    <circle cx="13" cy="13" r="9" fill="#3999C6"/>
+    <ellipse cx="13" cy="13" rx="15" ry="5" fill="none" stroke="#2578a0" stroke-width="1.8" transform="rotate(-22 13 13)"/>
+  </g>
+  <text class="t1" x="1158" y="316">Cosmos DB</text>
+  <text class="t2" x="1114" y="348">catálogo (precios) · reservas ·</text>
+  <text class="t2" x="1114" y="366">cotizaciones · preferencias</text>
+  <text class="t2" x="1114" y="392" font-weight="bold" fill="#2578a0">cotización &#8594; PENDIENTE &#8594; CONFIRMADA</text>
+  <text class="t2" x="1114" y="412" font-style="italic">(la convierte el asesor · única que bloquea)</text>
+  <text class="t2" x="1114" y="434" font-style="italic" fill="#666">única fuente de verdad</text>
+
+  <!-- LLM -->
+  <rect class="panel" x="260" y="560" width="220" height="180" rx="14" stroke="#0078D4" stroke-width="1.6"/>
+  <g transform="translate(348,578) scale(1.3)">
+    <g fill="#111">
+      <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4"/>
+      <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4" transform="rotate(60 12 12)"/>
+      <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4" transform="rotate(120 12 12)"/>
+      <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4" transform="rotate(180 12 12)"/>
+      <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4" transform="rotate(240 12 12)"/>
+      <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4" transform="rotate(300 12 12)"/>
+    </g>
+  </g>
+  <text class="t1" x="370" y="646" text-anchor="middle">Azure OpenAI</text>
+  <text class="t2" x="370" y="668" text-anchor="middle">gpt-4o-mini (razona)</text>
+  <text class="t2" x="370" y="686" text-anchor="middle">text-embedding-3-small (RAG)</text>
+  <text class="t2" x="370" y="708" text-anchor="middle" font-style="italic">2 deployments · 1 recurso</text>
+
+  <!-- RAG -->
+  <rect class="panel" x="520" y="560" width="520" height="220" rx="14" stroke="#0e7c86" stroke-width="1.6"/>
+  <rect x="520" y="560" width="520" height="28" rx="14" fill="#eef8f8"/>
+  <rect x="520" y="574" width="520" height="14" fill="#eef8f8"/>
+  <text class="hdr" x="780" y="579" text-anchor="middle" fill="#0e7c86">RAG (no estructurado)</text>
+  <rect class="panel" x="545" y="620" width="140" height="100" rx="10" stroke="#0078D4" stroke-width="1.4"/>
+  <g transform="translate(555,632) scale(1.1)">
+    <rect x="0" y="0" width="16" height="6" rx="2" fill="#4a9fd8"/>
+    <rect x="4" y="8" width="16" height="6" rx="2" fill="#2b8ac9"/>
+    <rect x="0" y="16" width="16" height="6" rx="2" fill="#0f6cbd"/>
+  </g>
+  <text class="t1" x="585" y="644" font-size="12.5">Blob — PDFs</text>
+  <text class="t2" x="555" y="676">cobertura · políticas</text>
+  <text class="t2" x="555" y="694" font-style="italic">del negocio</text>
+  <path class="flow" d="M685 665 H715"/>
+  <rect class="panel" x="715" y="620" width="160" height="100" rx="10" stroke="#0e7c86" stroke-width="1.4"/>
+  <text class="t1" x="725" y="644" font-size="12.5">Ingesta (LangChain)</text>
+  <text class="t2" x="725" y="668">chunking · metadata ·</text>
+  <text class="t2" x="725" y="686">embeddings</text>
+  <text class="t2" x="725" y="706" font-style="italic">zonas &#8594; dato estructurado</text>
+  <path class="flow" d="M875 665 H905"/>
+  <text class="lbl" x="884" y="650" text-anchor="middle">upsert</text>
+  <rect class="panel" x="905" y="620" width="120" height="110" rx="10" stroke="#9673a6" stroke-width="1.5"/>
+  <g transform="translate(913,630) scale(1.1)">
+    <circle cx="13" cy="13" r="9" fill="#3999C6"/>
+    <ellipse cx="13" cy="13" rx="15" ry="5" fill="none" stroke="#2578a0" stroke-width="1.8" transform="rotate(-22 13 13)"/>
+  </g>
+  <text class="t1" x="955" y="644" font-size="12.5">Cosmos</text>
+  <text class="t1" x="955" y="660" font-size="12.5">vectorial</text>
+  <text class="t2" x="915" y="690">DiskANN ·</text>
+  <text class="t2" x="915" y="706">híbrido</text>
+
+  <!-- ASESOR -->
+  <rect class="panel" x="1080" y="560" width="380" height="180" rx="14" stroke="#82b366" stroke-width="1.8" fill="#f2f9ee"/>
+  <g transform="translate(1100,584) scale(1.4)">
+    <circle cx="12" cy="9" r="4.4" fill="#5a8f4f"/>
+    <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7v.5H4z" fill="#5a8f4f"/>
+    <path d="M5.5 9a6.5 6.5 0 0 1 13 0" stroke="#3c6b33" stroke-width="2" fill="none"/>
+    <rect x="17" y="8.4" width="3" height="6" rx="1.5" fill="#3c6b33"/>
+  </g>
+  <text class="t1" x="1152" y="604">ASESOR (HITL)</text>
+  <text class="t2" x="1100" y="648">recibe el expediente por WhatsApp</text>
+  <text class="t2" x="1100" y="668">convierte cotización &#8594; reserva</text>
+  <text class="t2" x="1100" y="694" font-weight="bold" font-style="italic" fill="#3c6b33">el único que bloquea disponibilidad</text>
+
+  <!-- TRANSVERSAL -->
+  <rect class="panel" x="260" y="800" width="1200" height="100" rx="14" stroke="#5a6472" stroke-width="1.5"/>
+  <text class="hdr" x="860" y="826" text-anchor="middle" fill="#3f4650">SEGURIDAD, OBSERVABILIDAD Y GOBIERNO (transversal)</text>
+  <g transform="translate(340,846) scale(1.1)" stroke="#c69a1d" fill="none" stroke-width="2.4" stroke-linecap="round">
+    <circle cx="7" cy="7" r="4.2"/>
+    <line x1="10" y1="10" x2="18.5" y2="18.5"/>
+    <line x1="14.5" y1="14.5" x2="16.8" y2="12.2"/>
+  </g>
+  <text class="t2" x="372" y="862"><tspan font-weight="bold">Key Vault</tspan> — secretos + system prompt</text>
+  <g transform="translate(640,848) scale(1.1)" stroke="#555" fill="none">
+    <circle cx="8" cy="8" r="6" stroke-width="2.2"/>
+    <line x1="12.5" y1="12.5" x2="19" y2="19" stroke-width="2.8" stroke-linecap="round"/>
+  </g>
+  <text class="t2" x="670" y="862"><tspan font-weight="bold">LangSmith</tspan> — trazas · evals</text>
+  <g transform="translate(880,844) scale(1.1)">
+    <path d="M11 1l7.5 3v5.5c0 4.6-3.1 8.1-7.5 10-4.4-1.9-7.5-5.4-7.5-10V4z" fill="#b85450"/>
+    <path d="M7.8 10.5l2.3 2.3 4.1-4.6" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  </g>
+  <text class="t2" x="908" y="862"><tspan font-weight="bold">Guardrails / Evals</tspan> — deterministas</text>
+  <g transform="translate(1160,848) scale(1.1)" fill="none">
+    <rect x="0" y="0" width="22" height="15" rx="2" stroke="#555" stroke-width="1.8"/>
+    <polyline points="3,11 7,6 11,9 18,3" stroke="#0078D4" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <text class="t2" x="1190" y="862"><tspan font-weight="bold">Monitor</tspan> — logs · alertas</text>
+
+  <!-- FLECHAS -->
+  <path class="flow" d="M220 280 H260"/>
+  <path class="flow" d="M440 270 H470 V225 H505"/>
+  <text class="lbl" x="448" y="262">webhook</text>
+  <path class="flow" d="M880 215 H1100"/>
+  <text class="lbl" x="990" y="207" text-anchor="middle">estado</text>
+  <path class="flow" d="M1000 370 H1100"/>
+  <text class="lbl" x="1050" y="362" text-anchor="middle">CRUD</text>
+  <path class="flow" d="M930 440 V620"/>
+  <text class="lbl" x="938" y="530">retrieval (tool)</text>
+  <path d="M1000 410 H1050 V520 H1160 V560" stroke="#5a9e4b" stroke-width="2.2" fill="none" stroke-dasharray="8 5" marker-end="url(#arrG)"/>
+  <text class="lbl" x="1105" y="512" text-anchor="middle">derivación</text>
+  <path class="flow" d="M560 480 V590 H480"/>
+  <text class="lbl" x="568" y="530">LLM</text>
+  <path d="M1270 560 V450" stroke="#5a9e4b" stroke-width="1.8" fill="none" stroke-dasharray="6 4" marker-end="url(#arrG)"/>
+  <text class="lbl" x="1279" y="510">gestiona el ciclo</text>
+  <path class="trans" d="M420 800 V740"/>
+  <path class="trans" d="M780 800 V780"/>
+  <path class="trans" d="M1270 800 V740"/>
+
+  <!-- FOOTER -->
+  <text x="750" y="948" text-anchor="middle" font-size="12.5" font-style="italic" fill="#333">El agente solo INSERTA cotizaciones — el asesor confirma y bloquea · gates deterministas en código · misma imagen Docker en local y en cualquier nube.</text>
+</svg>
