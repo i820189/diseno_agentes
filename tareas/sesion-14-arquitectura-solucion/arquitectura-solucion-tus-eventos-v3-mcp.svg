@@ -27,7 +27,7 @@
   <!-- ============ TITULO ============ -->
   <text x="755" y="42" text-anchor="middle" font-size="26" font-weight="bold" fill="#1a1a1a">ARQUITECTURA DE SOLUCIÓN — TUS EVENTOS</text>
   <text x="755" y="68" text-anchor="middle" font-size="14" fill="#555">Agente de recomendaciones y atención para ocasiones de consumo · V3 — fusión + MCP Server</text>
-  <text x="755" y="90" text-anchor="middle" font-size="12.5" font-style="italic" fill="#777">Monoagente híbrido · Profile Card v3.2 · sin APIs externas: estructurado en Cosmos, no estructurado en RAG</text>
+  <text x="755" y="90" text-anchor="middle" font-size="12.5" font-style="italic" fill="#777">Monoagente híbrido · Profile Card v3.2 · sin APIs externas · datos transaccionales Y vectoriales en Cosmos DB</text>
 
   <!-- ============ CANALES ============ -->
   <rect class="panel" x="40" y="150" width="200" height="380" rx="14" stroke="#9673a6" stroke-width="1.6"/>
@@ -71,13 +71,15 @@
   <rect class="panel" x="540" y="150" width="600" height="440" rx="14" stroke="#2b6cb0" stroke-width="1.8"/>
   <rect x="540" y="150" width="600" height="30" rx="14" fill="#f4f8fd"/>
   <rect x="540" y="166" width="600" height="14" fill="#f4f8fd"/>
-  <text class="hdr" x="840" y="170" text-anchor="middle" fill="#2b6cb0">CAPA DE APLICACIÓN — CONTENEDORES (Container Apps · scale-to-zero)</text>
+  <text class="hdr" x="840" y="170" text-anchor="middle" fill="#2b6cb0">CAPA DE APLICACIÓN — AKS CLUSTER (pods Python · KEDA scale-to-zero)</text>
 
   <rect class="panel" x="565" y="215" width="180" height="120" rx="10" stroke="#4aa8a0" stroke-width="1.5"/>
   <g transform="translate(572,218)">
     <circle cx="18" cy="18" r="18" fill="#05998b"/>
     <polygon points="18,6 10.5,19.5 16.5,19.5 15,30 24,15 18,15" fill="#fff"/>
   </g>
+  <rect x="695" y="222" width="40" height="18" rx="9" fill="#eaf4fc" stroke="#2b6cb0" stroke-width="1"/>
+  <text x="715" y="235" text-anchor="middle" font-size="10" font-weight="bold" fill="#2b6cb0">pod</text>
   <text class="t1" x="614" y="234" font-size="13.5">API Service</text>
   <text class="t2" x="614" y="252">FastAPI (rol de BFF)</text>
   <text class="t3" x="580" y="278">webhook · sesiones ·</text>
@@ -89,6 +91,8 @@
     <rect x="0" y="7" width="12" height="7.5" rx="3.7" transform="rotate(-32 6 11)"/>
     <rect x="9" y="7" width="12" height="7.5" rx="3.7" transform="rotate(-32 15 11)"/>
   </g>
+  <rect x="1065" y="215" width="40" height="18" rx="9" fill="#eaf4fc" stroke="#2b6cb0" stroke-width="1"/>
+  <text x="1085" y="228" text-anchor="middle" font-size="10" font-weight="bold" fill="#2b6cb0">pod</text>
   <text class="t1" x="868" y="234">AGENTE — create_agent</text>
   <text class="t2" x="816" y="262" font-weight="bold" fill="#7c5aa6">MONOAGENTE (no orchestrator)</text>
   <text class="t2" x="816" y="282">LangGraph debajo (harness S12)</text>
@@ -102,14 +106,16 @@
     <line x1="14.5" y1="8" x2="14.5" y2="3.5"/>
     <path d="M12 17v3q0 3 4.5 3"/>
   </g>
+  <rect x="1065" y="435" width="40" height="18" rx="9" fill="#eaf4fc" stroke="#2b6cb0" stroke-width="1"/>
+  <text x="1085" y="448" text-anchor="middle" font-size="10" font-weight="bold" fill="#2b6cb0">pod</text>
   <text class="t1" x="866" y="452">MCP SERVER — Tool Layer (8)</text>
-  <text class="t3" x="816" y="478">Container App gemela (mismo environment)</text>
+  <text class="t3" x="816" y="478">pod gemelo en el mismo AKS cluster</text>
   <text class="t3" x="816" y="496">catálogo · disponibilidad · cobertura · cotizar</text>
   <text class="t3" x="816" y="514">(reglas) · comparación · preferencias · derivar</text>
   <text class="t3" x="816" y="536" font-weight="bold">registrar_cotizacion (insert · NO bloquea)</text>
   <text class="t3" x="816" y="554" font-style="italic" fill="#b85450">solo ESTE server en allowlist — S11 (MCP envenenados)</text>
 
-  <!-- CALLOUT: por que contenedores -->
+  <!-- CALLOUT contenedores -->
   <rect x="565" y="365" width="180" height="195" rx="10" fill="#f5faff" stroke="#2496ED" stroke-width="1.6"/>
   <g transform="translate(608,376) scale(0.85)">
     <rect x="2" y="12" width="9" height="8" rx="1" fill="#2496ED"/>
@@ -118,18 +124,18 @@
     <rect x="12" y="2" width="9" height="8" rx="1" fill="#2496ED"/>
     <path d="M0 22 h33 c9 0 14-4 15.5-9 3.5 .5 6-1 7-2 -1.5-1.5-4.5-2-6.5-1 -1-2.5-3-3.5-3-3.5s-1.5 2-1 4.5H0z" fill="#2496ED" transform="translate(0,4)"/>
   </g>
-  <text x="655" y="432" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1a5a96">¿Por qué contenedores?</text>
-  <text class="t3" x="655" y="452" text-anchor="middle">la MISMA imagen Docker corre</text>
-  <text class="t3" x="655" y="468" text-anchor="middle">en local y en CUALQUIER nube:</text>
+  <text x="655" y="432" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1a5a96">¿Por qué pods / contenedores?</text>
+  <text class="t3" x="655" y="452" text-anchor="middle">la MISMA imagen y manifests</text>
+  <text class="t3" x="655" y="468" text-anchor="middle">corren en CUALQUIER Kubernetes:</text>
   <rect x="578" y="480" width="50" height="19" rx="9" fill="#fff" stroke="#0078D4" stroke-width="1.2"/>
-  <text x="603" y="493" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#0078D4">Azure</text>
+  <text x="603" y="493" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#0078D4">AKS</text>
   <rect x="633" y="480" width="50" height="19" rx="9" fill="#fff" stroke="#ff9900" stroke-width="1.2"/>
-  <text x="658" y="493" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#c77700">AWS</text>
+  <text x="658" y="493" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#c77700">EKS</text>
   <rect x="688" y="480" width="50" height="19" rx="9" fill="#fff" stroke="#4285F4" stroke-width="1.2"/>
-  <text x="713" y="493" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#4285F4">GCP</text>
+  <text x="713" y="493" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#4285F4">GKE</text>
   <text class="t3" x="655" y="518" text-anchor="middle" font-style="italic">sin lock-in — Boris S14:</text>
   <text class="t3" x="655" y="532" text-anchor="middle" font-style="italic">"te casas con esa nube"</text>
-  <text class="t3" x="655" y="550" text-anchor="middle" font-style="italic" fill="#1a5a96">evolución: AKS si crece</text>
+  <text class="t3" x="655" y="550" text-anchor="middle" font-style="italic" fill="#1a5a96">dev local: docker compose</text>
 
   <path class="flow" d="M880 340 V425"/>
   <path class="flow" d="M1035 425 V340"/>
@@ -140,79 +146,48 @@
   <text x="957" y="396" text-anchor="middle" font-size="12" font-weight="bold" font-style="italic" fill="#9673a6">loop</text>
   <path class="flow" d="M745 272 H800"/>
   <text class="lbl" x="772" y="262" text-anchor="middle">invoke</text>
-  <text class="t3" x="800" y="580" font-style="italic" fill="#4a6ea5">2 contenedores — en local: los MISMOS 2 en docker compose</text>
+  <text class="t3" x="800" y="580" font-style="italic" fill="#4a6ea5">3 pods Python — en dev local: las mismas imágenes en docker compose</text>
 
   <!-- ============ MEMORIA Y DATOS ============ -->
   <rect class="panel" x="1170" y="150" width="300" height="440" rx="14" stroke="#4b8a3d" stroke-width="1.6"/>
   <rect x="1170" y="150" width="300" height="30" rx="14" fill="#f0f7ee"/>
   <rect x="1170" y="166" width="300" height="14" fill="#f0f7ee"/>
-  <text class="hdr" x="1320" y="170" text-anchor="middle" fill="#4b8a3d">MEMORIA Y DATOS (estructurado)</text>
+  <text class="hdr" x="1320" y="170" text-anchor="middle" fill="#4b8a3d">MEMORIA Y DATOS — Cosmos DB</text>
 
-  <rect class="panel" x="1190" y="205" width="260" height="110" rx="10" stroke="#A41E11" stroke-width="1.5"/>
-  <g transform="translate(1200,214) scale(1.6)">
+  <rect class="panel" x="1190" y="205" width="260" height="105" rx="10" stroke="#A41E11" stroke-width="1.5"/>
+  <g transform="translate(1200,214) scale(1.5)">
     <ellipse cx="11" cy="4" rx="9" ry="3.2" fill="#D82C20"/>
     <path d="M2 4v10c0 1.8 4 3.2 9 3.2s9-1.4 9-3.2V4" fill="#A41E11"/>
     <ellipse cx="11" cy="9" rx="9" ry="3" fill="none" stroke="#e0604f" stroke-width=".8"/>
   </g>
-  <text class="t1" x="1248" y="230" font-size="13.5">Azure Managed</text>
-  <text class="t1" x="1248" y="247" font-size="13.5">Redis</text>
+  <text class="t1" x="1244" y="230" font-size="13.5">Azure Managed</text>
+  <text class="t1" x="1244" y="247" font-size="13.5">Redis</text>
   <text class="t3" x="1204" y="272">short-term · checkpointer (thread_id)</text>
-  <text class="t3" x="1204" y="290">estado de sesión</text>
-  <text class="t3" x="1204" y="306" font-style="italic">local: vive en el contenedor</text>
+  <text class="t3" x="1204" y="290" font-style="italic">local: vive en el contenedor</text>
 
-  <rect class="panel" x="1190" y="345" width="260" height="225" rx="10" stroke="#3999C6" stroke-width="1.7"/>
-  <g transform="translate(1198,352) scale(1.5)">
+  <rect class="panel" x="1190" y="340" width="260" height="235" rx="10" stroke="#3999C6" stroke-width="1.7"/>
+  <g transform="translate(1198,348) scale(1.5)">
     <circle cx="13" cy="13" r="9" fill="#3999C6"/>
     <ellipse cx="13" cy="13" rx="15" ry="5" fill="none" stroke="#2578a0" stroke-width="1.8" transform="rotate(-22 13 13)"/>
     <circle cx="24" cy="7" r="1.8" fill="#2578a0"/>
   </g>
-  <text class="t1" x="1256" y="378" font-size="13.5">Azure Cosmos DB</text>
-  <text class="t3" x="1204" y="404">contenedores — única fuente de verdad:</text>
-  <text class="t3" x="1204" y="424" font-weight="bold">catalogo (incluye precios zona&#215;temp.)</text>
-  <text class="t3" x="1204" y="444" font-weight="bold" fill="#2578a0">reservas: cotización &#8594; PENDIENTE</text>
-  <text class="t3" x="1204" y="462" font-weight="bold" fill="#2578a0">&#8594; pago &#8594; CONFIRMADA (bloquea)</text>
-  <text class="t3" x="1204" y="484">cotizaciones (las CREA el agente)</text>
-  <text class="t3" x="1204" y="502">preferencias (con consentimiento)</text>
-  <text class="t3" x="1204" y="520">expedientes (PII mínima)</text>
-  <text class="t3" x="1204" y="546" font-style="italic">el asesor gestiona el ciclo AQUÍ</text>
-
-  <!-- ============ RAG ============ -->
-  <rect class="panel" x="540" y="620" width="600" height="250" rx="14" stroke="#0e7c86" stroke-width="1.6"/>
-  <rect x="540" y="620" width="600" height="30" rx="14" fill="#eef8f8"/>
-  <rect x="540" y="636" width="600" height="14" fill="#eef8f8"/>
-  <text class="hdr" x="840" y="640" text-anchor="middle" fill="#0e7c86">BASE DE CONOCIMIENTO / RAG (no estructurado)</text>
-  <rect class="panel" x="570" y="680" width="250" height="110" rx="10" stroke="#0078D4" stroke-width="1.4"/>
-  <g transform="translate(580,688) scale(1.6)">
-    <rect x="0" y="0" width="16" height="6" rx="2" fill="#4a9fd8"/>
-    <rect x="4" y="8" width="16" height="6" rx="2" fill="#2b8ac9"/>
-    <rect x="0" y="16" width="16" height="6" rx="2" fill="#0f6cbd"/>
-  </g>
-  <text class="t1" x="636" y="706" font-size="13">Blob Storage — PDFs</text>
-  <text class="t3" x="636" y="728" font-weight="bold">cobertura y operación</text>
-  <text class="t3" x="636" y="746">políticas · condiciones</text>
-  <text class="t3" x="584" y="776" font-style="italic">los PDFs que mantiene el negocio</text>
-  <path d="M820 735 H860" stroke="#9673a6" stroke-width="2" fill="none" stroke-dasharray="6 4" marker-end="url(#arrP)"/>
-  <text class="lbl" x="840" y="726" text-anchor="middle">ingesta</text>
-  <rect class="panel" x="860" y="680" width="250" height="110" rx="10" stroke="#9673a6" stroke-width="1.5"/>
-  <g transform="translate(868,688) scale(1.5)" fill="none">
-    <circle cx="8" cy="8" r="6" stroke="#555" stroke-width="2.2"/>
-    <line x1="12.5" y1="12.5" x2="18" y2="18" stroke="#555" stroke-width="2.6" stroke-linecap="round"/>
-    <circle cx="6.5" cy="6.5" r="1.3" fill="#2D6BFF"/>
-    <circle cx="10" cy="7" r="1.1" fill="#FF6B35"/>
-  </g>
-  <text class="t1" x="916" y="706" font-size="13">Azure AI Search</text>
-  <text class="t3" x="916" y="728">índice híbrido · retrieval como tool</text>
-  <text class="t3" x="906" y="750" font-style="italic">cobertura &#8594; zonas estructuradas</text>
-  <text class="t3" x="906" y="766" font-style="italic">en la ingesta (gate determinista)</text>
-  <text class="t3" x="840" y="830" text-anchor="middle" font-style="italic" fill="#0e7c86">regla S13: aquí SOLO lo NO estructurado (PDFs) — lo estructurado/transaccional vive en Cosmos;</text>
-  <text class="t3" x="840" y="848" text-anchor="middle" font-style="italic" fill="#0e7c86">las tools del MCP consultan cada almacén DIRECTO — no hay capa de integraciones intermedia</text>
+  <text class="t1" x="1256" y="374" font-size="13.5">Azure Cosmos DB</text>
+  <text class="t3" x="1204" y="400">contenedores — única fuente de verdad:</text>
+  <text class="t3" x="1204" y="420" font-weight="bold">catalogo (precios zona&#215;temp.)</text>
+  <text class="t3" x="1204" y="440" font-weight="bold" fill="#2578a0">reservas: cotización &#8594; PENDIENTE</text>
+  <text class="t3" x="1204" y="458" font-weight="bold" fill="#2578a0">&#8594; pago &#8594; CONFIRMADA (bloquea)</text>
+  <text class="t3" x="1204" y="478">cotizaciones (las CREA el agente)</text>
+  <text class="t3" x="1204" y="496">preferencias (consent.) · expedientes</text>
+  <text class="t3" x="1204" y="518" font-weight="bold" fill="#7c5aa6">conocimiento: chunks + vectores</text>
+  <text class="t3" x="1204" y="536" fill="#7c5aa6">DiskANN · híbrido (VectorDistance + RRF)</text>
+  <text class="t3" x="1204" y="560" font-style="italic">el asesor gestiona el ciclo aquí</text>
 
   <!-- ============ LLM PROVIDER ============ -->
   <rect class="panel" x="280" y="620" width="220" height="250" rx="14" stroke="#0078D4" stroke-width="1.6"/>
   <rect x="280" y="620" width="220" height="30" rx="14" fill="#eaf4fc"/>
   <rect x="280" y="636" width="220" height="14" fill="#eaf4fc"/>
   <text class="hdr" x="390" y="640" text-anchor="middle" fill="#0f6cbd">LLM PROVIDER LAYER</text>
-  <g transform="translate(358,658) scale(1.8)">
+  <g transform="translate(362,656) scale(1.6)">
     <g fill="#111">
       <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4"/>
       <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4" transform="rotate(60 12 12)"/>
@@ -222,29 +197,64 @@
       <rect x="10.6" y="0" width="2.8" height="9.5" rx="1.4" transform="rotate(300 12 12)"/>
     </g>
   </g>
-  <text class="t1" x="390" y="732" text-anchor="middle" font-size="13.5">Azure OpenAI</text>
-  <text class="t2" x="390" y="752" text-anchor="middle">gpt-4o-mini · Global Std</text>
-  <rect x="300" y="770" width="180" height="76" rx="10" fill="none" stroke="#8a8f98" stroke-width="1.3" stroke-dasharray="6 4"/>
-  <text class="t3" x="390" y="792" text-anchor="middle" font-style="italic">futuros modelos locales:</text>
-  <text class="t3" x="390" y="810" text-anchor="middle" font-style="italic">vLLM / Ollama / Llama</text>
-  <text class="t3" x="390" y="828" text-anchor="middle" font-style="italic">(flujo opcional)</text>
+  <text class="t1" x="390" y="722" text-anchor="middle" font-size="13.5">Azure OpenAI (2 deployments)</text>
+  <text class="t2" x="390" y="744" text-anchor="middle" font-weight="bold">gpt-4o-mini — razonamiento</text>
+  <text class="t2" x="390" y="764" text-anchor="middle" font-weight="bold" fill="#7c5aa6">text-embedding-3-small — RAG</text>
+  <text class="t3" x="390" y="782" text-anchor="middle" font-style="italic">el MISMO modelo embebe ingesta y</text>
+  <text class="t3" x="390" y="796" text-anchor="middle" font-style="italic">consulta (S13: "te casas con tu embedding")</text>
+  <rect x="300" y="808" width="180" height="52" rx="10" fill="none" stroke="#8a8f98" stroke-width="1.3" stroke-dasharray="6 4"/>
+  <text class="t3" x="390" y="828" text-anchor="middle" font-style="italic">futuros: vLLM / Ollama / Llama</text>
+  <text class="t3" x="390" y="844" text-anchor="middle" font-style="italic">(flujo opcional)</text>
 
-  <!-- ============ ASESOR (HITL) ============ -->
-  <rect class="panel" x="1170" y="620" width="300" height="210" rx="14" stroke="#82b366" stroke-width="1.8" fill="#f2f9ee"/>
-  <g transform="translate(1184,632) scale(1.6)">
+  <!-- ============ ATENCION HUMANA ============ -->
+  <rect class="panel" x="700" y="620" width="440" height="250" rx="14" stroke="#82b366" stroke-width="1.8"/>
+  <rect x="700" y="620" width="440" height="30" rx="14" fill="#e8f3e0"/>
+  <rect x="700" y="636" width="440" height="14" fill="#e8f3e0"/>
+  <text class="hdr" x="920" y="640" text-anchor="middle" fill="#3c6b33">ATENCIÓN HUMANA (HITL)</text>
+  <g transform="translate(724,668) scale(1.8)">
     <circle cx="12" cy="9" r="4.4" fill="#5a8f4f"/>
     <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7v.5H4z" fill="#5a8f4f"/>
     <path d="M5.5 9a6.5 6.5 0 0 1 13 0" stroke="#3c6b33" stroke-width="2" fill="none"/>
     <rect x="17" y="8.4" width="3" height="6" rx="1.5" fill="#3c6b33"/>
   </g>
-  <text class="t1" x="1244" y="660" font-size="13.5">ASESOR HUMANO</text>
-  <text class="t1" x="1244" y="677" font-size="13.5">(HITL)</text>
-  <text class="t3" x="1190" y="706">recibe expediente por WhatsApp</text>
-  <text class="t3" x="1190" y="724">cotización &#8594; reserva pendiente</text>
-  <text class="t3" x="1190" y="742">pago &#8594; reserva CONFIRMADA</text>
-  <text class="t3" x="1190" y="766" font-weight="bold" font-style="italic" fill="#3c6b33">el único que bloquea disponibilidad</text>
-  <text class="t3" x="1190" y="790" font-style="italic">gestiona el ciclo en Cosmos DB</text>
-  <text class="t3" x="1190" y="812" font-style="italic">no es fuente de datos: es la derivación</text>
+  <text class="t1" x="790" y="690" font-size="13.5">ASESOR COMERCIAL</text>
+  <text class="t3" x="790" y="714">recibe el expediente por WhatsApp</text>
+  <text class="t3" x="790" y="732">(informe de cotización — skill)</text>
+  <text class="t3" x="724" y="762">cotización &#8594; reserva pendiente &#8594; pago &#8594; reserva CONFIRMADA</text>
+  <text class="t3" x="724" y="786" font-weight="bold" font-style="italic" fill="#3c6b33">el único que bloquea disponibilidad</text>
+  <text class="t3" x="724" y="810" font-style="italic">gestiona el ciclo en Cosmos · no es fuente de datos: es la derivación</text>
+
+  <!-- ============ RAG EN COSMOS ============ -->
+  <rect class="panel" x="1170" y="620" width="300" height="250" rx="14" stroke="#0e7c86" stroke-width="1.6"/>
+  <rect x="1170" y="620" width="300" height="30" rx="14" fill="#eef8f8"/>
+  <rect x="1170" y="636" width="300" height="14" fill="#eef8f8"/>
+  <text class="hdr" x="1320" y="640" text-anchor="middle" fill="#0e7c86">RAG EN COSMOS (vectorial)</text>
+  <rect class="panel" x="1190" y="663" width="260" height="94" rx="10" stroke="#0e7c86" stroke-width="1.5"/>
+  <g transform="translate(1202,672) scale(1.1)" stroke="#0e7c86" fill="none">
+    <circle cx="13" cy="13" r="5" stroke-width="2.2"/>
+    <g stroke-width="2.2" stroke-linecap="round">
+      <line x1="13" y1="2.5" x2="13" y2="6"/><line x1="13" y1="20" x2="13" y2="23.5"/>
+      <line x1="2.5" y1="13" x2="6" y2="13"/><line x1="20" y1="13" x2="23.5" y2="13"/>
+      <line x1="5.5" y1="5.5" x2="8" y2="8"/><line x1="18" y1="18" x2="20.5" y2="20.5"/>
+      <line x1="20.5" y1="5.5" x2="18" y2="8"/><line x1="8" y1="18" x2="5.5" y2="20.5"/>
+    </g>
+  </g>
+  <text class="t1" x="1240" y="684" font-size="13">INGESTA — job on-demand</text>
+  <text class="t3" x="1204" y="708">chunking &#8594; embeddings &#8594; upsert</text>
+  <text class="t3" x="1204" y="726">cobertura &#8594; zonas (gate determinista)</text>
+  <text class="t3" x="1204" y="746" font-style="italic">Job de Kubernetes · corre al cambiar PDFs</text>
+  <path class="flow" d="M1320 779 V757"/>
+  <rect class="panel" x="1190" y="779" width="260" height="78" rx="10" stroke="#0078D4" stroke-width="1.4"/>
+  <g transform="translate(1200,791) scale(1.3)">
+    <rect x="0" y="0" width="16" height="6" rx="2" fill="#4a9fd8"/>
+    <rect x="4" y="8" width="16" height="6" rx="2" fill="#2b8ac9"/>
+    <rect x="0" y="16" width="16" height="6" rx="2" fill="#0f6cbd"/>
+  </g>
+  <text class="t1" x="1240" y="802" font-size="13">Blob Storage — PDFs</text>
+  <text class="t3" x="1240" y="822">cobertura · políticas · cond.</text>
+  <text class="t3" x="1240" y="840" font-style="italic">los mantiene el negocio</text>
+  <path d="M1210 663 V575" stroke="#9673a6" stroke-width="2" fill="none" stroke-dasharray="6 4" marker-end="url(#arrP)"/>
+  <text class="lbl" x="1220" y="622" text-anchor="middle" transform="rotate(-90 1220 622)">upsert vectores</text>
 
   <!-- ============ TRANSVERSAL ============ -->
   <rect class="panel" x="280" y="910" width="1190" height="150" rx="14" stroke="#5a6472" stroke-width="1.6"/>
@@ -281,8 +291,8 @@
   <text class="t2" x="1264" y="984" font-weight="bold">Monitor + App Insights</text>
   <text class="t3" x="1264" y="1002">logs · métricas · alertas</text>
   <path class="trans" d="M420 910 V870"/>
-  <path class="trans" d="M840 910 V870"/>
-  <path class="trans" d="M1320 910 V830"/>
+  <path class="trans" d="M920 910 V870"/>
+  <path class="trans" d="M1320 910 V870"/>
 
   <!-- ============ FLECHAS ============ -->
   <path d="M195 262 H255 V335" stroke="#555" stroke-width="2" fill="none"/>
@@ -293,16 +303,15 @@
   <path class="flow" d="M1115 250 H1190"/>
   <text class="lbl" x="1152" y="242" text-anchor="middle">estado</text>
   <path class="flow" d="M1115 500 H1190"/>
-  <text class="lbl" x="1152" y="490" text-anchor="middle">CRUD</text>
-  <path class="flow" d="M950 565 V680"/>
-  <text class="lbl" x="958" y="612">retrieval: cobertura · políticas</text>
+  <text class="lbl" x="1152" y="486" text-anchor="middle">CRUD + retrieval</text>
+  <text class="lbl" x="1152" y="518" text-anchor="middle">(VectorDistance)</text>
   <path class="flow" d="M600 590 V605 H390 V620"/>
-  <text class="lbl" x="490" y="600" text-anchor="middle">razonamiento (LLM)</text>
-  <path d="M1115 545 H1140 V648 H1170" stroke="#5a9e4b" stroke-width="2.2" fill="none" stroke-dasharray="8 5" marker-end="url(#arrG)"/>
-  <text class="lbl" x="1148" y="612" text-anchor="middle" transform="rotate(-90 1148 612)">derivación</text>
+  <text class="lbl" x="490" y="600" text-anchor="middle">razonamiento + embeddings</text>
+  <path d="M1050 565 V620" stroke="#5a9e4b" stroke-width="2.2" fill="none" stroke-dasharray="8 5" marker-end="url(#arrG)"/>
+  <text class="lbl" x="1058" y="600">derivación</text>
 
   <!-- ============ SUSTENTO ============ -->
-  <text x="755" y="1100" text-anchor="middle" font-size="13" font-style="italic" fill="#333"><tspan font-weight="bold">Sustento V3:</tspan> MONOAGENTE (create_agent, cliente MCP) + tools desacopladas en un MCP SERVER propio (allowlist — S11). APIM expone; el API Service (rol de BFF) ejecuta la lógica del canal.</text>
-  <text x="755" y="1122" text-anchor="middle" font-size="13" font-style="italic" fill="#333">Los datos se separan por TIPO: estructurado/transaccional &#8594; Cosmos (catálogo+precios, reservas, cotizaciones) · no estructurado &#8594; PDFs en Blob + AI Search. El agente solo INSERTA; el asesor CONFIRMA.</text>
-  <text x="755" y="1144" text-anchor="middle" font-size="13" font-style="italic" fill="#333">CONTENEDORES = portabilidad: la misma imagen corre en local, Azure, AWS o GCP — sin lock-in (Boris S14: "te casas con esa nube") · AKS recién cuando el volumen lo exija.</text>
+  <text x="755" y="1100" text-anchor="middle" font-size="13" font-style="italic" fill="#333"><tspan font-weight="bold">Sustento V3:</tspan> MONOAGENTE (create_agent, cliente MCP) + tools desacopladas en un MCP SERVER propio (allowlist — S11), corriendo como pods Python en AKS (KEDA para scale-to-zero de pods).</text>
+  <text x="755" y="1122" text-anchor="middle" font-size="13" font-style="italic" fill="#333">UNA sola plataforma de datos: lo transaccional Y lo vectorial viven en Cosmos (contenedor conocimiento: DiskANN + híbrido RRF) — sin AI Search: menos piezas y costo. Boris S13: "se puede hacer vector database con Cosmos".</text>
+  <text x="755" y="1144" text-anchor="middle" font-size="13" font-style="italic" fill="#333">Embeddings: text-embedding-3-small (Azure OpenAI) — el MISMO modelo en ingesta y consulta (S13: "te casas con tu embedding model") · contenedores = portabilidad multi-nube (S14: "te casas con esa nube").</text>
 </svg>
