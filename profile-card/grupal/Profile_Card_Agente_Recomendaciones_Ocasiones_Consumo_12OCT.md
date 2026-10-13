@@ -170,7 +170,7 @@ Interviene en una decisión comercial, procesa datos de contacto, registra reser
 
 - **72 pruebas automatizadas** (66 aprobadas, 6 omitidas por requerir PostgreSQL o Redis reales): extracción, datos faltantes, cobertura, fechas, cotización tras recomendación, descuentos sin efecto en precios, stock, calendario, memoria y repositorios.
 - **7 evals de conversación completa** (estado final y respuesta): 7 de 7 en modo determinístico; 5 de 7 con el modelo activo (2 sin terminar por latencia).
-- **Red teaming** con DeepTeam: 24 ataques en septiembre (versión original 5 fallos → versión reforzada 0) y campaña OWASP del 12 de octubre sobre la versión final (6 de 6 escenarios evaluables aprobados, 2 errores por respaldo faltante del RAG); prueba de humo de guardrails 6 de 9.
+- **Red teaming** con DeepTeam: 24 ataques en septiembre (versión original 5 fallos → versión reforzada 0) y campaña OWASP del 12 de octubre sobre la versión final (8 de 8 casos aprobados); prueba de humo de guardrails 6 de 9.
 - **Métricas propuestas para producción:** exactitud de precios y disponibilidad, precisión de extracción por campo, derivaciones no solicitadas = 0, calidad del RAG (faithfulness, context precision), latencia y costo por turno, tiempo a la primera cotización y conversión.
 
 ---
@@ -218,7 +218,7 @@ RECOMENDACIÓN EXPLICABLE · COTIZACIÓN VERIFICADA · DERIVACIÓN A ASESOR
 
 **Guardrails.** Cinco capas: entrada determinística, entrada semántica con LLM, datos personales hacia el modelo, decisión y salida; más controles éticos de edad y consumo responsable.
 
-**Evaluation.** 66 pruebas, 7 evals (7/7 y 5/7), red teaming DeepTeam (24 ataques: 5 → 0) y campaña OWASP (6/6 evaluables), trazas en LangSmith.
+**Evaluation.** 66 pruebas, 7 evals (7/7 y 5/7), red teaming DeepTeam (24 ataques: 5 → 0) y campaña OWASP (8/8), trazas en LangSmith.
 
 **Autonomy.** Semiautónomo y constreñido: recomienda, cotiza y deriva; no negocia, no aprueba descuentos, no confirma pagos ni cierra ventas.
 
