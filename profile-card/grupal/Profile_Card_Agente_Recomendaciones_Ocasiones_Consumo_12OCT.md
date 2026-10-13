@@ -16,13 +16,9 @@ Cambios respecto a la v3.2 (agosto): el agente ya existe y está desplegado; se 
 
 ## Conversacional
 
-El agente atiende por **Web Chat** (interfaz Streamlit que llama a la API del backend). En cada turno identifica la intención del cliente entre dieciséis posibles (saludo, nueva cotización, retomar previa, consulta de memoria, imagen, cierre, derivación, descuento, pago, cotización, consulta de precio, confirmación de derivación, revisar pedido, modificar pedido, consulta general y recomendación), extrae los datos del evento que vengan en el mensaje, pide únicamente lo que falta, muestra el catálogo aplicable, propone cantidades dimensionadas, emite la cotización y, cuando corresponde, deriva a un asesor. Habla en español, en mensajes cortos, y entrega artefactos: la cotización con su detalle y una imagen del evento cotizado.
+El agente atiende por **Web Chat** (interfaz Streamlit que llama a la API del backend). En cada turno identifica la intención del cliente, extrae los datos del evento que vengan en el mensaje, pide únicamente lo que falta, muestra el catálogo aplicable, propone cantidades dimensionadas, emite la cotización y, cuando corresponde, deriva a un asesor. Habla en español, en mensajes cortos, y entrega artefactos: la cotización con su detalle y una imagen del evento cotizado.
 
 **Previsto:** WhatsApp Business sobre el mismo backend, sin cambiar el agente.
-
-## No conversacional
-
-Hoy el agente ejecuta dos acciones fuera del diálogo: **retomar una cotización anterior** cuando el cliente se identifica con el mismo teléfono o correo (memoria de largo plazo) y **preparar la derivación** a un asesor con un resumen del caso y un enlace de WhatsApp. **Previsto:** recordatorios de vigencia de la cotización y seguimientos autorizados por el cliente.
 
 ---
 
@@ -36,10 +32,9 @@ Acompaña al cliente desde su necesidad hasta una cotización sustentada conside
 
 ## 2.2 Objectives Definition
 
-Guiar al cliente durante la selección, recomendar la opción más adecuada, recopilar la información necesaria y terminar en uno de tres resultados:
+Guiar al cliente durante la selección, recopilar la información necesaria, validar cobertura, calendario y stock, y terminar en uno de dos resultados:
 
-- **Recomendación explicable:** la alternativa que mejor se ajusta a la ocasión, con las validaciones realizadas a la vista (cobertura, catálogo, stock, fuente de la propuesta).
-- **Cotización verificada:** detalle por producto, subtotal, IGV 18 %, total, vigencia de 48 horas y condiciones, con todos los importes tomados de la herramienta de precios.
+- **Cotización verificada:** detalle por producto, subtotal, impuestos, total, vigencia y condiciones, con todos los importes tomados de la herramienta de precios.
 - **Derivación a un asesor:** cuando el cliente lo pide explícitamente o cuando el caso exige negociar, aprobar una excepción, confirmar un pago o resolver algo fuera de su alcance.
 
 Regla rectora: **el modelo decide qué hacer después, pero no puede saltarse una validación ni producir un número.**
@@ -56,18 +51,15 @@ Todo el conocimiento proviene de fuentes oficiales del negocio, hoy en PostgreSQ
 - **Cobertura:** distritos atendidos (hoy seis; ampliación a Lima Metropolitana por UBIGEO en curso).
 - **Disponibilidad:** stock de productos por fecha y cupos de paquetes por fecha.
 - **Calendario:** reservas de eventos por fecha y distrito y capacidad diaria configurable.
-- **Parámetros:** anticipación mínima de 72 horas, IGV 18 %, vigencia de la cotización de 48 horas; en feriados se entrega el día hábil anterior y se recoge al día siguiente.
 - **Base de conocimiento de políticas:** condiciones del servicio y preguntas frecuentes en fragmentos con embeddings (pgvector), consultados solo cuando el cliente pregunta por el servicio.
-
-El agente usa solo información oficial del catálogo y de la base de conocimiento; no debe completar estos datos con el conocimiento general del modelo.
 
 ## 3.2 Tools
 
-Trece herramientas determinísticas, agrupadas por propósito. El decisor elige la acción; la herramienta consulta la fuente y devuelve el resultado.
+Herramientas determinísticas, agrupadas por propósito. El decisor elige la acción; la herramienta consulta la fuente y devuelve el resultado.
 
 **Comprender**
 
-- **Clasificador de intención:** etiqueta el mensaje con una de las dieciséis intenciones, con confianza y evidencia; si la confianza es baja o el modelo falla, deciden las reglas.
+- **Clasificador de intención:** etiqueta la intención del mensaje, con confianza y evidencia; si la confianza es baja o el modelo falla, deciden las reglas.
 - **Extractor de campos:** evento, fecha, asistentes, distrito, nombre, contacto y productos; reglas primero, modelo para lo que falta, siempre con salida estructurada.
 
 **Validar**
@@ -84,7 +76,6 @@ Trece herramientas determinísticas, agrupadas por propósito. El decisor elige 
 
 **Explicar**
 
-- **Precio informativo:** precio unitario de un producto sin generar cotización ni reservar stock.
 - **Base de conocimiento (RAG) de políticas:** recupera los fragmentos relevantes y responde solo con ese contexto. *El código aplica las reglas; el RAG las explica.*
 
 **Cerrar y recordar**
@@ -97,13 +88,13 @@ Trece herramientas determinísticas, agrupadas por propósito. El decisor elige 
 
 ## 3.3 Short-Term Memory
 
-La sesión activa se guarda en **Redis** con vencimiento de 24 horas (archivo local en pruebas) y contiene: identificador de sesión y etapa del flujo; intención del turno; tipo de evento, asistentes, fecha (o fecha parcial), distrito, nombre y contacto; productos pedidos y productos no soportados; campos faltantes; validaciones realizadas (cobertura, calendario, disponibilidad); opción recomendada y dimensionamiento; cotización emitida; derivación y su resumen; historial de mensajes y trazas por nodo.
+La sesión activa se guarda en **Redis** (archivo local en pruebas) y contiene: identificador de sesión y etapa del flujo; intención del turno; tipo de evento, asistentes, fecha (o fecha parcial), distrito, nombre y contacto; productos pedidos y productos no soportados; campos faltantes; validaciones realizadas (cobertura, calendario, disponibilidad); opción recomendada y dimensionamiento; cotización emitida; derivación y su resumen; historial de mensajes y trazas por nodo.
 
 Esta memoria evita repreguntar y permite modificar el pedido (cambiar o reemplazar productos, fecha o distrito) sin perder lo validado.
 
 ## 3.4 Long-Term Memory
 
-En **PostgreSQL** (documento JSON por contacto) se conservan las cotizaciones previas: cuando el cliente vuelve e indica el mismo teléfono o correo, el agente ofrece retomar la última cotización o empezar una nueva. **Previsto:** preferencias guardadas solo con consentimiento explícito, consultables y eliminables por el cliente.
+En **PostgreSQL** (documento JSON por contacto) se conservan las cotizaciones previas: cuando el cliente vuelve e indica el mismo teléfono o correo, el agente ofrece retomar la última cotización o empezar una nueva.
 
 ---
 
@@ -146,7 +137,7 @@ Interviene en una decisión comercial, procesa datos de contacto, registra reser
 
 1. **Entrada determinística:** mensaje vacío, temas claramente ajenos al servicio (internet, recetas, programación, clima, noticias), intentos directos de cambiar reglas o revelar instrucciones. Respuesta segura fija sin llegar al modelo.
 2. **Entrada semántica (LLM):** casos ambiguos: lenguaje de odio, discriminación, amenazas, contenido sexual o violento, extracción de datos sensibles, manipulación sutil, fuera de alcance no evidente. Nueve categorías con confianza; bloquea solo con confianza alta; ante la duda permite.
-3. **Datos personales hacia el modelo:** nombre, teléfono y correo permitidos (son datos de contacto necesarios); tarjetas enmascaradas; claves de API bloqueadas.
+3. **Datos personales hacia el modelo:** solo nombre y teléfono como datos de contacto; claves de API bloqueadas.
 4. **Decisión:** no cotiza sin requisitos, no muestra imagen sin cotización, no deriva sin pedido explícito, no altera precios por un descuento pedido en el chat.
 5. **Salida:** evita respuestas vacías y derivaciones no solicitadas; persiste el estado validado.
 
@@ -169,8 +160,8 @@ Interviene en una decisión comercial, procesa datos de contacto, registra reser
 ### Evaluaciones
 
 - **72 pruebas automatizadas** (66 aprobadas, 6 omitidas por requerir PostgreSQL o Redis reales): extracción, datos faltantes, cobertura, fechas, cotización tras recomendación, descuentos sin efecto en precios, stock, calendario, memoria y repositorios.
-- **7 evals de conversación completa** (estado final y respuesta): 7 de 7 en modo determinístico; 5 de 7 con el modelo activo (2 sin terminar por latencia).
-- **Red teaming** con DeepTeam: 24 ataques en septiembre (versión original 5 fallos → versión reforzada 0) y campaña OWASP del 12 de octubre sobre la versión final (8 de 8 casos aprobados); prueba de humo de guardrails 6 de 9.
+- **7 evals de conversación completa** (estado final y respuesta): 7 de 7 en modo determinístico; 5 de 7 con el modelo activo.
+- **Red teaming** con DeepTeam: 24 ataques (versión original 5 fallos → versión reforzada 0) y campaña OWASP sobre la versión final (8 de 8 casos aprobados).
 - **Métricas propuestas para producción:** exactitud de precios y disponibilidad, precisión de extracción por campo, derivaciones no solicitadas = 0, calidad del RAG (faithfulness, context precision), latencia y costo por turno, tiempo a la primera cotización y conversión.
 
 ---
@@ -200,19 +191,19 @@ RECOMENDACIÓN EXPLICABLE · COTIZACIÓN VERIFICADA · DERIVACIÓN A ASESOR
 
 # 7. Resumen para la imagen del Profile Card
 
-**Communication Layer.** Conversacional: Web Chat (Streamlit + API) que identifica la intención, pide solo lo que falta, muestra catálogo, propone, cotiza y deriva; artefactos de cotización e imagen. WhatsApp previsto. No conversacional: retomar cotización previa por contacto y preparar la derivación con resumen.
+**Communication Layer.** Conversacional: Web Chat (Streamlit + API) que identifica la intención, pide solo lo que falta, muestra catálogo, propone, cotiza y deriva; artefactos de cotización e imagen. WhatsApp previsto.
 
 **Domain Definition.** Atención comercial inicial de bebidas y servicios para reuniones, celebraciones y eventos en Lima. Acompaña al cliente hasta una recomendación, cotización o derivación válida; no reemplaza al asesor.
 
-**Objectives Definition.** Comprender la intención, recopilar los datos indispensables, validar cobertura, calendario y stock, y terminar en una recomendación explicable, una cotización verificada (IGV 18 %, vigencia 48 h) o una derivación a un asesor.
+**Objectives Definition.** Comprender la intención, recopilar los datos indispensables, validar cobertura, calendario y stock, y terminar en una cotización verificada o una derivación a un asesor.
 
-**Knowledge.** Catálogo de productos y paquetes con aforo; cobertura por distrito; stock y cupos por fecha; calendario de reservas; parámetros (72 h, IGV, vigencia); base de conocimiento de políticas (RAG). Solo información oficial.
+**Knowledge.** Catálogo de productos y paquetes con aforo; cobertura por distrito; stock y cupos por fecha; calendario de reservas; base de conocimiento de políticas (RAG).
 
-**Tools.** Clasificador e extractor · cobertura · calendario · disponibilidad y stock · catálogo · dimensionamiento · precios y cotización · precio informativo · RAG de políticas · derivación · imagen · memoria.
+**Tools.** Clasificador e extractor · cobertura · calendario · disponibilidad y stock · catálogo · dimensionamiento · precios y cotización · RAG de políticas · derivación · imagen · memoria.
 
-**Short-Term Memory.** Sesión en Redis (24 h): datos del evento y del cliente, productos, faltantes, validaciones, recomendación, cotización, derivación, etapa y trazas.
+**Short-Term Memory.** Sesión en Redis: datos del evento y del cliente, productos, faltantes, validaciones, recomendación, cotización, derivación, etapa y trazas.
 
-**Long-Term Memory.** Cotizaciones previas por contacto en PostgreSQL para retomar; preferencias con consentimiento previstas.
+**Long-Term Memory.** Cotizaciones previas por contacto en PostgreSQL para retomar.
 
 **Decision Making.** Seis pasos fijos; el decisor elige una de diez acciones y el guardrail de decisión la valida; degrada a reglas si el modelo falla.
 

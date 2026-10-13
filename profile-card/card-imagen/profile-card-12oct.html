@@ -66,44 +66,40 @@ body{font-family:"Helvetica Neue",Arial,sans-serif;background:#fff;color:#1f2937
 <div class="grid g3">
   <div class="sec blue"><div class="h"><i class="fa-regular fa-comment-dots"></i>1. COMMUNICATION LAYER</div><div class="b">
     <div class="card"><div class="ti"><i class="fa-regular fa-comments"></i>Conversacional</div>
-      <p>Atiende por <b>Web Chat</b> (Streamlit sobre la API). Clasifica la intención entre 16 posibles, extrae los datos del evento, pide solo lo que falta, muestra el catálogo, propone cantidades, cotiza y deriva. Entrega la cotización y una imagen del evento. WhatsApp previsto con el mismo backend.</p></div>
-    <div class="card"><div class="ti"><i class="fa-regular fa-clock"></i>No conversacional</div>
-      <p><b>Retoma una cotización anterior</b> cuando el cliente se identifica con el mismo teléfono o correo y <b>prepara la derivación</b> con resumen y enlace de WhatsApp al asesor. Previsto: recordatorios de vigencia y seguimientos autorizados.</p></div>
+      <p>Atiende por <b>Web Chat</b> (Streamlit sobre la API). Clasifica la intención, extrae los datos del evento, pide solo lo que falta, muestra el catálogo, propone cantidades, cotiza y deriva. Entrega la cotización y una imagen del evento. WhatsApp previsto con el mismo backend.</p></div>
   </div></div>
   <div class="sec green"><div class="h"><i class="fa-solid fa-bullseye"></i>2. CONTEXT DEFINITION</div><div class="b">
     <div class="card"><div class="ti"><i class="fa-regular fa-file-lines"></i>Dominio</div>
       <p>Atención comercial inicial de <b>bebidas y servicios para eventos en Lima</b>: cerveza, vino, ron, gaseosa, agua, hielo, bartender y paquetes como el bar móvil, para matrimonios, cumpleaños, reuniones y corporativos. No reemplaza al asesor comercial.</p></div>
     <div class="card"><div class="ti"><i class="fa-solid fa-flag"></i>Objetivo</div>
-      <p>Guiar al cliente hasta una <b>recomendación explicable</b>, una <b>cotización verificada</b> (IGV 18 %, vigencia 48 h, importes de la herramienta de precios) o una <b>derivación a un asesor</b>. El modelo decide qué hacer después, pero no puede saltarse una validación ni producir un número.</p></div>
+      <p>Guiar al cliente hasta una <b>cotización verificada</b> (importes tomados de la herramienta de precios) o una <b>derivación a un asesor</b>. El modelo decide qué hacer después, pero no puede saltarse una validación ni producir un número.</p></div>
   </div></div>
   <div class="sec orange"><div class="h"><i class="fa-solid fa-database"></i>3. ENVIRONMENT DEFINITION</div><div class="b">
     <div class="card"><div class="ti"><i class="fa-solid fa-database"></i>Conocimiento (fuentes oficiales en PostgreSQL)</div>
       <ul><li>Catálogo: productos y paquetes con aforo, precios y afinidad por ocasión.</li>
       <li>Cobertura por distrito (ampliación a Lima Metropolitana en curso).</li>
       <li>Stock de productos y cupos de paquetes por fecha; calendario de reservas y capacidad diaria.</li>
-      <li>Parámetros: 72 h de anticipación, IGV 18 %, vigencia 48 h; feriados: entrega el día hábil anterior.</li>
       <li>Base de conocimiento de políticas (RAG con pgvector), solo ante preguntas del servicio.</li></ul></div>
-    <div class="note">El agente usa solo información oficial del catálogo y la base de conocimiento. No completa datos con el conocimiento general del modelo.</div>
   </div></div>
 </div>
 
 <div class="grid g2">
-  <div class="sec purple"><div class="h"><i class="fa-solid fa-wrench"></i>4. TOOLS (13 herramientas determinísticas)</div><div class="b">
+  <div class="sec purple"><div class="h"><i class="fa-solid fa-wrench"></i>4. TOOLS</div><div class="b">
     <div class="tools">
-      <div class="tool"><i class="fa-solid fa-language"></i><b>Clasificador y extractor</b><span>Intención (16) y campos del mensaje; reglas si el modelo falla.</span></div>
+      <div class="tool"><i class="fa-solid fa-language"></i><b>Clasificador y extractor</b><span>Intención y campos del mensaje; reglas si el modelo falla.</span></div>
       <div class="tool"><i class="fa-solid fa-cubes"></i><b>Catálogo</b><span>Paquetes y productos por ocasión y aforo; alternativas por categoría.</span></div>
       <div class="tool"><i class="fa-solid fa-location-dot"></i><b>Cobertura</b><span>Confirma que el distrito se atiende.</span></div>
       <div class="tool"><i class="fa-regular fa-calendar-check"></i><b>Calendario, stock y cupos</b><span>Reservas por fecha y distrito; stock y cupos para la fecha.</span></div>
       <div class="tool"><i class="fa-solid fa-scale-balanced"></i><b>Dimensionamiento, precios y cotización</b><span>Cantidades por asistente; subtotal, IGV, total y vigencia.</span></div>
-      <div class="tool"><i class="fa-solid fa-book-open"></i><b>Precio informativo y RAG de políticas</b><span>Precio sin cotizar; responde solo con contexto recuperado.</span></div>
+      <div class="tool"><i class="fa-solid fa-book-open"></i><b>RAG de políticas</b><span>Recupera los fragmentos relevantes y responde solo con ese contexto.</span></div>
       <div class="tool"><i class="fa-solid fa-headset"></i><b>Derivación, imagen y memoria</b><span>Asesor por WhatsApp solo si lo pide; tarjeta visual; sesión y cotizaciones previas.</span></div>
     </div>
   </div></div>
   <div class="sec gold"><div class="h"><i class="fa-solid fa-database"></i>5. MEMORY</div><div class="b">
-    <div class="card"><div class="ti"><i class="fa-regular fa-clock"></i>Memoria corta · Redis (24 h)</div>
+    <div class="card"><div class="ti"><i class="fa-regular fa-clock"></i>Memoria corta · Redis</div>
       <ul><li>Etapa e intención del turno</li><li>Evento, asistentes, fecha, distrito, nombre, contacto</li><li>Productos pedidos y no soportados; faltantes</li><li>Validaciones: cobertura, calendario, stock</li><li>Recomendación, cotización, derivación</li><li>Historial y trazas por nodo</li></ul></div>
     <div class="card"><div class="ti"><i class="fa-solid fa-database"></i>Memoria larga · PostgreSQL</div>
-      <ul><li>Cotizaciones previas por contacto, para retomar</li><li>Previsto: preferencias con consentimiento, consultables y eliminables</li></ul></div>
+      <ul><li>Cotizaciones previas por contacto, para retomar</li></ul></div>
   </div></div>
 </div>
 
@@ -123,7 +119,7 @@ body{font-family:"Helvetica Neue",Arial,sans-serif;background:#fff;color:#1f2937
     <ul class="chk">
       <li><i class="fa-solid fa-circle-check"></i><span><b>Entrada determinística:</b> vacío, fuera de alcance, inyección directa → respuesta segura.</span></li>
       <li><i class="fa-solid fa-circle-check"></i><span><b>Entrada semántica (LLM):</b> odio, amenazas, contenido inapropiado, datos sensibles, fuera de alcance sutil.</span></li>
-      <li><i class="fa-solid fa-circle-check"></i><span><b>Datos personales:</b> nombre, teléfono y correo permitidos; tarjetas enmascaradas; claves bloqueadas.</span></li>
+      <li><i class="fa-solid fa-circle-check"></i><span><b>Datos personales:</b> solo nombre y teléfono como datos de contacto; claves bloqueadas.</span></li>
       <li><i class="fa-solid fa-circle-check"></i><span><b>Decisión:</b> no cotiza sin requisitos, no imagen sin cotización, no deriva sin pedido, no cambia precios.</span></li>
       <li><i class="fa-solid fa-circle-check"></i><span><b>Salida:</b> sin respuestas vacías ni derivaciones no pedidas.</span></li>
       <li><i class="fa-solid fa-circle-check"></i><span><b>Ética:</b> control 18+, agua para alternar, "si bebes, no manejes" (en implementación).</span></li>
@@ -133,9 +129,8 @@ body{font-family:"Helvetica Neue",Arial,sans-serif;background:#fff;color:#1f2937
     <ul class="ev">
       <li><b>72 pruebas automatizadas</b> (66 aprobadas, 6 omitidas sin base real).</li>
       <li><b>7 evals de conversación completa:</b> 7/7 determinístico, 5/7 con modelo.</li>
-      <li><b>Red teaming DeepTeam (sep.):</b> 24 ataques, 5 fallos → 0 reforzado.</li>
-      <li><b>Campaña OWASP (12-oct):</b> 8/8 casos aprobados, CVSS 0,0.</li>
-      <li><b>Prueba de humo de guardrails:</b> 6/9.</li>
+      <li><b>Red teaming DeepTeam:</b> 24 ataques, 5 fallos → 0 reforzado.</li>
+      <li><b>Campaña OWASP:</b> 8/8 casos aprobados, CVSS 0,0.</li>
       <li><b>Trazas</b> por nodo y en LangSmith (tokens, latencia).</li>
       <li><b>Métricas objetivo:</b> precios exactos, extracción por campo, derivaciones no pedidas = 0, latencia y costo por turno.</li>
     </ul>
